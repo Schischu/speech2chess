@@ -17,6 +17,7 @@ import speech2chessapp.SocketToChess.SocketCommand;
 public class Controller {
 
     private Thread mReceiveFromChessThread = null;
+    private Thread mSphinxThread = null;
     private ParseSyntax mParseSyntax = null;
     private Speech2ChessView mSpeech2ChessView = null;
     
@@ -24,6 +25,7 @@ public class Controller {
         // Create Receive From Chess Task
 
         mReceiveFromChessThread = new ReceiveFromChessThread(this);
+        mSphinxThread = new SphinxThread(this);
         mParseSyntax = new ParseSyntax();
 
     }
@@ -97,6 +99,7 @@ public class Controller {
             case START:
             {
                 mReceiveFromChessThread.start();
+                mSphinxThread.start();
             }
             break;
 

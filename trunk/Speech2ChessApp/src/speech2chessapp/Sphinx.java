@@ -9,6 +9,8 @@ import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.recognizer.Recognizer;
 import edu.cmu.sphinx.result.Result;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,12 +33,25 @@ public class Sphinx {
         mRecognizer.deallocate();
     }
 
-    public boolean record() {
+    public String record(){
+        String resultText = null;
+
+         System.out.println("Speak now:\n");
+
         if (!mMicrophone.startRecording()) {
             System.out.println("Cannot start microphone.");
-            return false;
+            return resultText;
         }
 
-        return true;
+        while (mMicrophone.isRecording()) {
+            Result result = mRecognizer.recognize();
+            if (result != null) {
+                resultText = result.getBestFinalResultNoFiller();
+                System.out.println("You said: " + resultText + '\n');
+               // break;
+            }
+        }
+        mMicrophone.stopRecording();
+        return resultText;
     }
 }
