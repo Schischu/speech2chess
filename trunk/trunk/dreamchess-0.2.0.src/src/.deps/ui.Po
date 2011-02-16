@@ -1,0 +1,28 @@
+ui.o: ui.c ../config.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/string.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h ui.h board.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdio.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stdarg.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/sys/types.h \
+ dreamchess.h
+
+../config.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/string.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h:
+
+ui.h:
+
+board.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdio.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stdarg.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/sys/types.h:
+
+dreamchess.h:

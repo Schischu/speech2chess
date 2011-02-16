@@ -1,0 +1,37 @@
+system_config.o: system_config.c \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdio.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stdarg.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/sys/types.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/string.h \
+ ../src/include/theme.h ../src/include/gamegui/queue.h \
+ ../src/include/options.h ../src/include/options.h ../src/include/audio.h \
+ ../src/include/system_config.h
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdio.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stdarg.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/sys/types.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/string.h:
+
+../src/include/theme.h:
+
+../src/include/gamegui/queue.h:
+
+../src/include/options.h:
+
+../src/include/options.h:
+
+../src/include/audio.h:
+
+../src/include/system_config.h:

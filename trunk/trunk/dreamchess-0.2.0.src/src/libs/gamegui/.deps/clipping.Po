@@ -1,0 +1,18 @@
+clipping.o: clipping.c \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h \
+ ../../../src/include/gamegui/clipping.h \
+ ../../../src/include/gamegui/system.h ../../../config.h
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h:
+
+../../../src/include/gamegui/clipping.h:
+
+../../../src/include/gamegui/system.h:
+
+../../../config.h:

@@ -1,0 +1,290 @@
+promote_dialog.o: promote_dialog.c ui_sdlgl.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdio.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stdarg.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/sys/types.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/dirent.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/io.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/string.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/unistd.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/process.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdint.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/getopt.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/math.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/assert.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/time.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/mxml.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/ctype.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/errno.h \
+ C:/MinGW/include/SDL/SDL.h C:/MinGW/include/SDL/SDL_main.h \
+ C:/MinGW/include/SDL/SDL_stdinc.h C:/MinGW/include/SDL/SDL_config.h \
+ C:/MinGW/include/SDL/SDL_platform.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/strings.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/inttypes.h \
+ C:/MinGW/include/SDL/begin_code.h C:/MinGW/include/SDL/close_code.h \
+ C:/MinGW/include/SDL/SDL_audio.h C:/MinGW/include/SDL/SDL_error.h \
+ C:/MinGW/include/SDL/SDL_endian.h C:/MinGW/include/SDL/SDL_mutex.h \
+ C:/MinGW/include/SDL/SDL_thread.h C:/MinGW/include/SDL/SDL_rwops.h \
+ C:/MinGW/include/SDL/SDL_cdrom.h C:/MinGW/include/SDL/SDL_cpuinfo.h \
+ C:/MinGW/include/SDL/SDL_events.h C:/MinGW/include/SDL/SDL_active.h \
+ C:/MinGW/include/SDL/SDL_keyboard.h C:/MinGW/include/SDL/SDL_keysym.h \
+ C:/MinGW/include/SDL/SDL_mouse.h C:/MinGW/include/SDL/SDL_video.h \
+ C:/MinGW/include/SDL/SDL_joystick.h C:/MinGW/include/SDL/SDL_quit.h \
+ C:/MinGW/include/SDL/SDL_loadso.h C:/MinGW/include/SDL/SDL_timer.h \
+ C:/MinGW/include/SDL/SDL_version.h C:/MinGW/include/SDL/SDL_image.h \
+ C:/MinGW/include/SDL/SDL.h C:/MinGW/include/SDL/SDL_thread.h \
+ C:/MinGW/include/SDL/SDL_opengl.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/windows.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/windef.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winnt.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winerror.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/basetsd.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/pshpack4.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/poppack.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/wincon.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winbase.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/wingdi.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winuser.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winnls.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winver.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winnetwk.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winreg.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winsvc.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/GL/gl.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/GL/glu.h \
+ C:/MinGW/include/SDL/SDL_joystick.h ../../src/dreamchess.h \
+ ../../src/board.h ../../src/debug.h ../../config.h ../../src/history.h \
+ ../../src/ui.h ../../src/dreamchess.h ../../src/dir.h \
+ ../../src/credits.h ui_sdlgl_3d.h ../../src/fen.h \
+ ../../src/include/gamegui.h ../../src/include/gamegui/system.h \
+ ../../src/include/gamegui/action.h ../../src/include/gamegui/bin.h \
+ ../../src/include/gamegui/container.h ../../src/include/gamegui/widget.h \
+ ../../src/include/gamegui/queue.h ../../src/include/gamegui/signal.h \
+ ../../src/include/gamegui/box.h ../../src/include/gamegui/select.h \
+ ../../src/include/gamegui/entry.h ../../src/include/gamegui/label.h \
+ ../../src/include/gamegui/align.h ../../src/include/gamegui/hbox.h \
+ ../../src/include/gamegui/option.h ../../src/include/gamegui/vbox.h \
+ ../../src/include/gamegui/dialog.h ../../src/include/gamegui/image.h \
+ ../../src/include/gamegui/seperatorh.h \
+ ../../src/include/gamegui/seperatorv.h ../../src/include/gamegui/frame.h \
+ ../../src/include/gamegui/viewport.h ../../src/include/options.h \
+ ../../src/include/gamegui/queue.h ../../src/include/theme.h \
+ ../../src/include/options.h
+
+ui_sdlgl.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdio.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stdarg.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/sys/types.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/dirent.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/io.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/string.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/unistd.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/process.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdint.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/getopt.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/math.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/assert.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/time.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/mxml.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/ctype.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/errno.h:
+
+C:/MinGW/include/SDL/SDL.h:
+
+C:/MinGW/include/SDL/SDL_main.h:
+
+C:/MinGW/include/SDL/SDL_stdinc.h:
+
+C:/MinGW/include/SDL/SDL_config.h:
+
+C:/MinGW/include/SDL/SDL_platform.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/strings.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/inttypes.h:
+
+C:/MinGW/include/SDL/begin_code.h:
+
+C:/MinGW/include/SDL/close_code.h:
+
+C:/MinGW/include/SDL/SDL_audio.h:
+
+C:/MinGW/include/SDL/SDL_error.h:
+
+C:/MinGW/include/SDL/SDL_endian.h:
+
+C:/MinGW/include/SDL/SDL_mutex.h:
+
+C:/MinGW/include/SDL/SDL_thread.h:
+
+C:/MinGW/include/SDL/SDL_rwops.h:
+
+C:/MinGW/include/SDL/SDL_cdrom.h:
+
+C:/MinGW/include/SDL/SDL_cpuinfo.h:
+
+C:/MinGW/include/SDL/SDL_events.h:
+
+C:/MinGW/include/SDL/SDL_active.h:
+
+C:/MinGW/include/SDL/SDL_keyboard.h:
+
+C:/MinGW/include/SDL/SDL_keysym.h:
+
+C:/MinGW/include/SDL/SDL_mouse.h:
+
+C:/MinGW/include/SDL/SDL_video.h:
+
+C:/MinGW/include/SDL/SDL_joystick.h:
+
+C:/MinGW/include/SDL/SDL_quit.h:
+
+C:/MinGW/include/SDL/SDL_loadso.h:
+
+C:/MinGW/include/SDL/SDL_timer.h:
+
+C:/MinGW/include/SDL/SDL_version.h:
+
+C:/MinGW/include/SDL/SDL_image.h:
+
+C:/MinGW/include/SDL/SDL.h:
+
+C:/MinGW/include/SDL/SDL_thread.h:
+
+C:/MinGW/include/SDL/SDL_opengl.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/windows.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/windef.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winnt.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winerror.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/basetsd.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/pshpack4.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/poppack.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/wincon.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winbase.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/wingdi.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winuser.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winnls.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winver.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winnetwk.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winreg.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/winsvc.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/GL/gl.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/GL/glu.h:
+
+C:/MinGW/include/SDL/SDL_joystick.h:
+
+../../src/dreamchess.h:
+
+../../src/board.h:
+
+../../src/debug.h:
+
+../../config.h:
+
+../../src/history.h:
+
+../../src/ui.h:
+
+../../src/dreamchess.h:
+
+../../src/dir.h:
+
+../../src/credits.h:
+
+ui_sdlgl_3d.h:
+
+../../src/fen.h:
+
+../../src/include/gamegui.h:
+
+../../src/include/gamegui/system.h:
+
+../../src/include/gamegui/action.h:
+
+../../src/include/gamegui/bin.h:
+
+../../src/include/gamegui/container.h:
+
+../../src/include/gamegui/widget.h:
+
+../../src/include/gamegui/queue.h:
+
+../../src/include/gamegui/signal.h:
+
+../../src/include/gamegui/box.h:
+
+../../src/include/gamegui/select.h:
+
+../../src/include/gamegui/entry.h:
+
+../../src/include/gamegui/label.h:
+
+../../src/include/gamegui/align.h:
+
+../../src/include/gamegui/hbox.h:
+
+../../src/include/gamegui/option.h:
+
+../../src/include/gamegui/vbox.h:
+
+../../src/include/gamegui/dialog.h:
+
+../../src/include/gamegui/image.h:
+
+../../src/include/gamegui/seperatorh.h:
+
+../../src/include/gamegui/seperatorv.h:
+
+../../src/include/gamegui/frame.h:
+
+../../src/include/gamegui/viewport.h:
+
+../../src/include/options.h:
+
+../../src/include/gamegui/queue.h:
+
+../../src/include/theme.h:
+
+../../src/include/options.h:

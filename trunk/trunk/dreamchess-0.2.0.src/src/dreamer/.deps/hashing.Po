@@ -1,0 +1,5 @@
+hashing.o: hashing.c board.h hashing.h
+
+board.h:
+
+hashing.h:

@@ -1,0 +1,33 @@
+entry.o: entry.c \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/string.h \
+ ../../../src/include/gamegui/entry.h \
+ ../../../src/include/gamegui/system.h ../../../config.h \
+ ../../../src/include/gamegui/widget.h \
+ ../../../src/include/gamegui/queue.h \
+ ../../../src/include/gamegui/signal.h \
+ ../../../src/include/gamegui/clipping.h
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/string.h:
+
+../../../src/include/gamegui/entry.h:
+
+../../../src/include/gamegui/system.h:
+
+../../../config.h:
+
+../../../src/include/gamegui/widget.h:
+
+../../../src/include/gamegui/queue.h:
+
+../../../src/include/gamegui/signal.h:
+
+../../../src/include/gamegui/clipping.h:

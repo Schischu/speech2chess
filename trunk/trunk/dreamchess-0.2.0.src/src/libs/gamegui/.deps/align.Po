@@ -1,0 +1,17 @@
+align.o: align.c ../../../src/include/gamegui/align.h \
+ ../../../src/include/gamegui/system.h ../../../config.h \
+ ../../../src/include/gamegui/widget.h \
+ ../../../src/include/gamegui/queue.h \
+ ../../../src/include/gamegui/signal.h
+
+../../../src/include/gamegui/align.h:
+
+../../../src/include/gamegui/system.h:
+
+../../../config.h:
+
+../../../src/include/gamegui/widget.h:
+
+../../../src/include/gamegui/queue.h:
+
+../../../src/include/gamegui/signal.h:

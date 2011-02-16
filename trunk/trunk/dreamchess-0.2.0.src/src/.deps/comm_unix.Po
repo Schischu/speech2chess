@@ -1,0 +1,3 @@
+comm_unix.o: comm_unix.c ../config.h
+
+../config.h:
