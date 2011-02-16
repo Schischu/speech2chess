@@ -1,0 +1,3 @@
+main_sdlthd.o: main_sdlthd.c ../config.h
+
+../config.h:

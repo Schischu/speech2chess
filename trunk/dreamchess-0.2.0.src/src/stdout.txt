@@ -1,0 +1,21 @@
+DreamChess v0.2.0 (r577)
+Usage: dreamchess [options]
+
+An xboard-compatible chess interface.
+
+Options:
+  --help		-h		Show help.
+  --list-drivers	-l		List all available drivers.
+  --ui <drv>		-u<drv>		Use user interface driver <drv>.
+  --fullscreen		-f		Run fullscreen
+  --width		-W<num>		Set screen width
+  --height		-H<num>		Set screen height
+  --1st-engine <eng>	-1<eng>		Use <eng> as first chess engine.
+					  Defaults to 'dreamer'.
+  --verbose <level>	-v<level>	Set verbosity to <level>.
+					  Verbosity levels:
+					  0 - Silent
+					  1 - Errors only
+					  2 - Errors and warnings only
+					  3 - All
+					  Defaults to 1

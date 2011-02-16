@@ -1,0 +1,8 @@
+sdlmixer.o: sdlmixer.c ../../config.h ../../src/include/audio.h \
+ ../../src/include/gamegui/queue.h
+
+../../config.h:
+
+../../src/include/audio.h:
+
+../../src/include/gamegui/queue.h:

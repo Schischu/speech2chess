@@ -1,0 +1,95 @@
+message_dialog.o: message_dialog.c ../../src/include/gamegui_dialogs.h \
+ ../../src/dreamchess.h ../../src/board.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdio.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stdarg.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/sys/types.h \
+ ../../src/include/gamegui.h ../../src/include/gamegui/system.h \
+ ../../config.h ../../src/include/gamegui/action.h \
+ ../../src/include/gamegui/bin.h ../../src/include/gamegui/container.h \
+ ../../src/include/gamegui/widget.h ../../src/include/gamegui/queue.h \
+ ../../src/include/gamegui/signal.h ../../src/include/gamegui/box.h \
+ ../../src/include/gamegui/select.h ../../src/include/gamegui/entry.h \
+ ../../src/include/gamegui/label.h ../../src/include/gamegui/align.h \
+ ../../src/include/gamegui/hbox.h ../../src/include/gamegui/option.h \
+ ../../src/include/gamegui/vbox.h ../../src/include/gamegui/dialog.h \
+ ../../src/include/gamegui/image.h ../../src/include/gamegui/seperatorh.h \
+ ../../src/include/gamegui/seperatorv.h ../../src/include/gamegui/frame.h \
+ ../../src/include/gamegui/viewport.h ../../src/debug.h ../../src/ui.h \
+ ../../src/dreamchess.h ../../src/include/engine.h \
+ ../../src/include/options.h ../../src/include/gamegui/queue.h
+
+../../src/include/gamegui_dialogs.h:
+
+../../src/dreamchess.h:
+
+../../src/board.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdio.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stdarg.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/sys/types.h:
+
+../../src/include/gamegui.h:
+
+../../src/include/gamegui/system.h:
+
+../../config.h:
+
+../../src/include/gamegui/action.h:
+
+../../src/include/gamegui/bin.h:
+
+../../src/include/gamegui/container.h:
+
+../../src/include/gamegui/widget.h:
+
+../../src/include/gamegui/queue.h:
+
+../../src/include/gamegui/signal.h:
+
+../../src/include/gamegui/box.h:
+
+../../src/include/gamegui/select.h:
+
+../../src/include/gamegui/entry.h:
+
+../../src/include/gamegui/label.h:
+
+../../src/include/gamegui/align.h:
+
+../../src/include/gamegui/hbox.h:
+
+../../src/include/gamegui/option.h:
+
+../../src/include/gamegui/vbox.h:
+
+../../src/include/gamegui/dialog.h:
+
+../../src/include/gamegui/image.h:
+
+../../src/include/gamegui/seperatorh.h:
+
+../../src/include/gamegui/seperatorv.h:
+
+../../src/include/gamegui/frame.h:
+
+../../src/include/gamegui/viewport.h:
+
+../../src/debug.h:
+
+../../src/ui.h:
+
+../../src/dreamchess.h:
+
+../../src/include/engine.h:
+
+../../src/include/options.h:
+
+../../src/include/gamegui/queue.h:

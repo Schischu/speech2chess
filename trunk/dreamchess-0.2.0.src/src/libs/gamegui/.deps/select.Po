@@ -1,0 +1,23 @@
+select.o: select.c ../../../src/include/gamegui/select.h \
+ ../../../src/include/gamegui/system.h ../../../config.h \
+ ../../../src/include/gamegui/bin.h \
+ ../../../src/include/gamegui/container.h \
+ ../../../src/include/gamegui/widget.h \
+ ../../../src/include/gamegui/queue.h \
+ ../../../src/include/gamegui/signal.h
+
+../../../src/include/gamegui/select.h:
+
+../../../src/include/gamegui/system.h:
+
+../../../config.h:
+
+../../../src/include/gamegui/bin.h:
+
+../../../src/include/gamegui/container.h:
+
+../../../src/include/gamegui/widget.h:
+
+../../../src/include/gamegui/queue.h:
+
+../../../src/include/gamegui/signal.h:

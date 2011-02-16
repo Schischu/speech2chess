@@ -1,0 +1,39 @@
+action.o: action.c \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h \
+ c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h \
+ ../../../src/include/gamegui/action.h \
+ ../../../src/include/gamegui/system.h ../../../config.h \
+ ../../../src/include/gamegui/bin.h \
+ ../../../src/include/gamegui/container.h \
+ ../../../src/include/gamegui/widget.h \
+ ../../../src/include/gamegui/queue.h \
+ ../../../src/include/gamegui/signal.h \
+ ../../../src/include/gamegui/label.h \
+ ../../../src/include/gamegui/align.h
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/stdlib.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/../../../../include/_mingw.h:
+
+c:\mingw\bin\../lib/gcc/mingw32/4.5.0/include/stddef.h:
+
+../../../src/include/gamegui/action.h:
+
+../../../src/include/gamegui/system.h:
+
+../../../config.h:
+
+../../../src/include/gamegui/bin.h:
+
+../../../src/include/gamegui/container.h:
+
+../../../src/include/gamegui/widget.h:
+
+../../../src/include/gamegui/queue.h:
+
+../../../src/include/gamegui/signal.h:
+
+../../../src/include/gamegui/label.h:
+
+../../../src/include/gamegui/align.h:
