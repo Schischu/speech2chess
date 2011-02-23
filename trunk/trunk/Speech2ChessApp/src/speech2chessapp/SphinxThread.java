@@ -23,6 +23,9 @@ public class SphinxThread extends Thread {
     {
         while(true) {
             String result = pSphinx.record();
+            if(result != null) {
+                pController.cmd(Controller.eCommand.PARSE_STRING, result);
+            }
         }
     }
 

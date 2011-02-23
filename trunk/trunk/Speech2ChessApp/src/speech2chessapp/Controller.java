@@ -86,6 +86,7 @@ public class Controller {
 
                     if (src.length() > 0 && dst.length() > 0) {
                         cmd(eCommand.APPEND_LOG, src + " -> " + dst);
+
                         SocketCommand sockcmd = new SocketCommand();
                         sockcmd.type = SocketToChess.REQ_MOVE;
                         sockcmd.data = (src + dst).getBytes();
