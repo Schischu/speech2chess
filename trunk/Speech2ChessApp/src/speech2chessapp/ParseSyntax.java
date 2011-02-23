@@ -16,7 +16,7 @@ public class ParseSyntax {
 
     private ArrayList<Action> mActionList = new ArrayList<Action>();
 
-    public enum eAction {GENERIC, FIELD, FIGURES, };
+    public enum eAction {GENERIC, FIELD, FIGURES, COMMAND, };
 
     public class Action {
 
@@ -35,10 +35,17 @@ public class ParseSyntax {
         }
     }
 
-    public class ActionFigures extends Action {
-        public ActionFigures(String inner) {
+    public class ActionFigure extends Action {
+        public ActionFigure(String inner) {
             super(inner);
             type = eAction.FIGURES;
+        }
+    }
+
+     public class ActionCommand extends Action {
+        public ActionCommand(String inner) {
+            super(inner);
+            type = eAction.COMMAND;
         }
     }
 
@@ -56,11 +63,13 @@ public class ParseSyntax {
 
     ArrayList<String> mFields = new ArrayList<String>();
     ArrayList<String> mFigures = new ArrayList<String>();
+    ArrayList<String> mCommands = new ArrayList<String>();
 
 
     public ParseSyntax() {
         createFieldsList();
         createFiguresList();
+        createCommandsList();
     }
 
 
@@ -79,6 +88,15 @@ public class ParseSyntax {
          // ...
     }
 
+    private void createCommandsList() {
+
+         mCommands.add("end".toLowerCase());
+         mCommands.add("restart".toLowerCase());
+         mCommands.add("yes".toLowerCase());
+         mCommands.add("no".toLowerCase());
+         // ...
+    }
+
     public void set(String input)
     {
         mInput = input;
@@ -91,10 +109,12 @@ public class ParseSyntax {
         String[] words = mInput.trim().split(" ");
 
         for(String word : words) {
-            if (mFields.contains(word))
+            if (mCommands.contains(word))
+              mActionList.add(new ActionCommand(word));
+            else if (mFields.contains(word))
               mActionList.add(new ActionField(word));
             else if (mFigures.contains(word))
-              mActionList.add(new ActionFigures(word));
+              mActionList.add(new ActionFigure(word));
         }
 
         return true;
