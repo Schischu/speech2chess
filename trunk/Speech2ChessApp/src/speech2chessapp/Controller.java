@@ -75,23 +75,48 @@ public class Controller {
                     ArrayList<Action> a = mParseSyntax.getActionList();
                     String src = "";
                     String dst = "";
+                    eAction type = eAction.GENERIC;
                     for (Action action : a) {
+                        type = action.type;
                         if(action.type == eAction.FIELD) {
                             if(src.length() == 0)
                                 src = action.innerData;
                             else if(dst.length() == 0)
                                 dst = action.innerData;
                         }
+                         else if(action.type == eAction.COMMAND) {
+                            dst = action.innerData;
+                         }
                     }
 
-                    if (src.length() > 0 && dst.length() > 0) {
-                        cmd(eCommand.APPEND_LOG, src + " -> " + dst);
+                    if(type == eAction.FIELD ||type == eAction.FIGURES) {
+                        if (src.length() > 0 && dst.length() > 0) {
+                            cmd(eCommand.APPEND_LOG, src + " -> " + dst);
 
-                        SocketCommand sockcmd = new SocketCommand();
-                        sockcmd.type = SocketToChess.REQ_MOVE;
-                        sockcmd.data = (src + dst).getBytes();
-                        SocketToChess.sendCMD(sockcmd);
+                            SocketCommand sockcmd = new SocketCommand();
+                            sockcmd.type = SocketToChess.REQ_MOVE;
+                            sockcmd.data = (src + dst).getBytes();
+                            SocketToChess.sendCMD(sockcmd);
+                        }
                     }
+                    else if (type == eAction.COMMAND) {
+                        if(dst.equals("end")) {
+                            cmd(eCommand.APPEND_LOG, "End Game");
+
+                            SocketCommand sockcmd = new SocketCommand();
+                            sockcmd.type = SocketToChess.REQ_QUIT;
+                            sockcmd.data = dst.getBytes();
+                            SocketToChess.sendCMD(sockcmd);
+                        } else if(dst.equals("restart")) {
+                            cmd(eCommand.APPEND_LOG, "Restart Game");
+
+                            SocketCommand sockcmd = new SocketCommand();
+                            sockcmd.type = SocketToChess.REQ_RESTART;
+                            sockcmd.data = dst.getBytes();
+                            SocketToChess.sendCMD(sockcmd);
+                        }
+                    }
+
                 }
                 mParseSyntax.clear();
             }

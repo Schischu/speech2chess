@@ -70,6 +70,7 @@ static config_t *config;
 static move_list_t san_list, fan_list, fullalg_list;
 static history_t *history;
 static int in_game;
+static int quit_game;
 static int engine_error;
 
 static void move_list_play(move_list_t *list, char *move)
@@ -558,6 +559,8 @@ typedef int socklen_t;
 #define TCP_PORT 54000 
 
 #define REQ_MOVE 1
+#define REQ_QUIT 20
+#define REQ_RESTART 21
     
 #define REQ_VERIFY 10
 #define RES_VERIFY 11
@@ -657,6 +660,19 @@ WSAStartup(MAKEWORD(2, 2), &wsaData);
 				game_make_move_str(str_move, 1);
 			}
 				break;
+			case REQ_QUIT:
+			{
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				quit_game = 1;
+				game_quit();
+			}
+				break;
+			case REQ_RESTART:
+			{
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				game_quit();
+			}
+				break;
 			default:
 				break;
 			}
@@ -694,7 +710,9 @@ int dreamchess(void *data)
 
     init_resolution();
 
-    while (1)
+	quit_game = 0;
+
+    while (!quit_game)
     {
         board_t board;
         int pgn_slot;
