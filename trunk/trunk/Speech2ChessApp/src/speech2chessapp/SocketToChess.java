@@ -62,6 +62,9 @@ public class SocketToChess {
 
     //public enum eSocketCommandType
     public static final int REQ_MOVE = 1;
+
+    public static final int REQ_QUIT = 20;
+    public static final int REQ_RESTART = 21;
     
     public static final int REQ_VERIFY = 10;
     public static final int RES_VERIFY = 11;
