@@ -20,6 +20,16 @@ import java.util.ArrayList;
  */
 public class SocketToChess {
 
+    //public enum eSocketCommandType
+    public static final int REQ_MOVE = 1;
+
+    public static final int REQ_QUIT = 20;
+    public static final int REQ_RESTART = 21;
+
+    public static final int REQ_VERIFY = 10;
+    public static final int REQ_FIGURES = 12;
+    public static final int REQ_PRINT = 13;
+
     private static Socket socketToChess = null;
     private static Socket socketFromChess = null;
 
@@ -27,15 +37,7 @@ public class SocketToChess {
         System.out.println("-> sendCMD");
 
         try{
-            //if (socketToChess == null) {
-                socketToChess = new Socket( "localhost", 54000 );
-            //}
-
-            //final Socket socketToChess = new Socket( "localhost", 54000 );
-            //boolean connected  = socketToChess.isConnected();
-            //if(!connected)
-            //    socketToChess.connect(new InetSocketAddress("localhost", 54000), 1000);
-
+            socketToChess = new Socket( "localhost", 54000 );
             OutputStream dataOutput = socketToChess.getOutputStream();
 
             byte[] bPrefix = new byte[1];
@@ -60,14 +62,7 @@ public class SocketToChess {
         System.out.println("<- sendCMD");
     }
 
-    //public enum eSocketCommandType
-    public static final int REQ_MOVE = 1;
 
-    public static final int REQ_QUIT = 20;
-    public static final int REQ_RESTART = 21;
-    
-    public static final int REQ_VERIFY = 10;
-    public static final int RES_VERIFY = 11;
     //};
 
     public static class SocketCommand {
@@ -81,16 +76,22 @@ public class SocketToChess {
         SocketCommand s = new SocketCommand();
 
         try {
-            //if (socketFromChess == null)
-                socketFromChess = new Socket( "localhost", 54001 );
+            socketFromChess = new Socket( "localhost", 54001 );
             
             InputStream dataInput = socketFromChess.getInputStream();
 
             byte[] b = new byte[1];
             dataInput.read(b, 0, 1);
             s.type = b[0];
-            dataInput.read(s.data);
-
+            byte[] bl = new byte[2];
+            dataInput.read(bl, 0, 1);
+            dataInput.read(bl, 1, 1);
+            int len = (bl[0] << 8) + bl[1];
+            if(len > 0) {
+                s.data = new byte[len];
+                dataInput.read(s.data, 0, len);
+            }
+            else s.data = null;
             dataInput.close();
             socketFromChess.close();
 

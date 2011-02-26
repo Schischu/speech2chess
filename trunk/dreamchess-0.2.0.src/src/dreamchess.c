@@ -557,13 +557,20 @@ static void set_cl_options(cl_options_t *cl_options)
 typedef int socklen_t;
 
 #define TCP_PORT 54000 
+#define TCP_PORT2 54001 
 
 #define REQ_MOVE 1
 #define REQ_QUIT 20
 #define REQ_RESTART 21
     
 #define REQ_VERIFY 10
-#define RES_VERIFY 11
+#define REQ_FIGURES 12
+#define REQ_PRINT 13
+
+int ready_to_send = 0;
+int ready_to_send_len = 0;
+unsigned char ready_to_send_buf[4096];
+unsigned char ready_to_send_buf_type[1];
 
 void * tcpRequests(void * none) 
 { 
@@ -656,8 +663,12 @@ WSAStartup(MAKEWORD(2, 2), &wsaData);
 				char str_move[size+1];
 				memcpy(str_move, buffer, size);
 				str_move[size] = '\0';
-				DBG_LOG("Move: %d", str_move);
+				DBG_LOG("Move: %s", str_move);
 				game_make_move_str(str_move, 1);
+				
+				ready_to_send_len = 0;
+				ready_to_send_buf_type[0] = REQ_MOVE;
+				ready_to_send = 1;
 			}
 				break;
 			case REQ_QUIT:
@@ -673,11 +684,151 @@ WSAStartup(MAKEWORD(2, 2), &wsaData);
 				game_quit();
 			}
 				break;
+			case REQ_VERIFY:
+			{
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				char str_move[size+1];
+				memcpy(str_move, buffer, size);
+				str_move[size] = '\0';
+				DBG_LOG("Test: %s", str_move);
+				
+				board_t board = *history->last->board;
+				move_t *move = fullalg_to_move(&board, str_move);
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				int result = move!=NULL?1:0; //move_is_semi_valid(&board, move);
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				ready_to_send_len = 5;
+				ready_to_send_buf_type[0] = REQ_VERIFY;
+				ready_to_send_buf[0] = result & 0xFF;
+				ready_to_send_buf[1] = str_move[0];
+				ready_to_send_buf[2] = str_move[1];
+				ready_to_send_buf[3] = str_move[2];
+				ready_to_send_buf[4] = str_move[3];
+				ready_to_send = 1;
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				
+				
+			}
+				break;
+			case REQ_FIGURES:
+			{
+				unsigned char i = 0;
+				unsigned char figure = buffer[0];
+				ready_to_send_len = 0;
+				board_t board = *history->last->board;
+				for(i = 0; i < 64; i++) {
+					if(board.square[i] == figure) {
+						ready_to_send_buf[ready_to_send_len] = i;
+						ready_to_send_len++;
+					}
+				}
+				ready_to_send_buf_type[0] = REQ_FIGURES;
+				ready_to_send = 1;
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+			}
+				break;
+			case REQ_PRINT:
+			{
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				char str_print[size+1];
+				memcpy(str_print, buffer, size);
+				str_print[size] = '\0';
+				DBG_LOG("Print: %s", str_print);
+				setUI(str_print);
+			}
+				break;
 			default:
 				break;
 			}
 		}
 				
+}
+
+void * tcpResponse(void * none) 
+{ 
+		DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+		int fdc, fdd, len_local; 
+        struct sockaddr_in local, remote; 
+ 
+#ifdef __MINGW32__
+WSADATA wsaData;
+WSAStartup(MAKEWORD(2, 2), &wsaData);
+#endif  /*  __MINGW32__  */
+ 
+        if ((fdc=socket(PF_INET, SOCK_STREAM, 0)) < 0) { 
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+                perror("tcp socket error"); 
+                pthread_exit(NULL); 
+        } 
+        len_local = sizeof(local); 
+        memset(&local, 0, len_local); 
+        local.sin_family = AF_INET; 
+        local.sin_port = htons(TCP_PORT2); 
+        local.sin_addr.s_addr = htonl(INADDR_ANY); 
+ 
+		DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+ 
+        // bind and listen on port and ip interface 
+        if (bind(fdc, (struct sockaddr*)&local, len_local) < 0) { 
+                perror("tcp bind error"); 
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+                pthread_exit(NULL); 
+        } 
+        if (listen(fdc, 10) < 0) { 
+                perror("tcp listen error"); 
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+                pthread_exit(NULL); 
+        } 
+
+		while(1) { 
+			DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+			
+			unsigned char buffer[255];
+			int rlen = sizeof(remote); 
+			if ((fdd = accept(fdc, NULL, NULL)) <= 0) { 
+					DBG_LOG("accept error"); 
+					continue; 
+			} 
+
+			DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+
+			DBG_LOG("Got TCP-Connection from %s", inet_ntoa(remote.sin_addr)); 
+
+			DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+			while(!ready_to_send) {
+				usleep(10000);
+			}
+			DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+			int slen = 0;
+			
+#ifdef __MINGW32__
+			slen = send(fdd, ready_to_send_buf_type, 1, 0);
+#else
+			slen = write(fdd, ready_to_send_buf_type, 1);
+#endif
+			unsigned char data_len[2];
+			data_len[0] = (unsigned char)((ready_to_send_len) >> 8);
+			data_len[1] = (unsigned char)((ready_to_send_len) & 0xFF);
+
+#ifdef __MINGW32__
+			slen = send(fdd, data_len, 2, 0);
+#else
+			slen = write(fdd, data_len, 2);
+#endif
+
+			if ((ready_to_send_len) > 0) {
+
+#ifdef __MINGW32__
+				slen = send(fdd, ready_to_send_buf, ready_to_send_len, 0);
+#else
+				slen = write(fdd, ready_to_send_buf, ready_to_send_len);
+#endif
+			}
+			ready_to_send = 0;
+			
+			DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+			close(fdd);
+		}
 }
 
 int dreamchess(void *data)
@@ -725,6 +876,8 @@ int dreamchess(void *data)
 		// Lets rumble, start receiver thread
 		pthread_t tcpRequestsThread; 
 		pthread_create(&tcpRequestsThread, NULL, tcpRequests, NULL); 
+		pthread_t tcpResponseThread; 
+		pthread_create(&tcpResponseThread, NULL, tcpResponse, NULL); 
 //+++<
 			
 			

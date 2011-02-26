@@ -119,6 +119,7 @@ move_t *san_to_move(board_t *board, char *move_s);
 int make_move(board_t *board, move_t *move);
 void move_set_attr(board_t *b, move_t *move);
 int move_is_valid(board_t *b, move_t *move);
+int move_is_semi_valid(board_t *board, move_t *move);
 char *move_to_san(board_t *board, move_t *move);
 char* san_to_fan(board_t *board, char *move_s);
 

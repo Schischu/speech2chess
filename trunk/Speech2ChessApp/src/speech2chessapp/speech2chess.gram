@@ -7,3 +7,4 @@
 grammar speech2chess;
 
 public <field> = ( a | b | c | d | e | f | g | h ) ( one | two | three | four | five | six | seven | eight ) to ( a | b | c | d | e | f | g | h ) ( one | two | three | four | five | six | seven | eight );
+public <command> = ( restart | end ) game;

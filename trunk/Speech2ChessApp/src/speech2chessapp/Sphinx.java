@@ -5,10 +5,14 @@
 
 package speech2chessapp;
 
+import edu.cmu.sphinx.decoder.search.Token;
 import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.recognizer.Recognizer;
 import edu.cmu.sphinx.result.Result;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,22 +37,28 @@ public class Sphinx {
         mRecognizer.deallocate();
     }
 
-    public String record(){
-        String resultText = null;
+    public List<String> record(){
+        ArrayList<String> resultText = new ArrayList();
 
          System.out.println("Speak now:\n");
 
         if (!mMicrophone.startRecording()) {
             System.out.println("Cannot start microphone.");
-            return resultText;
+            return null;
         }
 
         while (mMicrophone.isRecording()) {
             Result result = mRecognizer.recognize();
             if (result != null) {
-                resultText = result.getBestFinalResultNoFiller();
+                resultText.add(result.getBestFinalResultNoFiller());
+                List<Token> tokens = result.getResultTokens();
+                for(Token t : tokens) {
+                    resultText.add(t.getWordPathNoFiller());
+                }
+
+
                 System.out.println("You said: " + resultText + '\n');
-               // break;
+                break;
             }
         }
         mMicrophone.stopRecording();
