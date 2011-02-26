@@ -21,6 +21,7 @@ public class Controller {
 
     private Thread mReceiveFromChessThread = null;
     private Thread mSphinxThread = null;
+    private Thread mWorker = null;
     private ParseSyntax mParseSyntax = null;
     private Speech2ChessView mSpeech2ChessView = null;
 
@@ -32,10 +33,12 @@ public class Controller {
 
         Common.load("EN");
 
-        mReceiveFromChessThread = new ReceiveFromChessThread(this);
-        mSphinxThread = new SphinxThread(this);
-        mParseSyntax = new ParseSyntax();
+        mWorker = new Worker();
+        mWorker.start();
 
+        mReceiveFromChessThread = new ReceiveFromChessThread(this);
+        //mSphinxThread = new SphinxThread(this);
+        mParseSyntax = new ParseSyntax();
     }
 
 
@@ -51,7 +54,42 @@ public class Controller {
         RECORD,
     };
 
+    class eCommandWithData {
+        public eCommand cmd;
+        public Object o;
+        public eCommandWithData(eCommand cmd, Object o) {
+            this.cmd = cmd;
+            this.o = o;
+        }
+    }
+
+    ArrayList<eCommandWithData> mCommandMessageQueue = new  ArrayList<eCommandWithData>();
+
     public void cmd(eCommand cmd, Object o) {
+        mCommandMessageQueue.add(new eCommandWithData(cmd, o));
+    }
+
+    class Worker extends Thread {
+        @Override
+        public void run() {
+            while(true) {
+                while(mCommandMessageQueue.size() > 0) {
+                    eCommandWithData cmdWData = mCommandMessageQueue.remove(0);
+                    __cmd(cmdWData.cmd, cmdWData.o);
+                }
+
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+    }
+    
+
+    public void __cmd(eCommand cmd, Object o) {
         System.out.println("cmd -> " + cmd.toString());
         switch(cmd) {
             default:
@@ -137,6 +175,8 @@ public class Controller {
 
             case RECORD:
             {
+                //System.out.println(mSphinxThread.getState());
+                mSphinxThread = new SphinxThread(this);
                 mSphinxThread.start();
                 SocketCommand sockcmd = new SocketCommand();
                 sockcmd.type = SocketToChess.REQ_PRINT;
@@ -159,14 +199,14 @@ public class Controller {
 
                 cmd(eCommand.PARSE_STRING, null);
 
-                cmd(eCommand.RECORD, null);
+                //cmd(eCommand.RECORD, null);
             }
                 break;
 
             case PARSE_STRING:
             {
                 if(mSaveSpeechResultsIndex >= mSaveSpeechResults.size()) {
-                     //cmd(eCommand.RECORD, null);
+                     cmd(eCommand.RECORD, null);
 
                 }
                 else {
@@ -221,6 +261,10 @@ public class Controller {
                         }
                     }
                     mParseSyntax.clear();
+
+                    if(mSaveSpeechResultsIndex >= mSaveSpeechResults.size()) {
+                        cmd(eCommand.RECORD, null);
+                    }
                 }
             }
                 break;

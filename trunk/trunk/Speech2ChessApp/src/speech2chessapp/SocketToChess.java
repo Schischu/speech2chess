@@ -34,7 +34,7 @@ public class SocketToChess {
     private static Socket socketFromChess = null;
 
     public static void sendCMD(SocketCommand cmd) {
-        System.out.println("-> sendCMD");
+        //System.out.println("-> sendCMD");
 
         try{
             socketToChess = new Socket( "localhost", 54000 );
@@ -55,11 +55,11 @@ public class SocketToChess {
             dataOutput.close();
             socketToChess.close();
         } catch(Exception ex) {
-            System.out.println(ex.toString());
+            //System.out.println(ex.toString());
         }
 
 
-        System.out.println("<- sendCMD");
+        //System.out.println("<- sendCMD");
     }
 
 
@@ -71,7 +71,7 @@ public class SocketToChess {
     }
 
     public static SocketCommand receiveCMD() {
-        System.out.println("-> receiveCMD");
+        //System.out.println("-> receiveCMD");
 
         SocketCommand s = new SocketCommand();
 
@@ -96,12 +96,12 @@ public class SocketToChess {
             socketFromChess.close();
 
         } catch(Exception ex) {
-            System.out.println(ex.toString());
+            //System.out.println(ex.toString());
             s = null;
         }
 
 
-        System.out.println("<- receiveCMD");
+        //System.out.println("<- receiveCMD");
 
         return s;
     }
