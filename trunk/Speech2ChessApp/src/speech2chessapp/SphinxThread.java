@@ -23,16 +23,22 @@ public class SphinxThread extends Thread {
     @Override
     public void run()
     {
+        System.out.println("SphinxThread::run() ->");
         while(true) {
             pSphinx = new Sphinx();
             List<String> result = pSphinx.record();
             if(result != null) {
                 pController.cmd(Controller.eCommand.PARSE_STRINGS, result);
-                //pSphinx.finish();
+                System.out.println("SphinxThread::run() a");
+                pSphinx.finish();
+                System.out.println("SphinxThread::run() b");
                 break;
             }
+            System.out.println("SphinxThread::run() c");
             pSphinx.finish();
+            System.out.println("SphinxThread::run() d");
         }
+        System.out.println("SphinxThread::run() <-");
     }
 
 }
