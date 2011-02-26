@@ -83,8 +83,12 @@ public class ParseSyntax {
 
     private void createFiguresList() {
 
-         mFigures.add("Bauer".toLowerCase());
-         mFigures.add("König".toLowerCase());
+         mFigures.add(Common.mPawn.toLowerCase());
+         mFigures.add(Common.mKnight.toLowerCase());
+         mFigures.add(Common.mBishop.toLowerCase());
+         mFigures.add(Common.mRook.toLowerCase());
+         mFigures.add(Common.mQueen.toLowerCase());
+         mFigures.add(Common.mKing.toLowerCase());
          // ...
     }
 
@@ -100,6 +104,15 @@ public class ParseSyntax {
     public void set(String input)
     {
         mInput = input;
+
+        mInput = mInput.replaceAll(" " + Common.mOne, "1");
+        mInput = mInput.replaceAll(" " + Common.mTwo, "2");
+        mInput = mInput.replaceAll(" " + Common.mThree, "3");
+        mInput = mInput.replaceAll(" " + Common.mFour, "4");
+        mInput = mInput.replaceAll(" " + Common.mFive, "5");
+        mInput = mInput.replaceAll(" " + Common.mSix, "6");
+        mInput = mInput.replaceAll(" " + Common.mSeven, "7");
+        mInput = mInput.replaceAll(" " + Common.mEight, "8");
     }
 
     public boolean check()

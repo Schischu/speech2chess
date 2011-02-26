@@ -5,6 +5,8 @@
 
 package speech2chessapp;
 
+import java.util.List;
+
 /**
  *
  * @author i7
@@ -22,10 +24,14 @@ public class SphinxThread extends Thread {
     public void run()
     {
         while(true) {
-            String result = pSphinx.record();
+            pSphinx = new Sphinx();
+            List<String> result = pSphinx.record();
             if(result != null) {
-                pController.cmd(Controller.eCommand.PARSE_STRING, result);
+                pController.cmd(Controller.eCommand.PARSE_STRINGS, result);
+                //pSphinx.finish();
+                break;
             }
+            pSphinx.finish();
         }
     }
 

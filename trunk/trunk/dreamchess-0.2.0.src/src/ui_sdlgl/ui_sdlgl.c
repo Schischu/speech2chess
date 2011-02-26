@@ -654,6 +654,8 @@ static void show_message (char *msg)
     gg_dialog_open(dialog_message_create(msg));
 }
 
+
+
 /** Implements ui_driver::poll. */
 static void poll_move()
 {

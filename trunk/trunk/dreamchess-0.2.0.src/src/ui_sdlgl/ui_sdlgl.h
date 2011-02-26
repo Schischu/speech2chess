@@ -219,6 +219,9 @@ texture_t *get_border();
 void unload_theme();
 
 /* draw_scene.c */
+
+void setUI(char * text);
+
 void draw_scene( board_t *b, int reflections );
 float get_mouse_square();
 

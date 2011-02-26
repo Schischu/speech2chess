@@ -27,6 +27,12 @@ float get_mouse_square()
     return mouse_square;
 }
 
+static char message[128] = "";
+
+void setUI(char * text) {
+	strcpy(message, text); 
+}
+
 /** @brief Main in-game rendering routine.
  *
  *  @param b Board configuration to render.
@@ -55,18 +61,22 @@ void draw_scene( board_t *b, int reflections )
     resize_window(get_screen_width(), get_screen_height());
 
     glPushMatrix();
-    draw_name_dialog( 50, 430, get_white_name(), TRUE, 1 );
-    draw_name_dialog( 490, 430, get_black_name(), FALSE, 0 );
+    //draw_name_dialog( 50, 430, get_white_name(), TRUE, 1 );
+    //draw_name_dialog( 490, 430, get_black_name(), FALSE, 0 );
     /*draw_border(get_ingame_style()->border.image, NULL, 0, gg_rect(20, 375, 75, 10), 8);
     draw_border(get_ingame_style()->border.image, NULL, 0, gg_rect(545, 375, 75, 10), 8);*/
-    draw_health_bars();
+    //draw_health_bars();
     draw_move_list(get_col(COL_WHITE), get_col(COL_YELLOW));
     draw_capture_list(get_col(COL_WHITE));
 
     clock_minutes=(((SDL_GetTicks()-get_turn_counter())/1000)/60);
     clock_seconds=((SDL_GetTicks()-get_turn_counter())/1000)-(clock_minutes*60);
     sprintf( temp, "%i:%02i", clock_minutes, clock_seconds );
-    /*text_draw_string( 303, 440, temp, 1, &col_black);*/
+    text_draw_string( 303, 440, temp, 1, get_col(COL_WHITE));
+    
+    text_draw_string( 50, 440, message, 1, get_col(COL_WHITE));
+    
+    
     glPopMatrix();
 
     /*if ( get_white_in_check() == TRUE )

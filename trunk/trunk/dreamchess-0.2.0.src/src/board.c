@@ -26,7 +26,7 @@
 #include "san.h"
 #include "debug.h"
 
-static int move_is_semi_valid(board_t *board, move_t *move);
+int move_is_semi_valid(board_t *board, move_t *move);
 static int in_check(board_t *board, int turn);
 
 void board_setup(board_t *board)
@@ -222,7 +222,7 @@ static int square_attacked(board_t *b, int square, int side)
 }
 
 /* Checks whether a move is valid, except for whether this puts own king in check. */
-static int move_is_semi_valid(board_t *board, move_t *move)
+int move_is_semi_valid(board_t *board, move_t *move)
 {
     /* Bounds check. */
     if ((move->source > 63) || (move->source < 0))
