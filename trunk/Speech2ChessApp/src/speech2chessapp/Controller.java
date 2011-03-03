@@ -31,7 +31,7 @@ public class Controller {
     public Controller() {
         // Create Receive From Chess Task
 
-        Common.load("EN");
+        Common.load("DE");
 
         mWorker = new Worker();
         mWorker.start();
