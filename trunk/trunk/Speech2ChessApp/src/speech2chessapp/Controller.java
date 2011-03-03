@@ -87,7 +87,21 @@ public class Controller {
 
         }
     }
-    
+
+    private boolean mWaitForYesEndGame = false;
+    private boolean mWaitForYesRestartGame = false;
+
+    /*public boolean calculatePossibleMoves(Action a) {
+        int id = -1;
+        id = a.
+        if
+        Common.strToFigureId("pawn", true);
+        SocketCommand sockcmd = new SocketCommand();
+        sockcmd.type = SocketToChess.REQ_FIGURES;
+        sockcmd.data = new byte[1];
+        sockcmd.data[0] = (byte) (id & 0xff);
+        SocketToChess.sendCMD(sockcmd);
+    }*/
 
     public void __cmd(eCommand cmd, Object o) {
         System.out.println("cmd -> " + cmd.toString());
@@ -114,7 +128,7 @@ public class Controller {
 
 
                                 SocketCommand sockcmd = new SocketCommand();
-                                sockcmd.type = SocketToChess.REQ_PRINT;
+                                sockcmd.type = SocketToChess.REQ_PRINT2;
                                 sockcmd.data = (Common.mMove + " (" + 5 + ")").getBytes();
                                 SocketToChess.sendCMD(sockcmd);
 
@@ -124,12 +138,12 @@ public class Controller {
                                     } catch (InterruptedException ex) {
                                         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                                     }
-                                    sockcmd.type = SocketToChess.REQ_PRINT;
+                                    sockcmd.type = SocketToChess.REQ_PRINT2;
                                     sockcmd.data = (Common.mMove + " (" + (5-i) + ")").getBytes();
                                     SocketToChess.sendCMD(sockcmd);
                                 }
 
-                                sockcmd.type = SocketToChess.REQ_PRINT;
+                                sockcmd.type = SocketToChess.REQ_PRINT2;
                                 sockcmd.data = "".getBytes();
                                 SocketToChess.sendCMD(sockcmd);
 
@@ -244,20 +258,54 @@ public class Controller {
                         }
                         else if (type == eAction.COMMAND) {
                             if(dst.equals("end")) {
-                                cmd(eCommand.APPEND_LOG, "End Game");
+                                cmd(eCommand.APPEND_LOG, "End Game?");
+                                mWaitForYesEndGame = true;
 
                                 SocketCommand sockcmd = new SocketCommand();
-                                sockcmd.type = SocketToChess.REQ_QUIT;
-                                sockcmd.data = dst.getBytes();
+                                sockcmd.type = SocketToChess.REQ_PRINT2;
+                                sockcmd.data = ("End Game? Say Yes or No").getBytes();
                                 SocketToChess.sendCMD(sockcmd);
                             } else if(dst.equals("restart")) {
-                                cmd(eCommand.APPEND_LOG, "Restart Game");
+                                cmd(eCommand.APPEND_LOG, "Restart Game?");
+                                mWaitForYesRestartGame = true;
 
                                 SocketCommand sockcmd = new SocketCommand();
-                                sockcmd.type = SocketToChess.REQ_RESTART;
-                                sockcmd.data = dst.getBytes();
+                                sockcmd.type = SocketToChess.REQ_PRINT2;
+                                sockcmd.data = ("Restart Game? Say Yes or No").getBytes();
+                                SocketToChess.sendCMD(sockcmd);
+                            } else if(dst.equals("yes")) {
+                                cmd(eCommand.APPEND_LOG, "Yes");
+                                if (mWaitForYesEndGame) {
+                                    mWaitForYesEndGame = false;
+                                    SocketCommand sockcmd = new SocketCommand();
+                                    sockcmd.type = SocketToChess.REQ_QUIT;
+                                    sockcmd.data = dst.getBytes();
+                                    SocketToChess.sendCMD(sockcmd);
+                                } else if  (mWaitForYesRestartGame) {
+                                    mWaitForYesRestartGame = false;
+                                    SocketCommand sockcmd = new SocketCommand();
+                                    sockcmd.type = SocketToChess.REQ_RESTART;
+                                    sockcmd.data = dst.getBytes();
+                                    SocketToChess.sendCMD(sockcmd);
+                                }
+
+                                SocketCommand sockcmd = new SocketCommand();
+                                sockcmd.type = SocketToChess.REQ_PRINT2;
+                                sockcmd.data = (" ").getBytes();
+                                SocketToChess.sendCMD(sockcmd);
+                            } else if(dst.equals("no")) {
+                                cmd(eCommand.APPEND_LOG, "No");
+                                
+                                mWaitForYesEndGame = false;
+                                mWaitForYesRestartGame = false;
+
+                                SocketCommand sockcmd = new SocketCommand();
+                                sockcmd.type = SocketToChess.REQ_PRINT2;
+                                sockcmd.data = (" ").getBytes();
                                 SocketToChess.sendCMD(sockcmd);
                             }
+
+                            cmd(eCommand.RECORD, null);
                         }
                     }
                     mParseSyntax.clear();

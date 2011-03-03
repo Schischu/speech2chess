@@ -11,7 +11,7 @@ package speech2chessapp;
  */
 public class Common {
 
-    public static String mLanguage = "EN";
+    public static String mLanguage = "DE";
 
     private static final String mPawn_EN = "pawn";
     private static final String mKnight_EN = "knight";
@@ -31,6 +31,27 @@ public class Common {
 
     private static final String mSpeakNow_EN = "Speak Now";
     private static final String mMove_EN = "Move";
+
+    //---------------------------
+
+    private static final String mPawn_DE = "Bauer";
+    private static final String mKnight_DE = "Springer";
+    private static final String mBishop_DE = "Läufer";
+    private static final String mRook_DE = "Turm";
+    private static final String mQueen_DE = "Dame";
+    private static final String mKing_DE = "König";
+
+    private static final String mOne_DE = "Eins";
+    private static final String mTwo_DE = "Zwei";
+    private static final String mThree_DE = "Drei";
+    private static final String mFour_DE = "Vier";
+    private static final String mFive_DE = "Fünf";
+    private static final String mSix_DE = "Sechs";
+    private static final String mSeven_DE = "Sieben";
+    private static final String mEight_DE = "Acht";
+
+    private static final String mSpeakNow_DE = "Jetzt Sprechen";
+    private static final String mMove_DE = "Zug";
 
     //---------------------------
 
@@ -90,10 +111,30 @@ public class Common {
             mSpeakNow = mSpeakNow_EN;
             mMove = mMove_EN;
         }
+        else if(mLanguage.equals("DE")) {
+            mPawn = mPawn_DE;
+            mKnight = mKnight_DE;
+            mBishop = mBishop_DE;
+            mRook = mRook_DE;
+            mQueen = mQueen_DE;
+            mKing = mKing_DE;
+
+            mOne = mOne_DE;
+            mTwo = mTwo_DE;
+            mThree = mThree_DE;
+            mFour = mFour_DE;
+            mFive = mFive_DE;
+            mSix = mSix_DE;
+            mSeven = mSeven_DE;
+            mEight = mEight_DE;
+
+            mSpeakNow = mSpeakNow_DE;
+            mMove = mMove_DE;
+        }
     }
 
     public static int strToFigureId(String strFigure, boolean isWhite) {
-        int id = 0;
+        int id = -2;
         if(strFigure.equals(mPawn))
             id = WHITE_PAWN;
         else if(strFigure.equals(mKnight))

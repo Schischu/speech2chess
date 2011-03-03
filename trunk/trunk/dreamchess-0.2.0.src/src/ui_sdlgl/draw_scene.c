@@ -28,9 +28,13 @@ float get_mouse_square()
 }
 
 static char message[128] = "";
+static char message2[128] = "";
 
-void setUI(char * text) {
-	strcpy(message, text); 
+void setUI(int index, char * text) {
+	if(index == 1)
+		strcpy(message, text);
+	else if(index == 2)
+		strcpy(message2, text);
 }
 
 /** @brief Main in-game rendering routine.
@@ -75,7 +79,7 @@ void draw_scene( board_t *b, int reflections )
     text_draw_string( 303, 440, temp, 1, get_col(COL_WHITE));
     
     text_draw_string( 50, 440, message, 1, get_col(COL_WHITE));
-    
+    text_draw_string( 50, 420, message2, 1, get_col(COL_WHITE));
     
     glPopMatrix();
 

@@ -29,6 +29,7 @@ public class SocketToChess {
     public static final int REQ_VERIFY = 10;
     public static final int REQ_FIGURES = 12;
     public static final int REQ_PRINT = 13;
+    public static final int REQ_PRINT2 = 14;
 
     private static Socket socketToChess = null;
     private static Socket socketFromChess = null;

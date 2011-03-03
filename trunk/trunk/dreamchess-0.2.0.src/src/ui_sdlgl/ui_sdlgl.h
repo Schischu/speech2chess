@@ -220,7 +220,7 @@ void unload_theme();
 
 /* draw_scene.c */
 
-void setUI(char * text);
+void setUI(int index, char * text);
 
 void draw_scene( board_t *b, int reflections );
 float get_mouse_square();

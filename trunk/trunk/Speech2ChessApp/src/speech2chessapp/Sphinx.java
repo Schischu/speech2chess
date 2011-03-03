@@ -26,7 +26,7 @@ public class Sphinx {
     private Microphone mMicrophone;
 
     public Sphinx() {
-        mCm = new ConfigurationManager(Speech2ChessApp.class.getResource("speech2chess.config.xml"));
+        mCm = new ConfigurationManager(Speech2ChessApp.class.getResource("speech2chess_" + Common.mLanguage + ".config.xml"));
         mRecognizer = (Recognizer) mCm.lookup("recognizer");
         mRecognizer.allocate();
 

@@ -20,7 +20,6 @@ public class ParseSyntax {
 
     public class Action {
 
-
         public Action(String inner) {
             innerData = inner;
         }
