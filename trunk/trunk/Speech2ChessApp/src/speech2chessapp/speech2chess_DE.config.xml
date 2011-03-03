@@ -80,7 +80,7 @@
                type="edu.cmu.sphinx.linguist.flat.FlatLinguist">
         <property name="logMath" value="logMath"/>
         <property name="grammar" value="trigramModel"/>
-        <property name="acousticModel" value="wsj"/>
+        <property name="acousticModel" value="acousticModel"/>
         <property name="wordInsertionProbability"
                value="${wordInsertionProbability}"/>
         <property name="languageWeight" value="${languageWeight}"/>
