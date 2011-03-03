@@ -566,6 +566,7 @@ typedef int socklen_t;
 #define REQ_VERIFY 10
 #define REQ_FIGURES 12
 #define REQ_PRINT 13
+#define REQ_PRINT2 14
 
 int ready_to_send = 0;
 int ready_to_send_len = 0;
@@ -734,7 +735,17 @@ WSAStartup(MAKEWORD(2, 2), &wsaData);
 				memcpy(str_print, buffer, size);
 				str_print[size] = '\0';
 				DBG_LOG("Print: %s", str_print);
-				setUI(str_print);
+				setUI(1, str_print);
+			}
+				break;
+			case REQ_PRINT2:
+			{
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				char str_print[size+1];
+				memcpy(str_print, buffer, size);
+				str_print[size] = '\0';
+				DBG_LOG("Print2: %s", str_print);
+				setUI(2, str_print);
 			}
 				break;
 			default:
