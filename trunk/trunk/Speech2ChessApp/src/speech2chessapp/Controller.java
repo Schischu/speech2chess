@@ -381,11 +381,13 @@ public class Controller {
                     //System.out.println(mSphinxThread.getState());
                     mSphinxThread = new SphinxThread(this);
                     mSphinxThread.start();
-                }
+                } else {
+                    // Actually this is printed by sphinx but if we entered a string than sphinx is not run again
                     SocketCommand sockcmd = new SocketCommand();
                     sockcmd.type = SocketToChess.REQ_PRINT;
                     sockcmd.data = Common.mSpeakNow.getBytes();
                     SocketToChess.sendCMD(sockcmd);
+                }
             }
                 break;
 

@@ -13,11 +13,12 @@ import java.util.List;
  */
 public class SphinxThread extends Thread {
     private Controller pController = null;
-    private Sphinx pSphinx = null;
+    private static Sphinx pSphinx = null;
 
     public SphinxThread(Controller controller) {
         pController = controller;
-        pSphinx = new Sphinx();
+        if(pSphinx == null)
+            pSphinx = new Sphinx();
     }
 
     @Override
@@ -25,18 +26,18 @@ public class SphinxThread extends Thread {
     {
         System.out.println("SphinxThread::run() ->");
         while(true) {
-            pSphinx = new Sphinx();
+            //pSphinx = new Sphinx();
             List<String> result = pSphinx.record();
             if(result != null) {
                 pController.cmd(Controller.eCommand.PARSE_STRINGS, result);
                 System.out.println("SphinxThread::run() a");
-                pSphinx.finish();
+                //pSphinx.finish();
                 System.out.println("SphinxThread::run() b");
                 break;
             }
             System.out.println("SphinxThread::run() c");
-            pSphinx.finish();
-            System.out.println("SphinxThread::run() d");
+            //pSphinx.finish();
+            //System.out.println("SphinxThread::run() d");
         }
         System.out.println("SphinxThread::run() <-");
     }
