@@ -258,7 +258,9 @@ public class Speech2ChessView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void actionOkPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionOkPressed
-        pController.cmd(Controller.eCommand.PARSE_STRING, jTextFieldCommandInput.getText());
+        ArrayList<String> l = new ArrayList<String>();
+        l.add(jTextFieldCommandInput.getText());
+        pController.cmd(Controller.eCommand.PARSE_STRINGS, l);
 
     }//GEN-LAST:event_actionOkPressed
 

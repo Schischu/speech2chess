@@ -11,7 +11,7 @@ package speech2chessapp;
  */
 public class Common {
 
-    public static String mLanguage = "DE";
+    public static String mLanguage = "EN";
 
     private static final String mPawn_EN = "pawn";
     private static final String mKnight_EN = "knight";
@@ -151,5 +151,22 @@ public class Common {
         if(!isWhite)
             id++;
         return id;
+    }
+
+    public static boolean isWhite(int figureId) {
+        if(figureId%2 == 0)
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean isBlack(int figureId) {
+        return !isWhite(figureId);
+    }
+
+    public static String FieldIdToStr(int id) {
+        int row = id /8;
+        int index = id % 8;
+        return String.valueOf((char)('a' + index)) + String.valueOf((char)('1' + row));
     }
 }

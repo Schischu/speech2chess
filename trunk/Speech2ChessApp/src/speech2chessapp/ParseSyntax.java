@@ -120,6 +120,8 @@ public class ParseSyntax {
 
         String[] words = mInput.trim().split(" ");
 
+        //System.out.println("check() " + words);
+
         for(String word : words) {
             if (mCommands.contains(word))
               mActionList.add(new ActionCommand(word));

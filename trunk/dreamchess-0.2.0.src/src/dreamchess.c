@@ -665,7 +665,7 @@ WSAStartup(MAKEWORD(2, 2), &wsaData);
 				memcpy(str_move, buffer, size);
 				str_move[size] = '\0';
 				DBG_LOG("Move: %s", str_move);
-				game_make_move_str(str_move, 1);
+				game_make_move_str(str_move, 0); //214
 				
 				ready_to_send_len = 0;
 				ready_to_send_buf_type[0] = REQ_MOVE;
@@ -716,7 +716,11 @@ WSAStartup(MAKEWORD(2, 2), &wsaData);
 				unsigned char i = 0;
 				unsigned char figure = buffer[0];
 				ready_to_send_len = 0;
+				
 				board_t board = *history->last->board;
+				ready_to_send_buf[ready_to_send_len] = figure;
+				
+				ready_to_send_len++;
 				for(i = 0; i < 64; i++) {
 					if(board.square[i] == figure) {
 						ready_to_send_buf[ready_to_send_len] = i;
