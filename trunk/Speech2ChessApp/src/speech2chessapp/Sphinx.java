@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import speech2chessapp.SocketToChess.SocketCommand;
 
 /**
  *
@@ -40,12 +41,19 @@ public class Sphinx {
     public List<String> record(){
         ArrayList<String> resultText = new ArrayList();
 
-         System.out.println("Speak now:\n");
-
+         
+        mMicrophone.clear();
         if (!mMicrophone.startRecording()) {
             System.out.println("Cannot start microphone.");
             return null;
         }
+
+        System.out.println("Speak now:\n");
+        SocketCommand sockcmd = new SocketCommand();
+        sockcmd.type = SocketToChess.REQ_PRINT;
+        sockcmd.data = Common.mSpeakNow.getBytes();
+        SocketToChess.sendCMD(sockcmd);
+
 
         while (mMicrophone.isRecording()) {
             Result result = mRecognizer.recognize();
