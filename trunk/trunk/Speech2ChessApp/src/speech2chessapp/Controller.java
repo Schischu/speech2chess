@@ -207,7 +207,7 @@ public class Controller {
                     cmd(eCommand.APPEND_LOG, "Move " + s);
                     SocketCommand sockcmd = new SocketCommand();
                                         sockcmd.type = SocketToChess.REQ_PRINT2;
-                                        sockcmd.data = (Common.mMove + " " + s + " Correct? Say Yes / No (" + 5 + ")").getBytes();
+                                        sockcmd.data = (Common.mMove + " " + s + " Correct? Say No to abort (" + 5 + ")").getBytes();
                                         SocketToChess.sendCMD(sockcmd);
                     boolean cancel = false;
                     for(int i = 0; i < 50; i++) {
