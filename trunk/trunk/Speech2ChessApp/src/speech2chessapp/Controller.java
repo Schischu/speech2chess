@@ -31,7 +31,7 @@ public class Controller {
     public Controller() {
         // Create Receive From Chess Task
 
-        Common.load("DE");
+        Common.load("EN");
 
         mWorker = new Worker();
         mWorker.start();
@@ -52,6 +52,7 @@ public class Controller {
         TEST_MOVE,
         DO_MOVE,
         RECORD,
+        TEST_MOVES,
     };
 
     class eCommandWithData {
@@ -91,6 +92,85 @@ public class Controller {
     private boolean mWaitForYesEndGame = false;
     private boolean mWaitForYesRestartGame = false;
 
+    class eMove {
+        public String src;
+        public String dst;
+        public boolean valid;
+        public eMove(String src, String dst) {
+            this.src = src;
+            this.dst = dst;
+        }
+    }
+
+    private int mPossibleMovesIndex = 0;
+    private boolean mPossibleMovesWalkSrc = true;
+    ArrayList<eMove> mPossibleMoves = new  ArrayList<eMove>();
+    public void addPossibleMove(String src, String dst) {
+        System.out.println("addPossibleMove -> " + src + " " + dst);
+
+        if (src.equals(dst))
+            return;
+
+        boolean alreadyIn = false;
+
+        for(eMove m : mPossibleMoves)
+            if(m.src.equals(src) && m.dst.equals(dst))
+                alreadyIn = true;
+
+       if(!alreadyIn)
+            mPossibleMoves.add(new eMove(src, dst));
+    }
+
+    /* 1. umwandeln aller möglichen eingaben in züge
+     * 2. durchwandern der züge und umwandeln von figuren in felder
+     * 3. jetzt die züge nacheinander durchtesten (zukünftig alle durchtesten)
+     * 4. sobald einer valid den ausführen
+     *
+     */
+
+    // Wird aufgerufen bis er bei allen zügen figuren turch felder ausgetauscht hat
+    public boolean walkThroughPossibleMove() {
+        System.out.println("walkThroughPossibleMove -> " + mPossibleMovesIndex + " " + mPossibleMovesWalkSrc);
+        int i = 0;
+        boolean canceled = false;
+        for(i = mPossibleMovesIndex; i < mPossibleMoves.size(); ) {
+            int id = Common.strToFigureId(mPossibleMovesWalkSrc?mPossibleMoves.get(i).src:mPossibleMoves.get(i).dst, mPossibleMovesWalkSrc);
+            if(id >= 0) {
+                System.out.println("walkThroughPossibleMove " + id + " (" + mPossibleMoves.get(i).src + " " + mPossibleMoves.get(i).dst + ")");
+                SocketCommand sockcmd = new SocketCommand();
+                sockcmd.type = SocketToChess.REQ_FIGURES;
+                sockcmd.data = new byte[1];
+                sockcmd.data[0] = (byte) (id & 0xff);
+                System.out.println("REQ_FIGURES: " + id);
+                SocketToChess.sendCMD(sockcmd);
+                i++;
+                canceled = true;
+                break;
+            }
+            i++;
+        }
+        mPossibleMovesIndex = i;
+        if(mPossibleMovesWalkSrc && mPossibleMovesIndex >= mPossibleMoves.size()) {
+            // ONLY WHITE CHECKED
+            mPossibleMovesWalkSrc = false;
+            mPossibleMovesIndex = 0;
+        } else if(!mPossibleMovesWalkSrc && mPossibleMovesIndex >= mPossibleMoves.size()) {
+            // ALL CHECKED
+            mPossibleMovesIndex = 0;
+            mPossibleMovesWalkSrc = true;
+            
+            cmd(eCommand.TEST_MOVES, null);
+            System.out.println("walkThroughPossibleMove <-");
+            return true;
+        }
+
+        if(!canceled && !mPossibleMovesWalkSrc)
+            walkThroughPossibleMove();
+
+        System.out.println("walkThroughPossibleMove <-");
+        return false;
+    }
+
     /*public boolean calculatePossibleMoves(Action a) {
         int id = -1;
         id = a.
@@ -115,10 +195,27 @@ public class Controller {
                 switch(scmd.type) {
                     default:
                         break;
+                    case SocketToChess.REQ_FIGURES:
+                        System.out.println("cmd -> " + cmd.toString());
+                        int figureId = scmd.data[0];
+                        int index = mPossibleMovesIndex;
+                        if(index > 0)
+                            index--;
+                        for(int i = 1; i < scmd.data.length; i++) {
+                            System.out.print(scmd.data[i] + " ");
+                            if(Common.isWhite(figureId))
+                                addPossibleMove(Common.FieldIdToStr(scmd.data[i]), mPossibleMoves.get(index).dst);
+                            else
+                                addPossibleMove(mPossibleMoves.get(index).src, Common.FieldIdToStr(scmd.data[i]));
+                        }
+                        walkThroughPossibleMove();
+
+                        break;
                     case SocketToChess.REQ_VERIFY:
                         if(scmd.data.length > 0) {
                             byte rtv = scmd.data[0];
                             boolean verify = rtv>0?true:false;
+                            System.out.println("\tREQ_VERIFY: " + verify);
                             if(verify) {
                                 byte data[] = new byte[4];
                                 data[0] = scmd.data[1];
@@ -126,10 +223,11 @@ public class Controller {
                                 data[2] = scmd.data[3];
                                 data[3] = scmd.data[4];
 
+                                String s = new String(data);
 
                                 SocketCommand sockcmd = new SocketCommand();
                                 sockcmd.type = SocketToChess.REQ_PRINT2;
-                                sockcmd.data = (Common.mMove + " (" + 5 + ")").getBytes();
+                                sockcmd.data = (Common.mMove + " " + s + " (" + 5 + ")").getBytes();
                                 SocketToChess.sendCMD(sockcmd);
 
                                 for(int i = 0; i < 5; i++) {
@@ -139,7 +237,7 @@ public class Controller {
                                         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                     sockcmd.type = SocketToChess.REQ_PRINT2;
-                                    sockcmd.data = (Common.mMove + " (" + (5-i) + ")").getBytes();
+                                    sockcmd.data = (Common.mMove + " " + s + " (" + (4-i) + ")").getBytes();
                                     SocketToChess.sendCMD(sockcmd);
                                 }
 
@@ -147,12 +245,13 @@ public class Controller {
                                 sockcmd.data = "".getBytes();
                                 SocketToChess.sendCMD(sockcmd);
 
-
-                                cmd(eCommand.DO_MOVE, new String(data));
+                                mPossibleMoves.clear();
+                                mPossibleMovesIndex = 0;
+                                cmd(eCommand.DO_MOVE, s);
                             }
-                             else {
-                                cmd(eCommand.PARSE_STRING, null);
-                             }
+                            else {
+                               cmd(eCommand.TEST_MOVES, null);
+                            }
                         }
                         break;
                 }
@@ -166,9 +265,32 @@ public class Controller {
             }
                 break;
 
+            case TEST_MOVES:
+            {
+                if(mPossibleMovesIndex >= mPossibleMoves.size()) {
+                    mPossibleMoves.clear();
+                    mPossibleMovesIndex = 0;
+                    cmd(eCommand.RECORD, null);
+
+                } else {
+                    eMove m = mPossibleMoves.get(mPossibleMovesIndex);
+                    //System.out.println("\tmove: " + m.src + "->" + m.dst);
+                    if((Common.strToFigureId(m.src, true) < 0) && (Common.strToFigureId(m.dst, true) < 0)) {
+                        // Möglicher Zug
+                        mPossibleMovesIndex++;
+                        cmd(eCommand.TEST_MOVE, (m.src + m.dst));
+                    } else {
+                        mPossibleMovesIndex++;
+                        cmd(eCommand.TEST_MOVES, null);
+                    }
+                }
+            }
+                break;
+
             case TEST_MOVE:
             {
                 String s = (String)o;
+                System.out.println("\tmove: " + s);
                 SocketCommand sockcmd = new SocketCommand();
                 sockcmd.type = SocketToChess.REQ_VERIFY;
                 sockcmd.data = s.getBytes();
@@ -189,13 +311,15 @@ public class Controller {
 
             case RECORD:
             {
-                //System.out.println(mSphinxThread.getState());
-                mSphinxThread = new SphinxThread(this);
-                mSphinxThread.start();
-                SocketCommand sockcmd = new SocketCommand();
-                sockcmd.type = SocketToChess.REQ_PRINT;
-                sockcmd.data = Common.mSpeakNow.getBytes();
-                SocketToChess.sendCMD(sockcmd);
+                if(mSphinxThread == null || !mSphinxThread.isAlive()) {
+                    //System.out.println(mSphinxThread.getState());
+                    mSphinxThread = new SphinxThread(this);
+                    mSphinxThread.start();
+                }
+                    SocketCommand sockcmd = new SocketCommand();
+                    sockcmd.type = SocketToChess.REQ_PRINT;
+                    sockcmd.data = Common.mSpeakNow.getBytes();
+                    SocketToChess.sendCMD(sockcmd);
             }
                 break;
 
@@ -220,6 +344,7 @@ public class Controller {
             case PARSE_STRING:
             {
                 if(mSaveSpeechResultsIndex >= mSaveSpeechResults.size()) {
+                     walkThroughPossibleMove();
                      cmd(eCommand.RECORD, null);
 
                 }
@@ -234,7 +359,7 @@ public class Controller {
                         eAction type = eAction.GENERIC;
                         for (Action action : a) {
                             type = action.type;
-                            if(action.type == eAction.FIELD) {
+                            if(action.type == eAction.FIELD ||type == eAction.FIGURES) {
                                 if(src.length() == 0)
                                     src = action.innerData;
                                 else if(dst.length() == 0)
@@ -247,13 +372,8 @@ public class Controller {
 
                         if(type == eAction.FIELD ||type == eAction.FIGURES) {
                             if (src.length() > 0 && dst.length() > 0) {
-                                /*cmd(eCommand.APPEND_LOG, src + " -> " + dst);
-
-                                SocketCommand sockcmd = new SocketCommand();
-                                sockcmd.type = SocketToChess.REQ_MOVE;
-                                sockcmd.data = (src + dst).getBytes();
-                                SocketToChess.sendCMD(sockcmd);*/
-                                cmd(eCommand.TEST_MOVE, (src + dst));
+                                //cmd(eCommand.TEST_MOVE, (src + dst));
+                                addPossibleMove(src, dst);
                             }
                         }
                         else if (type == eAction.COMMAND) {
@@ -305,15 +425,19 @@ public class Controller {
                                 SocketToChess.sendCMD(sockcmd);
                             }
 
-                            cmd(eCommand.RECORD, null);
+                            //cmd(eCommand.RECORD, null);
                         }
                     }
                     mParseSyntax.clear();
 
-                    if(mSaveSpeechResultsIndex >= mSaveSpeechResults.size()) {
-                        cmd(eCommand.RECORD, null);
-                    }
+                    /*if(mSaveSpeechResultsIndex >= mSaveSpeechResults.size()) {
+                        // Starte den Lauf vorgang
+                        walkThroughPossibleMove();
+                    }*/
+                    cmd(eCommand.PARSE_STRING, null);
                 }
+
+                
             }
                 break;
 

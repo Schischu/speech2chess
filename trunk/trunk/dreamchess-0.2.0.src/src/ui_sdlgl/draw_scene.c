@@ -27,8 +27,8 @@ float get_mouse_square()
     return mouse_square;
 }
 
-static char message[128] = "";
-static char message2[128] = "";
+static char message[128] = "                                ";
+static char message2[128] = "                                ";
 
 void setUI(int index, char * text) {
 	if(index == 1)
