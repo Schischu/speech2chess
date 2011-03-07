@@ -22,6 +22,9 @@ public class Controller {
     private Thread mReceiveFromChessThread = null;
     private Thread mSphinxThread = null;
     private Thread mWorker = null;
+
+    private Thread mCountdownThread = null;
+
     private ParseSyntax mParseSyntax = null;
     private Speech2ChessView mSpeech2ChessView = null;
 
@@ -35,6 +38,9 @@ public class Controller {
 
         mWorker = new Worker();
         mWorker.start();
+
+        mCountdownThread = new CountdownThread();
+        mCountdownThread.start();
 
         mReceiveFromChessThread = new ReceiveFromChessThread(this);
         //mSphinxThread = new SphinxThread(this);
@@ -183,6 +189,65 @@ public class Controller {
         SocketToChess.sendCMD(sockcmd);
     }*/
 
+    public String mDOMOVE = null;
+
+    class CountdownThread extends Thread {
+        @Override
+        public void run() {
+            while(true) {
+                if(mDOMOVE == null) {
+                    try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                } else {
+                    String s = mDOMOVE;
+                    cmd(eCommand.APPEND_LOG, "Move " + s);
+                    SocketCommand sockcmd = new SocketCommand();
+                                        sockcmd.type = SocketToChess.REQ_PRINT2;
+                                        sockcmd.data = (Common.mMove + " " + s + " Correct? Say Yes / No (" + 5 + ")").getBytes();
+                                        SocketToChess.sendCMD(sockcmd);
+                    boolean cancel = false;
+                    for(int i = 0; i < 50; i++) {
+                        if(mDOMOVE == null) {
+                            cancel = true;
+                            System.out.println("\tabort: " + cancel);
+                            break;
+                        }
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        if(mDOMOVE == null) {
+                            cancel = true;
+                            System.out.println("\tabort: " + cancel);
+                            break;
+                        }
+                        if(i%10 == 0) {
+                            sockcmd.type = SocketToChess.REQ_PRINT2;
+                            sockcmd.data = (Common.mMove + " " + s + " Correct? Say No to abort (" + (4-(i/10)) + ")").getBytes();
+                            SocketToChess.sendCMD(sockcmd);
+                        }
+                    }
+
+                    sockcmd.type = SocketToChess.REQ_PRINT2;
+                    sockcmd.data = "".getBytes();
+                    SocketToChess.sendCMD(sockcmd);
+
+                    mPossibleMoves.clear();
+                    mPossibleMovesIndex = 0;
+                    System.out.println("\tcancel: " + cancel);
+                    if(!cancel)
+                        cmd(eCommand.DO_MOVE, s);
+                    mDOMOVE = null;
+                }
+            }
+        }
+    }
+
+
     public void __cmd(eCommand cmd, Object o) {
         System.out.println("cmd -> " + cmd.toString());
         switch(cmd) {
@@ -227,17 +292,19 @@ public class Controller {
 
                                 SocketCommand sockcmd = new SocketCommand();
                                 sockcmd.type = SocketToChess.REQ_PRINT2;
-                                sockcmd.data = (Common.mMove + " " + s + " (" + 5 + ")").getBytes();
+                                sockcmd.data = (Common.mMove + " " + s + " Correct? Say Yes / No (" + 5 + ")").getBytes();
                                 SocketToChess.sendCMD(sockcmd);
 
-                                for(int i = 0; i < 5; i++) {
+                                mDOMOVE = s;
+
+                                /*for(int i = 0; i < 5; i++) {
                                     try {
                                         Thread.sleep(1000);
                                     } catch (InterruptedException ex) {
                                         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                     sockcmd.type = SocketToChess.REQ_PRINT2;
-                                    sockcmd.data = (Common.mMove + " " + s + " (" + (4-i) + ")").getBytes();
+                                    sockcmd.data = (Common.mMove + " " + s + " Correct? Say Yes / No (" + (4-i) + ")").getBytes();
                                     SocketToChess.sendCMD(sockcmd);
                                 }
 
@@ -247,7 +314,7 @@ public class Controller {
 
                                 mPossibleMoves.clear();
                                 mPossibleMovesIndex = 0;
-                                cmd(eCommand.DO_MOVE, s);
+                                cmd(eCommand.DO_MOVE, s);*/
                             }
                             else {
                                cmd(eCommand.TEST_MOVES, null);
@@ -301,7 +368,6 @@ public class Controller {
             case DO_MOVE:
             {
                 String s = (String)o;
-                cmd(eCommand.APPEND_LOG, "Move " + s);
                 SocketCommand sockcmd = new SocketCommand();
                 sockcmd.type = SocketToChess.REQ_MOVE;
                 sockcmd.data = s.getBytes();
@@ -383,7 +449,7 @@ public class Controller {
 
                                 SocketCommand sockcmd = new SocketCommand();
                                 sockcmd.type = SocketToChess.REQ_PRINT2;
-                                sockcmd.data = ("End Game? Say Yes or No").getBytes();
+                                sockcmd.data = ("End Game? Say Yes / No").getBytes();
                                 SocketToChess.sendCMD(sockcmd);
                             } else if(dst.equals("restart")) {
                                 cmd(eCommand.APPEND_LOG, "Restart Game?");
@@ -391,40 +457,50 @@ public class Controller {
 
                                 SocketCommand sockcmd = new SocketCommand();
                                 sockcmd.type = SocketToChess.REQ_PRINT2;
-                                sockcmd.data = ("Restart Game? Say Yes or No").getBytes();
+                                sockcmd.data = ("Restart Game? Say Yes / No").getBytes();
                                 SocketToChess.sendCMD(sockcmd);
                             } else if(dst.equals("yes")) {
                                 cmd(eCommand.APPEND_LOG, "Yes");
+                                SocketCommand sockcmd = new SocketCommand();
                                 if (mWaitForYesEndGame) {
                                     mWaitForYesEndGame = false;
-                                    SocketCommand sockcmd = new SocketCommand();
                                     sockcmd.type = SocketToChess.REQ_QUIT;
                                     sockcmd.data = dst.getBytes();
                                     SocketToChess.sendCMD(sockcmd);
+
+                                    sockcmd.type = SocketToChess.REQ_PRINT2;
+                                    sockcmd.data = (" ").getBytes();
+                                    SocketToChess.sendCMD(sockcmd);
                                 } else if  (mWaitForYesRestartGame) {
                                     mWaitForYesRestartGame = false;
-                                    SocketCommand sockcmd = new SocketCommand();
                                     sockcmd.type = SocketToChess.REQ_RESTART;
                                     sockcmd.data = dst.getBytes();
                                     SocketToChess.sendCMD(sockcmd);
+                                    
+                                    sockcmd.type = SocketToChess.REQ_PRINT2;
+                                    sockcmd.data = (" ").getBytes();
+                                    SocketToChess.sendCMD(sockcmd);
                                 }
-
-                                SocketCommand sockcmd = new SocketCommand();
-                                sockcmd.type = SocketToChess.REQ_PRINT2;
-                                sockcmd.data = (" ").getBytes();
-                                SocketToChess.sendCMD(sockcmd);
+                                
                             } else if(dst.equals("no")) {
                                 cmd(eCommand.APPEND_LOG, "No");
-                                
-                                mWaitForYesEndGame = false;
-                                mWaitForYesRestartGame = false;
 
-                                SocketCommand sockcmd = new SocketCommand();
-                                sockcmd.type = SocketToChess.REQ_PRINT2;
-                                sockcmd.data = (" ").getBytes();
-                                SocketToChess.sendCMD(sockcmd);
+
+                                if (mDOMOVE != null) {
+                                    System.out.println("\tDO abort: " + mDOMOVE);
+                                    mDOMOVE = null;
+                                    mPossibleMoves.clear();
+                                    mPossibleMovesIndex = 0;
+                                } else {
+                                    mWaitForYesEndGame = false;
+                                    mWaitForYesRestartGame = false;
+
+                                    SocketCommand sockcmd = new SocketCommand();
+                                    sockcmd.type = SocketToChess.REQ_PRINT2;
+                                    sockcmd.data = (" ").getBytes();
+                                    SocketToChess.sendCMD(sockcmd);
+                                }
                             }
-
                             //cmd(eCommand.RECORD, null);
                         }
                     }
