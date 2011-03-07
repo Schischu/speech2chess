@@ -29,7 +29,7 @@ public class SphinxThread extends Thread {
             //pSphinx = new Sphinx();
             List<String> result = pSphinx.record();
             if(result != null) {
-                pController.cmd(Controller.eCommand.PARSE_STRINGS, result);
+                pController.cmd(Controller.eCommand.PARSE_STRINGS_SPHINX, result);
                 System.out.println("SphinxThread::run() a");
                 //pSphinx.finish();
                 System.out.println("SphinxThread::run() b");

@@ -59,6 +59,7 @@ public class Controller {
         DO_MOVE,
         RECORD,
         TEST_MOVES,
+        PARSE_STRINGS_SPHINX,
     };
 
     class eCommandWithData {
@@ -390,6 +391,9 @@ public class Controller {
                 }
             }
                 break;
+
+            case PARSE_STRINGS_SPHINX:
+                mSphinxThread = null;
 
             case PARSE_STRINGS:
             {
