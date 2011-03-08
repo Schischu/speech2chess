@@ -24,7 +24,7 @@
     <property name="frontend" value="epFrontEnd"/>
     <property name="recognizer" value="recognizer"/>
     <property name="showCreations" value="false"/>
-
+    
 
     <!-- ******************************************************** -->
     <!-- word recognizer configuration                            -->
@@ -50,7 +50,7 @@
     <component name="searchManager"
         type="edu.cmu.sphinx.decoder.search.SimpleBreadthFirstSearchManager">
         <property name="logMath" value="logMath"/>
-        <property name="linguist" value="flatLinguist"/>
+        <property name="linguist" value="lexTreeLinguist"/>
         <property name="pruner" value="trivialPruner"/>
         <property name="scorer" value="threadedScorer"/>
         <property name="activeListFactory" value="activeList"/>
@@ -76,62 +76,70 @@
     <!-- The linguist  configuration                              -->
     <!-- ******************************************************** -->
 
-    <component name="flatLinguist"
-                type="edu.cmu.sphinx.linguist.flat.FlatLinguist">
+    <component name="lexTreeLinguist"
+                type="edu.cmu.sphinx.linguist.lextree.LexTreeLinguist">
         <property name="logMath" value="logMath"/>
         <property name="grammar" value="jsgfGrammar"/>
-        <property name="acousticModel" value="wsj"/>
+        <property name="acousticModel" value="acousticModel"/>
+        <property name="languageModel" value="trigramModel"/>
+        <property name="dictionary" value="dictionary"/>
         <property name="wordInsertionProbability"
-                value="${wordInsertionProbability}"/>
+               value="${wordInsertionProbability}"/>
         <property name="languageWeight" value="${languageWeight}"/>
         <property name="unitManager" value="unitManager"/>
     </component>
 
 
+
+  <component name="trigramModel" type="edu.cmu.sphinx.linguist.language.ngram.large.LargeTrigramModel">
+    <property name="unigramWeight" value="0.7"/>
+    <property name="maxDepth" value="3"/>
+    <property name="logMath" value="logMath"/>
+    <property name="dictionary" value="dictionary"/>
+    <property name="location"
+        value="resource:/speech2chessapp/resources/DE/stc.lm.DMP"/>
+  </component>
+
+
     <!-- ******************************************************** -->
     <!-- The Grammar  configuration                               -->
     <!-- ******************************************************** -->
-
-    <component name="jsgfGrammar" type="edu.cmu.sphinx.jsgf.JSGFGrammar">
+    < component name="jsgfGrammar" type="edu.cmu.sphinx.jsgf.JSGFGrammar">
         <property name="dictionary" value="dictionary"/>
         <property name="grammarLocation"
              value="resource:/speech2chessapp/"/>
-        <property name="grammarName" value="speech2chess_EN"/>
+        <property name="grammarName" value="speech2chess_DE"/>
 	<property name="logMath" value="logMath"/>
-    </component>
-
+    </component >
 
     <!-- ******************************************************** -->
     <!-- The Dictionary configuration                            -->
     <!-- ******************************************************** -->
+  <component name="dictionary" type="edu.cmu.sphinx.linguist.dictionary.FastDictionary">
+    <property name="dictionaryPath"
+         value="resource:/speech2chessapp/resources/DE/stc.dict"/>
+    <property name="fillerPath"
+         value="resource:/speech2chessapp/resources/DE/stc.filler"/>
+    <property name="addSilEndingPronunciation" value="false"/>
+    <property name="allowMissingWords" value="false"/>
+    <property name="unitManager" value="unitManager"/>
+  </component>
 
-    <component name="dictionary"
-        type="edu.cmu.sphinx.linguist.dictionary.FastDictionary">
-        <property name="dictionaryPath"
-	 value="resource:/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/dict/cmudict.0.6d"/>
-        <property name="fillerPath"
-	 value="resource:/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/dict/fillerdict"/>
-        <property name="addSilEndingPronunciation" value="false"/>
-        <property name="allowMissingWords" value="false"/>
-        <property name="unitManager" value="unitManager"/>
-    </component>
 
     <!-- ******************************************************** -->
     <!-- The acoustic model configuration                         -->
     <!-- ******************************************************** -->
-    <component name="wsj"
-               type="edu.cmu.sphinx.linguist.acoustic.tiedstate.TiedStateAcousticModel">
-        <property name="loader" value="wsjLoader"/>
-        <property name="unitManager" value="unitManager"/>
-    </component>
-
-    <component name="wsjLoader" type="edu.cmu.sphinx.linguist.acoustic.tiedstate.Sphinx3Loader">
+  <component name="sphinx3Loader"
+             type="edu.cmu.sphinx.linguist.acoustic.tiedstate.Sphinx3Loader">
         <property name="logMath" value="logMath"/>
         <property name="unitManager" value="unitManager"/>
-        <property name="location" value="resource:/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz"/>
-        <property name="modelDefinition" value="etc/WSJ_clean_13dCep_16k_40mel_130Hz_6800Hz.4000.mdef"/>
-        <property name="dataLocation" value="cd_continuous_8gau/"/>
-    </component>
+    <property name="location" value="resource:/speech2chessapp/resources/DE/stc.ci_cont"/>
+  </component>
+
+  <component name="acousticModel" type="edu.cmu.sphinx.linguist.acoustic.tiedstate.TiedStateAcousticModel">
+    <property name="loader" value="sphinx3Loader"/>
+    <property name="unitManager" value="unitManager"/>
+  </component>
 
 
     <!-- ******************************************************** -->
@@ -139,7 +147,7 @@
     <!-- ******************************************************** -->
 
     <component name="unitManager"
-        type="edu.cmu.sphinx.linguist.acoustic.UnitManager"/>
+       type="edu.cmu.sphinx.linguist.acoustic.UnitManager"/>
 
     <!-- ******************************************************** -->
     <!-- The frontend configuration                               -->
@@ -187,45 +195,45 @@
     </component>
 
     <component name="speechClassifier"
-               type="edu.cmu.sphinx.frontend.endpoint.SpeechClassifier">
+              type="edu.cmu.sphinx.frontend.endpoint.SpeechClassifier">
         <property name="threshold" value="13"/>
     </component>
 
     <component name="nonSpeechDataFilter"
-               type="edu.cmu.sphinx.frontend.endpoint.NonSpeechDataFilter"/>
+              type="edu.cmu.sphinx.frontend.endpoint.NonSpeechDataFilter"/>
 
     <component name="speechMarker"
-               type="edu.cmu.sphinx.frontend.endpoint.SpeechMarker" >
+              type="edu.cmu.sphinx.frontend.endpoint.SpeechMarker" >
         <property name="speechTrailer" value="50"/>
     </component>
 
 
     <component name="preemphasizer"
-               type="edu.cmu.sphinx.frontend.filter.Preemphasizer"/>
+              type="edu.cmu.sphinx.frontend.filter.Preemphasizer"/>
 
     <component name="windower"
-               type="edu.cmu.sphinx.frontend.window.RaisedCosineWindower">
+              type="edu.cmu.sphinx.frontend.window.RaisedCosineWindower">
     </component>
 
     <component name="fft"
-            type="edu.cmu.sphinx.frontend.transform.DiscreteFourierTransform">
+           type="edu.cmu.sphinx.frontend.transform.DiscreteFourierTransform">
     </component>
 
     <component name="melFilterBank"
-        type="edu.cmu.sphinx.frontend.frequencywarp.MelFrequencyFilterBank">
+       type="edu.cmu.sphinx.frontend.frequencywarp.MelFrequencyFilterBank">
     </component>
 
     <component name="dct"
-            type="edu.cmu.sphinx.frontend.transform.DiscreteCosineTransform"/>
+           type="edu.cmu.sphinx.frontend.transform.DiscreteCosineTransform"/>
 
     <component name="liveCMN"
-               type="edu.cmu.sphinx.frontend.feature.LiveCMN"/>
+              type="edu.cmu.sphinx.frontend.feature.LiveCMN"/>
 
     <component name="featureExtraction"
-               type="edu.cmu.sphinx.frontend.feature.DeltasFeatureExtractor"/>
+              type="edu.cmu.sphinx.frontend.feature.DeltasFeatureExtractor"/>
 
     <component name="microphone"
-               type="edu.cmu.sphinx.frontend.util.Microphone">
+              type="edu.cmu.sphinx.frontend.util.Microphone">
         <property name="closeBetweenUtterances" value="false"/>
     </component>
 
@@ -235,25 +243,25 @@
     <!-- ******************************************************* -->
 
     <component name="accuracyTracker"
-                type="edu.cmu.sphinx.instrumentation.BestPathAccuracyTracker">
+               type="edu.cmu.sphinx.instrumentation.BestPathAccuracyTracker">
         <property name="recognizer" value="${recognizer}"/>
         <property name="showAlignedResults" value="false"/>
         <property name="showRawResults" value="false"/>
     </component>
 
     <component name="memoryTracker"
-                type="edu.cmu.sphinx.instrumentation.MemoryTracker">
+               type="edu.cmu.sphinx.instrumentation.MemoryTracker">
         <property name="recognizer" value="${recognizer}"/>
-	<property name="showSummary" value="false"/>
-	<property name="showDetails" value="false"/>
+        <property name="showSummary" value="false"/>
+        <property name="showDetails" value="false"/>
     </component>
 
     <component name="speedTracker"
-                type="edu.cmu.sphinx.instrumentation.SpeedTracker">
+               type="edu.cmu.sphinx.instrumentation.SpeedTracker">
         <property name="recognizer" value="${recognizer}"/>
         <property name="frontend" value="${frontend}"/>
-	<property name="showSummary" value="true"/>
-	<property name="showDetails" value="false"/>
+        <property name="showSummary" value="true"/>
+        <property name="showDetails" value="false"/>
     </component>
 
 
@@ -267,18 +275,3 @@
     </component>
 
 </config>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
