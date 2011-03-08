@@ -1,0 +1,14 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar for Hello World example
+ */
+
+grammar speech2chess;
+
+//public <field> = ( a | b | c | d | e | f | g | h ) ( eins | zwei | drei | vier | fünf | sechs | sieben | acht ) ( zu | nach ) ( a | b | c | d | e | f | g | h ) ( eins | zwei | drei | vier | fünf | sechs | sieben | acht );
+public <field> = (  a1 | a2 | a3 | a4 | a5 | a6 | a7 | a8 ) ( zu | nach ) ( a1 | a2 | a3 | a4 | a5 | a6 | a7 | a8 );
+//public <figure> = ( bauer | springer | läufer | turm | königin | könig ) ( zu | nach ) ( a | b | c | d | e | f | g | h ) ( eins | zwei | drei | vier | fünf | sechs | sieben | acht );
+public <figure> = ( bauer | springer | läufer | turm | königin | könig ) ( zu | nach ) ( a1 | a2 | a3 | a4 | a5 | a6 | a7 | a8 );
+public <command> = spiel ( neustarten | beenden );
+public <yesno> = ( ja | nein );
