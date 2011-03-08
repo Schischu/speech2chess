@@ -404,6 +404,11 @@ public class Controller {
 
                 List<String> s = (List<String>)o;
 
+                String result = "";
+                for(String str : s)
+                    result += str + ", ";
+                cmd(eCommand.APPEND_LOG, "[ " + result + " ]");
+
                 mSaveSpeechResults = s;
                 mSaveSpeechResultsIndex = 0;
 
