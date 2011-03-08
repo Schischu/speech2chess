@@ -292,7 +292,7 @@ public class Speech2ChessView extends FrameView {
             log += "\t\t<li>" + line + "</li>\n";
         }
 
-        log += "\t</ul>\n</html>";
+        log += "\t</ul>\n\n\n\n</html>";
         jTextHtmlLog.setText(log);
         javax.swing.JScrollBar s = jScrollPaneHtmlLog.getVerticalScrollBar();
         s.setValue(s.getMaximum());
