@@ -113,7 +113,7 @@ public class Speech2ChessView extends FrameView {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldCommandInput = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneHtmlLog = new javax.swing.JScrollPane();
         jTextHtmlLog = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
@@ -150,8 +150,9 @@ public class Speech2ChessView extends FrameView {
             }
         });
 
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
+        jScrollPaneHtmlLog.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPaneHtmlLog.setAutoscrolls(true);
+        jScrollPaneHtmlLog.setName("jScrollPaneHtmlLog"); // NOI18N
 
         jTextHtmlLog.setBackground(resourceMap.getColor("jTextHtmlLog.background")); // NOI18N
         jTextHtmlLog.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -159,7 +160,7 @@ public class Speech2ChessView extends FrameView {
         jTextHtmlLog.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTextHtmlLog.setName("jTextHtmlLog"); // NOI18N
         jTextHtmlLog.setOpaque(true);
-        jScrollPane1.setViewportView(jTextHtmlLog);
+        jScrollPaneHtmlLog.setViewportView(jTextHtmlLog);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -181,7 +182,7 @@ public class Speech2ChessView extends FrameView {
                                 .addComponent(jButton1))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 838, Short.MAX_VALUE)))
+                        .addComponent(jScrollPaneHtmlLog, javax.swing.GroupLayout.PREFERRED_SIZE, 838, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -190,7 +191,7 @@ public class Speech2ChessView extends FrameView {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, Short.MAX_VALUE)
+                .addComponent(jScrollPaneHtmlLog, javax.swing.GroupLayout.PREFERRED_SIZE, 451, Short.MAX_VALUE)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -293,13 +294,15 @@ public class Speech2ChessView extends FrameView {
 
         log += "\t</ul>\n</html>";
         jTextHtmlLog.setText(log);
+        javax.swing.JScrollBar s = jScrollPaneHtmlLog.getVerticalScrollBar();
+        s.setValue(s.getMaximum());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneHtmlLog;
     private javax.swing.JTextField jTextFieldCommandInput;
     private javax.swing.JLabel jTextHtmlLog;
     private javax.swing.JPanel mainPanel;
