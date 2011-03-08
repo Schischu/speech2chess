@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  Sphinx-4 Configuration file
+   Sphinx-4 Configuration file
 -->
 
 <!-- ******************************************************** -->
@@ -48,9 +48,9 @@
     </component>
 
     <component name="searchManager"
-       type="edu.cmu.sphinx.decoder.search.SimpleBreadthFirstSearchManager">
+        type="edu.cmu.sphinx.decoder.search.SimpleBreadthFirstSearchManager">
         <property name="logMath" value="logMath"/>
-        <property name="linguist" value="flatLinguist"/>
+        <property name="linguist" value="lexTreeLinguist"/>
         <property name="pruner" value="trivialPruner"/>
         <property name="scorer" value="threadedScorer"/>
         <property name="activeListFactory" value="activeList"/>
@@ -58,17 +58,17 @@
 
 
     <component name="activeList"
-            type="edu.cmu.sphinx.decoder.search.PartitionActiveListFactory">
+             type="edu.cmu.sphinx.decoder.search.PartitionActiveListFactory">
         <property name="logMath" value="logMath"/>
         <property name="absoluteBeamWidth" value="${absoluteBeamWidth}"/>
         <property name="relativeBeamWidth" value="${relativeBeamWidth}"/>
     </component>
 
     <component name="trivialPruner"
-               type="edu.cmu.sphinx.decoder.pruner.SimplePruner"/>
+                type="edu.cmu.sphinx.decoder.pruner.SimplePruner"/>
 
     <component name="threadedScorer"
-               type="edu.cmu.sphinx.decoder.scorer.ThreadedAcousticScorer">
+                type="edu.cmu.sphinx.decoder.scorer.ThreadedAcousticScorer">
         <property name="frontend" value="${frontend}"/>
     </component>
 
@@ -76,11 +76,12 @@
     <!-- The linguist  configuration                              -->
     <!-- ******************************************************** -->
 
-    <component name="flatLinguist"
-               type="edu.cmu.sphinx.linguist.flat.FlatLinguist">
+    <component name="lexTreeLinguist"
+                type="edu.cmu.sphinx.linguist.lextree.LexTreeLinguist">
         <property name="logMath" value="logMath"/>
-        <property name="grammar" value="trigramModel"/>
         <property name="acousticModel" value="acousticModel"/>
+        <property name="languageModel" value="trigramModel"/>
+        <property name="dictionary" value="dictionary"/>
         <property name="wordInsertionProbability"
                value="${wordInsertionProbability}"/>
         <property name="languageWeight" value="${languageWeight}"/>
