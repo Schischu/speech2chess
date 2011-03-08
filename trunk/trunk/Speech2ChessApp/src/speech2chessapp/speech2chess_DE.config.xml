@@ -50,7 +50,7 @@
     <component name="searchManager"
         type="edu.cmu.sphinx.decoder.search.SimpleBreadthFirstSearchManager">
         <property name="logMath" value="logMath"/>
-        <property name="linguist" value="flatLinguist"/>
+        <property name="linguist" value="lexTreeLinguist"/>
         <property name="pruner" value="trivialPruner"/>
         <property name="scorer" value="threadedScorer"/>
         <property name="activeListFactory" value="activeList"/>
@@ -76,22 +76,35 @@
     <!-- The linguist  configuration                              -->
     <!-- ******************************************************** -->
 
-    <component name="flatLinguist"
-                type="edu.cmu.sphinx.linguist.flat.FlatLinguist">
+    <component name="lexTreeLinguist"
+                type="edu.cmu.sphinx.linguist.lextree.LexTreeLinguist">
         <property name="logMath" value="logMath"/>
         <property name="grammar" value="jsgfGrammar"/>
         <property name="acousticModel" value="acousticModel"/>
+        <property name="languageModel" value="trigramModel"/>
+        <property name="dictionary" value="dictionary"/>
         <property name="wordInsertionProbability"
-                value="${wordInsertionProbability}"/>
+               value="${wordInsertionProbability}"/>
         <property name="languageWeight" value="${languageWeight}"/>
         <property name="unitManager" value="unitManager"/>
     </component>
 
 
+
+  <component name="trigramModel" type="edu.cmu.sphinx.linguist.language.ngram.large.LargeTrigramModel">
+    <property name="unigramWeight" value="0.7"/>
+    <property name="maxDepth" value="3"/>
+    <property name="logMath" value="logMath"/>
+    <property name="dictionary" value="dictionary"/>
+    <property name="location"
+        value="resource:/speech2chessapp/resources/DE/stc.lm.DMP"/>
+  </component>
+
+
     <!-- ******************************************************** -->
     <!-- The Grammar  configuration                               -->
     <!-- ******************************************************** -->
-    <component name="jsgfGrammar" type="edu.cmu.sphinx.jsgf.JSGFGrammar">
+    < component name="jsgfGrammar" type="edu.cmu.sphinx.jsgf.JSGFGrammar">
         <property name="dictionary" value="dictionary"/>
         <property name="grammarLocation"
              value="resource:/speech2chessapp/"/>
