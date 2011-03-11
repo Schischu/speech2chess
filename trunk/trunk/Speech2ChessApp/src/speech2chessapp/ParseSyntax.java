@@ -92,11 +92,19 @@ public class ParseSyntax {
     }
 
     private void createCommandsList() {
-
+        if(Common.mLanguage.equals("EN")) {
          mCommands.add("end".toLowerCase());
          mCommands.add("restart".toLowerCase());
          mCommands.add("yes".toLowerCase());
          mCommands.add("no".toLowerCase());
+        } else {
+         mCommands.add("beenden".toLowerCase());
+         mCommands.add("nocheinmal".toLowerCase());
+         mCommands.add("schließen".toLowerCase());
+         mCommands.add("ende".toLowerCase());
+         mCommands.add("ja".toLowerCase());
+         mCommands.add("nein".toLowerCase());
+        }
          // ...
     }
 

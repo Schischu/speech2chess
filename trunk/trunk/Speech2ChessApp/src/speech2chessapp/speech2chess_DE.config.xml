@@ -117,9 +117,9 @@
     <!-- ******************************************************** -->
   <component name="dictionary" type="edu.cmu.sphinx.linguist.dictionary.FastDictionary">
     <property name="dictionaryPath"
-         value="resource:/speech2chessapp/resources/DE/stc.dict"/>
+         value="resource:/speech2chessapp/resources/DE/dict/stc.dict"/>
     <property name="fillerPath"
-         value="resource:/speech2chessapp/resources/DE/stc.filler"/>
+         value="resource:/speech2chessapp/resources/DE/dict/stc.filler"/>
     <property name="addSilEndingPronunciation" value="false"/>
     <property name="allowMissingWords" value="false"/>
     <property name="unitManager" value="unitManager"/>
@@ -133,7 +133,9 @@
              type="edu.cmu.sphinx.linguist.acoustic.tiedstate.Sphinx3Loader">
         <property name="logMath" value="logMath"/>
         <property name="unitManager" value="unitManager"/>
-    <property name="location" value="resource:/speech2chessapp/resources/DE/stc.ci_cont"/>
+        <property name="location" value="resource:/speech2chessapp/resources/DE"/>
+        <property name="modelDefinition" value="etc/mdef"/>
+        <property name="dataLocation" value="stc.ci_cont/"/>
   </component>
 
   <component name="acousticModel" type="edu.cmu.sphinx.linguist.acoustic.tiedstate.TiedStateAcousticModel">

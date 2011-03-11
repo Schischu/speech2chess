@@ -434,7 +434,38 @@ public class Controller {
                         String src = "";
                         String dst = "";
                         eAction type = eAction.GENERIC;
-                        for (Action action : a) {
+
+                        type = eAction.FIELD;
+                        
+                        if(a.size() == 1) {
+                            type = a.get(0).type;
+                            dst = a.get(0).innerData;
+                        }
+                        else if(a.size() == 2) {
+                            src = a.get(0).innerData;
+                            dst = a.get(1).innerData;
+                        }
+                        else if (a.size() == 3) {
+                            if(a.get(0).type == eAction.FIELD) { // 2 and 3 are dest
+                                src = a.get(0).innerData; // FIELD
+                                // FIGURE
+                                dst = a.get(2).innerData; // FIELD
+                            } else if(a.get(1).type == eAction.FIELD) { // 2 and 3 are dest
+                                // FIGURE
+                                src = a.get(1).innerData; // FIELD
+                                dst = a.get(2).innerData; // FIGURE OR FIELD
+                            } else if(a.get(2).type == eAction.FIELD) { // 2 and 3 are dest
+                                src = a.get(0).innerData; // FIGURE
+                                // FIGURE
+                                dst = a.get(2).innerData; // FIELD
+                            }
+                        }
+                        else if(a.size() == 4) {
+                            src = a.get(1).innerData;
+                            dst = a.get(3).innerData;
+                        }
+
+                        /*for (Action action : a) {
                             type = action.type;
                             if(action.type == eAction.FIELD ||type == eAction.FIGURES) {
                                 if(src.length() == 0)
@@ -445,7 +476,7 @@ public class Controller {
                              else if(action.type == eAction.COMMAND) {
                                 dst = action.innerData;
                              }
-                        }
+                        }*/
 
                         if(type == eAction.FIELD ||type == eAction.FIGURES) {
                             if (src.length() > 0 && dst.length() > 0) {
@@ -454,6 +485,22 @@ public class Controller {
                             }
                         }
                         else if (type == eAction.COMMAND) {
+                            if(Common.mLanguage.equals("DE")) {
+                                if(dst.equals("beenden"))
+                                    dst = "end";
+                                if(dst.equals("nocheinmal"))
+                                    dst = "restart";
+                                if(dst.equals("schliesen"))
+                                    dst = "end";
+                                if(dst.equals("ende"))
+                                    dst = "end";
+                                if(dst.equals("ja"))
+                                    dst = "yes";
+                                if(dst.equals("nein"))
+                                    dst = "no";
+                            }
+
+
                             if(dst.equals("end")) {
                                 cmd(eCommand.APPEND_LOG, "End Game?");
                                 mWaitForYesEndGame = true;
