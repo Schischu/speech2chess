@@ -27,9 +27,26 @@ public class Sphinx {
     private Microphone mMicrophone;
 
     public Sphinx() {
-        mCm = new ConfigurationManager(Speech2ChessApp.class.getResource("speech2chess_" + Common.mLanguage + ".config.flat.xml"));
-        mRecognizer = (Recognizer) mCm.lookup("recognizer");
-        mRecognizer.allocate();
+        try {
+            mCm = new ConfigurationManager(Speech2ChessApp.class.getResource("speech2chess_" + Common.mLanguage + ".config.flat.xml"));
+            //mCm = new ConfigurationManager(Speech2ChessApp.class.getResource("speech2chess_" + Common.mLanguage + ".config.xml"));
+            mRecognizer = (Recognizer) mCm.lookup("recognizer");
+        
+            mRecognizer.allocate();
+        } catch(java.lang.RuntimeException ex) {
+
+            System.out.println(ex.toString());
+            java.io.IOException cause = (java.io.IOException)ex.getCause();
+            System.out.println(cause);
+            edu.cmu.sphinx.jsgf.JSGFGrammarParseException ex2 = (edu.cmu.sphinx.jsgf.JSGFGrammarParseException)cause.getCause();
+
+            System.out.println(ex2.charNumber);
+            System.out.println(ex2.details);
+            System.out.println(ex2.lineNumber);
+            System.out.println(ex2.message);
+
+            System.exit(0);
+        }
 
         mMicrophone = (Microphone) mCm.lookup("microphone");
     }
