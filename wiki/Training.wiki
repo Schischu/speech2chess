@@ -1,0 +1,16 @@
+Training
+
+Download
+wget http://sourceforge.net/projects/cmusphinx/files/sphinx3/0.8/sphinx3-0.8.tar.gz/download
+wget http://cmusphinx.org/download/nightly/SphinxTrain.nightly.tar.gz
+
+tar -xzf download
+tar -xzf SphinxTrain.nightly.tar.gz
+
+Jetzt libsphinxbase über repo man installieren
+
+cd sphinx3-0.8/
+./configure
+
+make
+sudo make install
