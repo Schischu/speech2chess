@@ -45,7 +45,28 @@ zahl.sent umbenennen nach speech2chess01_train.transcription
 >> mv *.lm speech2chess01.lm
 
 >> gedit speech2chess01.filler
-Inhalt
->> <s>     SIL
->> <sil>   SIL
->> </s>    SIL
+<s>     SIL
+<sil>   SIL
+</s>    SIL
+
+----
+Über 
+http://bakuzen.com/extractphoneme.php
+Phoneme erzeugen
+gedit speech2chess01.phone
+Mit dem Inhalt aber 
+Achtung: Doppelte löschen
+
+Kontrollieren ob bei dic filler und phone eine leere zeile am ende ist
+
+Config file anpassen
+>> gedit sphinx_train.cfg
+$CFG_WAVFILE_EXTENSION = 'wav';
+$CFG_WAVFILE_TYPE = 'mswav';
+
+cd ..
+--------------
+
+
+
+
