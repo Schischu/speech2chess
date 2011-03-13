@@ -112,14 +112,14 @@ public class ParseSyntax {
     {
         mInput = input;
 
-        mInput = mInput.replaceAll(" " + Common.mOne, "1");
-        mInput = mInput.replaceAll(" " + Common.mTwo, "2");
-        mInput = mInput.replaceAll(" " + Common.mThree, "3");
-        mInput = mInput.replaceAll(" " + Common.mFour, "4");
-        mInput = mInput.replaceAll(" " + Common.mFive, "5");
-        mInput = mInput.replaceAll(" " + Common.mSix, "6");
-        mInput = mInput.replaceAll(" " + Common.mSeven, "7");
-        mInput = mInput.replaceAll(" " + Common.mEight, "8");
+        mInput = mInput.replaceAll(" " + Common.mOne.toLowerCase(), "1");
+        mInput = mInput.replaceAll(" " + Common.mTwo.toLowerCase(), "2");
+        mInput = mInput.replaceAll(" " + Common.mThree.toLowerCase(), "3");
+        mInput = mInput.replaceAll(" " + Common.mFour.toLowerCase(), "4");
+        mInput = mInput.replaceAll(" " + Common.mFive.toLowerCase(), "5");
+        mInput = mInput.replaceAll(" " + Common.mSix.toLowerCase(), "6");
+        mInput = mInput.replaceAll(" " + Common.mSeven.toLowerCase(), "7");
+        mInput = mInput.replaceAll(" " + Common.mEight.toLowerCase(), "8");
     }
 
     public boolean check()

@@ -465,19 +465,6 @@ public class Controller {
                             dst = a.get(3).innerData;
                         }
 
-                        /*for (Action action : a) {
-                            type = action.type;
-                            if(action.type == eAction.FIELD ||type == eAction.FIGURES) {
-                                if(src.length() == 0)
-                                    src = action.innerData;
-                                else if(dst.length() == 0)
-                                    dst = action.innerData;
-                            }
-                             else if(action.type == eAction.COMMAND) {
-                                dst = action.innerData;
-                             }
-                        }*/
-
                         if(type == eAction.FIELD ||type == eAction.FIGURES) {
                             if (src.length() > 0 && dst.length() > 0) {
                                 //cmd(eCommand.TEST_MOVE, (src + dst));
