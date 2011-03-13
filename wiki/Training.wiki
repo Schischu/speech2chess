@@ -69,3 +69,10 @@ cd ..
 
 ./scripts_pl/make_feats.pl -ctl etc/speech2chess01_train.fileids
 ./scripts_pl/RunAll.pl
+
+--------------
+Hinweise: Ich habe festgestellt das die Sprachwortschätze extrem groß sein müssen.
+Für einen Wortschatz der nur a1 - h8 erkennt brauchte ich 80 Aufnahmen, wobei die Zahlen 2 mal aufgenommen werden mussten und die buchstaben 3 mal, a und h hab ich gesondert nochmal aufgenommen, leider ohne erfolg.
+Sobald man nun "nach" auch mit aufnimmt werden die ergebnisse spürbar schlechter.
+Vermutung ist das ja sphinxtrain auch eine wahrscheinlichkeits berechnung macht und da nach nie im zusammenhang mit den anderen wörtern auftaucht ist es unwarscheinlich und wird deswegen seltenst erkannt.
+d.h. wir brauchen nochmal aufnahmen wo nach für jedes feld einmal vorne und einmal hinten auftaucht -> nochmal min 32 aufnahmen, warscheinlich eher sogar 64.
