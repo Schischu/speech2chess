@@ -36,4 +36,16 @@ Kopiere speech2chess01.corpus das zum erstellen der wav benuttz wurde nach etc
 Webseite zum erstellen vieler Dateien
 http://www.speech.cs.cmu.edu/tools/lmtool-adv.html
 
+“Sentence corpus file:” field.  Then click “Compile Knowledge Base” and wait a few seconds for the results
+Download gzip'd tar file
+zahl.sent umbenennen nach speech2chess01_train.transcription
+>> cd etc
+>> mv *.sent speech2chess01_train.transcription
+>> mv *.dic speech2chess01.dic
+>> mv *.lm speech2chess01.lm
 
+>> gedit speech2chess01.filler
+Inhalt
+>> <s>     SIL
+>> <sil>   SIL
+>> </s>    SIL
