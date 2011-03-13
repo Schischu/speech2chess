@@ -24,7 +24,7 @@ cd ..
 ------
 mkdir speech2chess01
 cd speech2chess01
-../SphinxTrain/scripts_pl/setup_SphinxTrain.pl --task speech2chees01
+../SphinxTrain/scripts_pl/setup_SphinxTrain.pl --task speech2chess01
 ------
 collecting data
 kopieren der aufgenommenen wavx nach wav/
@@ -34,7 +34,7 @@ Kopiere speech2chess01.corpus das zum erstellen der wav benuttz wurde nach etc
 
 -----
 Webseite zum erstellen vieler Dateien
-http://www.speech.cs.cmu.edu/tools/lmtool-adv.html
+http://www.speech.cs.cmu.edu/tools/lmtool-new.html
 
 “Sentence corpus file:” field.  Then click “Compile Knowledge Base” and wait a few seconds for the results
 Download gzip'd tar file
@@ -43,6 +43,8 @@ zahl.sent umbenennen nach speech2chess01_train.transcription
 >> mv *.sent speech2chess01_train.transcription
 >> mv *.dic speech2chess01.dic
 >> mv *.lm speech2chess01.lm
+
+../transcription.sh etc/speech2chess01_train.transcription mb
 
 >> gedit speech2chess01.filler
 <s>     SIL
@@ -57,8 +59,6 @@ gedit speech2chess01.phone
 Mit dem Inhalt aber 
 Achtung: Doppelte löschen
 
-Kontrollieren ob bei dic filler und phone eine leere zeile am ende ist
-
 Config file anpassen
 >> gedit sphinx_train.cfg
 $CFG_WAVFILE_EXTENSION = 'wav';
@@ -67,6 +67,5 @@ $CFG_WAVFILE_TYPE = 'mswav';
 cd ..
 --------------
 
-
-
-
+./scripts_pl/make_feats.pl -ctl etc/speech2chess01_train.fileids
+./scripts_pl/RunAll.pl
