@@ -14,3 +14,26 @@ cd sphinx3-0.8/
 
 make
 sudo make install
+
+cd ..
+cd SphinxTrain/
+./configure
+make
+cd ..
+
+------
+mkdir speech2chess01
+cd speech2chess01
+../SphinxTrain/scripts_pl/setup_SphinxTrain.pl --task speech2chees01
+------
+collecting data
+kopieren der aufgenommenen wavx nach wav/
+erzeugen von speech2chess01_train.fileids muss nach etc/
+>> ls  wav/ | sed "s/.wav//g" > etc/speech2chess01_train.fileids
+Kopiere speech2chess01.transcript das zum erstellen der wav benuttz wurde nach etc
+
+
+
+
+
+
