@@ -58,7 +58,7 @@ Phoneme erzeugen
 gedit speech2chess01.phone
 Mit dem Inhalt aber 
 Achtung: Doppelte löschen
-
+Und SIL am ende hinzufügen fals noch nicht vorhanden
 Config file anpassen
 >> gedit sphinx_train.cfg
 $CFG_WAVFILE_EXTENSION = 'wav';
