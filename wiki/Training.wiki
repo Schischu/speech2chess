@@ -30,10 +30,10 @@ collecting data
 kopieren der aufgenommenen wavx nach wav/
 erzeugen von speech2chess01_train.fileids muss nach etc/
 >> ls  wav/ | sed "s/.wav//g" > etc/speech2chess01_train.fileids
-Kopiere speech2chess01.transcript das zum erstellen der wav benuttz wurde nach etc
+Kopiere speech2chess01.corpus das zum erstellen der wav benuttz wurde nach etc
 
-
-
-
+-----
+Webseite zum erstellen vieler Dateien
+http://www.speech.cs.cmu.edu/tools/lmtool-adv.html
 
 
