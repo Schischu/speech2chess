@@ -14,7 +14,7 @@
     <!-- frequently tuned properties                              -->
     <!-- ******************************************************** -->
 
-    <property name="logLevel" value="WARNING"/>
+    <property name="logLevel" value="INFO"/>
 
     <property name="absoluteBeamWidth"  value="-1"/>
     <property name="relativeBeamWidth"  value="1E-80"/>
@@ -124,7 +124,7 @@
         <property name="unitManager" value="unitManager"/>
         <property name="location" value="resource:/speech2chessapp/resources/DE"/>
         <property name="modelDefinition" value="etc/mdef"/>
-        <property name="dataLocation" value="stc.ci_cont/"/>
+        <property name="dataLocation" value="etc/"/>
   </component>
 
   <component name="acousticModel" type="edu.cmu.sphinx.linguist.acoustic.tiedstate.TiedStateAcousticModel">
