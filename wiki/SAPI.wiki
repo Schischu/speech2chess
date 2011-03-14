@@ -5,3 +5,4 @@ http://www.microsoft.com/downloads/en/details.aspx?FamilyID=5e86ec97-40a7-453f-b
 
 Quadmore SAPI WRAPPER
 http://www.quadmore.com/JAVA_to_SAPI/
+http://www.quadmore.com/JAVA_to_SAPI/JAVA_TO_SAPI_ver2-5.zip
