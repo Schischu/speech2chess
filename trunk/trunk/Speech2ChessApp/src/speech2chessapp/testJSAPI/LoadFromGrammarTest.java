@@ -6,7 +6,6 @@
 package speech2chessapp.testJSAPI;
 
 import com.cloudgarden.speech.userinterface.*;
-import edu.cmu.sphinx.recognizer.Recognizer;
 import javax.speech.*;
 import javax.speech.recognition.*;
 import java.io.*;
