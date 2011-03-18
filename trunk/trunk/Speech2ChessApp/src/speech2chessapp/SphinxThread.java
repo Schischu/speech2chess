@@ -13,12 +13,14 @@ import java.util.List;
  */
 public class SphinxThread extends Thread {
     private Controller pController = null;
-    private static Sphinx pSphinx = null;
+    private static SpeechEngine pSpeechEngine = null;
 
     public SphinxThread(Controller controller) {
         pController = controller;
-        if(pSphinx == null)
-            pSphinx = new Sphinx();
+        if(pSpeechEngine == null) {
+            //pSpeechEngine = new Sphinx();
+            pSpeechEngine = new JSAPI();
+        }
     }
 
     @Override
@@ -27,7 +29,7 @@ public class SphinxThread extends Thread {
         System.out.println("SphinxThread::run() ->");
         while(true) {
             //pSphinx = new Sphinx();
-            List<String> result = pSphinx.record();
+            List<String> result = pSpeechEngine.record();
             if(result != null) {
                 pController.cmd(Controller.eCommand.PARSE_STRINGS_SPHINX, result);
                 System.out.println("SphinxThread::run() a");

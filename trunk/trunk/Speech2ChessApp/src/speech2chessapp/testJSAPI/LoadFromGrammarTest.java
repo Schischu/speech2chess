@@ -26,7 +26,6 @@ public class LoadFromGrammarTest {
             SpeechEngineChooser chooser = SpeechEngineChooser.getRecognizerDialog();
             chooser.show();
             RecognizerModeDesc desc = chooser.getRecognizerModeDesc();
-
             rec = Central.createRecognizer(desc);
 
             rec.addEngineListener(new TestEngineListener());

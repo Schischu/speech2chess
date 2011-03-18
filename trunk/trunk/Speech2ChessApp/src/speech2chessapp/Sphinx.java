@@ -21,7 +21,7 @@ import speech2chessapp.SocketToChess.SocketCommand;
  *
  * @author i7
  */
-public class Sphinx {
+public class Sphinx extends SpeechEngine {
     private ConfigurationManager mCm;
     private Recognizer mRecognizer;
     private Microphone mMicrophone;
