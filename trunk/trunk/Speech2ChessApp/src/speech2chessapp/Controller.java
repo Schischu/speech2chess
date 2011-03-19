@@ -34,7 +34,12 @@ public class Controller {
     public Controller() {
         // Create Receive From Chess Task
 
-        Common.load("DE");
+        String language = Config.getInstance().get("language");
+        if(language == null) {
+            language = "DE";
+            Config.getInstance().set("language", language);
+        }
+        Common.load(language);
 
         mWorker = new Worker();
         mWorker.start();
