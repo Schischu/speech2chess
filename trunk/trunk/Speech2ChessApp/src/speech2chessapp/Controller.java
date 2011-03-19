@@ -475,12 +475,8 @@ public class Controller {
                             if(Common.mLanguage.equals("DE")) {
                                 if(dst.equals("beenden"))
                                     dst = "end";
-                                if(dst.equals("nocheinmal"))
+                                if(dst.equals("neustarten"))
                                     dst = "restart";
-                                if(dst.equals("schliesen"))
-                                    dst = "end";
-                                if(dst.equals("ende"))
-                                    dst = "end";
                                 if(dst.equals("ja"))
                                     dst = "yes";
                                 if(dst.equals("nein"))
