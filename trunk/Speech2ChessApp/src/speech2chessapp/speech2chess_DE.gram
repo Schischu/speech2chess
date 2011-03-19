@@ -9,7 +9,7 @@ grammar speech2chess;
 public <yesno> = NEIN | JA;
 public <command> = ( (<yesno>)
 | (SPIEL BEENDEN)
-| (SPIEL NEUSTARTEN);
+| (SPIEL NEUSTARTEN) );
  <figure> = ( bauer | springer | läufer | pferd | turm | dame | königin | könig );
  <malefigure> = ( bauer | springer | läufer | turm | könig );
  <femalefigure> = ( königin | dame );
