@@ -74,30 +74,36 @@ public class JSAPIResultListener extends ResultAdapter {
             public void run() {
                 try {
                     System.out.print("Result Accepted: " + r);
-                    ResultToken tokens[] = null;
-                    //only way to find out if it's a FinalRuleResult or a FinalDictationResult is to see whether
-                    //it's grammar is a Rule or Dictation Grammar, since all Results obtained from a ResultEvent
-                    //implement both FinalRuleResult and FinalDictationResult interfaces (see JSAPI documentation)
+                    sResults.clear();
                     if(r.getGrammar() instanceof RuleGrammar) {
-                        System.out.println("\nRuleGrammar name="+((FinalRuleResult)r).getRuleGrammar(0).getName());
-                        System.out.println("Rule name="+((FinalRuleResult)r).getRuleName(0));
-                        tokens = ((FinalRuleResult)r).getAlternativeTokens(0);
+                        FinalRuleResult rr = ((FinalRuleResult)r);
+                        for(int i = 0; i < rr.getNumberGuesses(); i++) {
+                            ResultToken tokens[] = null;
+                            System.out.println("\nRuleGrammar name="+rr.getRuleGrammar(i).getName());
+                            System.out.println("Rule name="+rr.getRuleName(i));
+                            tokens = rr.getAlternativeTokens(i);
+
+                            String result = "";
+                            for(ResultToken token : tokens) {
+                                result += token.getSpokenText() + " ";
+                            }
+                            result = result.trim();
+
+                            sResults.add(result);
+                        }
                     } else {
+                        ResultToken tokens[] = null;
                         System.out.println("\nGrammar name="+r.getGrammar().getName());
                         tokens = r.getBestTokens();
-                    }
 
-                    if(tokens != null && tokens.length > 0) {
-                        displayTimes(tokens[0]);
-                    }
+                        String result = "";
+                        for(ResultToken token : tokens) {
+                            result += token.getSpokenText() + " ";
+                        }
+                        result = result.trim();
 
-                    String result = "";
-                    for(ResultToken token : tokens) {
-                        result += token.getSpokenText() + " ";
+                        sResults.add(result);
                     }
-                    result = result.trim();
-                    sResults.clear();
-                    sResults.add(result);
 
                     mRec.pause();
 
