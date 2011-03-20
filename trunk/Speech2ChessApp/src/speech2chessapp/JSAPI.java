@@ -25,6 +25,7 @@ import javax.speech.recognition.RecognizerModeDesc;
 import javax.speech.recognition.RecognizerProperties;
 import javax.speech.recognition.Rule;
 import javax.speech.recognition.RuleGrammar;
+import speech2chessapp.SocketToChess.SocketCommand;
 
 /**
  *
@@ -148,7 +149,16 @@ public class JSAPI extends SpeechEngine {
         try {
             mRec.requestFocus();
             mRec.resume();
+
+
+
             mRec.waitEngineState(mRec.LISTENING);
+
+            System.out.println("Speak now:\n");
+            SocketCommand sockcmd = new SocketCommand();
+            sockcmd.type = SocketToChess.REQ_PRINT;
+            sockcmd.data = Common.mSpeakNow.getBytes();
+            SocketToChess.sendCMD(sockcmd);
 
             // Will be paused if the recognizerlistener has something recognized
             mRec.waitEngineState(mRec.PAUSED);
