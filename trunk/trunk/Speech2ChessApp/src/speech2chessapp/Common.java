@@ -32,6 +32,14 @@ public class Common {
     private static final String mSpeakNow_EN = "Speak Now";
     private static final String mMove_EN = "Move";
 
+    private static final String mCorrect_Abort_EN = "Correct? Say No to abort";
+    private static final String mCorrect_YESNO_EN = "Correct? Say Yes / No";
+    private static final String mEndGame_EN = "End Game? Say Yes / No";
+    private static final String mRestartGame_EN = "Restart Game? Say Yes / No";
+
+    private static final String mYes_EN = "Yes";
+    private static final String mNo_EN = "No";
+
     //---------------------------
 
     private static final String mPawn_DE = "Bauer";
@@ -53,6 +61,14 @@ public class Common {
     private static final String mSpeakNow_DE = "Jetzt Sprechen";
     private static final String mMove_DE = "Zug";
 
+    private static final String mCorrect_Abort_DE = "Richtig? Nein zum abrechen";
+    private static final String mCorrect_YESNO_DE = "Richtig? Ja / Nein";
+    private static final String mEndGame_DE = "Spiel beenden? Ja / Nein";
+    private static final String mRestartGame_DE = "Spiel neustarten? Ja / Nein";
+
+    private static final String mYes_DE = "Ja";
+    private static final String mNo_DE = "Nein";
+
     //---------------------------
 
     public static String mPawn = "";
@@ -73,6 +89,14 @@ public class Common {
 
     public static String mSpeakNow = "";
     public static String mMove = "";
+
+    public static String mCorrect_Abort = "";
+    public static String mCorrect_YESNO = "";
+    public static String mEndGame = "";
+    public static String mRestartGame = "";
+
+    public static String mYes = "";
+    public static String mNo = "";
 
     public static final int WHITE_PAWN = 0;
     public static final int BLACK_PAWN = 1;
@@ -110,6 +134,13 @@ public class Common {
 
             mSpeakNow = mSpeakNow_EN;
             mMove = mMove_EN;
+
+            mCorrect_Abort = mCorrect_Abort_EN;
+            mCorrect_YESNO = mCorrect_YESNO_EN;
+            mEndGame = mEndGame_EN;
+            mRestartGame = mRestartGame_EN;
+            mYes = mYes_EN;
+            mNo = mNo_EN;
         }
         else if(mLanguage.equals("DE")) {
             mPawn = mPawn_DE;
@@ -130,6 +161,13 @@ public class Common {
 
             mSpeakNow = mSpeakNow_DE;
             mMove = mMove_DE;
+
+            mCorrect_Abort = mCorrect_Abort_DE;
+            mCorrect_YESNO = mCorrect_YESNO_DE;
+            mEndGame = mEndGame_DE;
+            mRestartGame = mRestartGame_DE;
+            mYes = mYes_DE;
+            mNo = mNo_DE;
         }
     }
 
