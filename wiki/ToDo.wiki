@@ -3,7 +3,7 @@
 = ToDo =
 
  * ~~Absturz~~
- * Auflösung bei Fullscreen-Mode 
+ * ~~Auflösung bei Fullscreen-Mode~~
  * ~~Starten auf einen Klick~~
  * Sprach-Aktivitäts-Rückmeldung
  * Rochade ("Rochade") [kurze, lange]
