@@ -87,6 +87,7 @@ public class Speech2ChessView extends FrameView {
 
         pController.cmd(Controller.eCommand.GRANT_UI_ACCESS, this);
         pController.cmd(Controller.eCommand.START, null);
+
     }
 
     @Action

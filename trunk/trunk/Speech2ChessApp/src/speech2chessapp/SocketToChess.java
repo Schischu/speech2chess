@@ -25,6 +25,7 @@ public class SocketToChess {
 
     public static final int REQ_QUIT = 20;
     public static final int REQ_RESTART = 21;
+    public static final int REQ_SURRENDER = 22;
 
     public static final int REQ_VERIFY = 10;
     public static final int REQ_FIGURES = 12;

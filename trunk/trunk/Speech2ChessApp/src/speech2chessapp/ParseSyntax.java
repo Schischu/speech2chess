@@ -87,6 +87,7 @@ public class ParseSyntax {
          mFigures.add(Common.mBishop.toLowerCase());
          mFigures.add(Common.mRook.toLowerCase());
          mFigures.add(Common.mQueen.toLowerCase());
+         mFigures.add(Common.mQueen2_DE.toLowerCase());
          mFigures.add(Common.mKing.toLowerCase());
          // ...
     }
@@ -95,13 +96,13 @@ public class ParseSyntax {
         if(Common.mLanguage.equals("EN")) {
          mCommands.add("end".toLowerCase());
          mCommands.add("restart".toLowerCase());
+         mCommands.add("aufgeben".toLowerCase());
          mCommands.add("yes".toLowerCase());
          mCommands.add("no".toLowerCase());
         } else {
          mCommands.add("beenden".toLowerCase());
-         mCommands.add("nocheinmal".toLowerCase());
-         mCommands.add("schließen".toLowerCase());
-         mCommands.add("ende".toLowerCase());
+         mCommands.add("neustarten".toLowerCase());
+         mCommands.add("aufgeben".toLowerCase());
          mCommands.add("ja".toLowerCase());
          mCommands.add("nein".toLowerCase());
         }
@@ -110,10 +111,11 @@ public class ParseSyntax {
 
     public void set(String input)
     {
-        mInput = input;
+        mInput = input.toLowerCase();
 
         mInput = mInput.replaceAll(" " + Common.mOne.toLowerCase(), "1");
         mInput = mInput.replaceAll(" " + Common.mTwo.toLowerCase(), "2");
+        mInput = mInput.replaceAll(" " + Common.mTwo2_DE.toLowerCase(), "2");
         mInput = mInput.replaceAll(" " + Common.mThree.toLowerCase(), "3");
         mInput = mInput.replaceAll(" " + Common.mFour.toLowerCase(), "4");
         mInput = mInput.replaceAll(" " + Common.mFive.toLowerCase(), "5");
@@ -135,12 +137,18 @@ public class ParseSyntax {
 
         mInput = mInput.replaceAll("anton".toLowerCase(), "a");
         mInput = mInput.replaceAll("berta".toLowerCase(), "b");
-        mInput = mInput.replaceAll("cäsar".toLowerCase(), "c");
+        mInput = mInput.replaceAll("zäsar".toLowerCase(), "c");
         mInput = mInput.replaceAll("dora".toLowerCase(), "d");
         mInput = mInput.replaceAll("emil".toLowerCase(), "e");
         mInput = mInput.replaceAll("friedrich".toLowerCase(), "f");
         mInput = mInput.replaceAll("gustav".toLowerCase(), "g");
         mInput = mInput.replaceAll("heinrich".toLowerCase(), "h");
+
+        mInput = mInput.replaceAll("kurze roschade".toLowerCase(), "e1 g1");
+        mInput = mInput.replaceAll("kurze rochade".toLowerCase(), "e1 g1");
+
+        mInput = mInput.replaceAll("lange roschade".toLowerCase(), "e1 c1");
+        mInput = mInput.replaceAll("lange rochade".toLowerCase(), "e1 c1");
     }
 
     public boolean check()
