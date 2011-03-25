@@ -7,7 +7,7 @@
  * ~~Starten auf einen Klick~~
  * Sprach-Aktivitäts-Rückmeldung
  * ~~Rochade ("Rochade") [kurze, lange]~~
- * aufgeben, "ich gebe auf"
+ * "aufgeben", "ich gebe auf"
  * Umlaute
 
 
