@@ -6,11 +6,9 @@
  * ~~Auflösung bei Fullscreen-Mode~~
  * ~~Starten auf einen Klick~~
  * Sprach-Aktivitäts-Rückmeldung
- * ~~Rochade ("Rochade") [kurze, lange]~~
- * "aufgeben", "ich gebe auf"
+ * ~~Rochade/Roschade), kurze/lange~~
+ * "Spiel aufgeben"
  * Umlaute
-
-
  * Buchstaben unten am Bildrand sind abgeschnitten (gluPerspective http://wiki.delphigl.com/index.php/gluPerspective, glViewport http://wiki.delphigl.com/index.php/glViewport)
 
 `glTranslatef(0, 0,-6);` (Verschiebt die ganze "Welt" in eine Richtung, einer von den drei Werten schiebt alles nach hinten, muss man mal ausprobieren, welcher von den dreien und um wieviel)
