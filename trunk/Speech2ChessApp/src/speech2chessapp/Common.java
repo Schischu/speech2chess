@@ -36,6 +36,7 @@ public class Common {
     private static final String mCorrect_YESNO_EN = "Correct? Say Yes / No";
     private static final String mEndGame_EN = "End Game? Say Yes / No";
     private static final String mRestartGame_EN = "Restart Game? Say Yes / No";
+    private static final String mSurrenderGame_EN = "Surrender Game? Say Yes / No";
 
     private static final String mYes_EN = "Yes";
     private static final String mNo_EN = "No";
@@ -47,10 +48,12 @@ public class Common {
     private static final String mBishop_DE = "Läufer";
     private static final String mRook_DE = "Turm";
     private static final String mQueen_DE = "Dame";
+    public static final String mQueen2_DE = "Königin";
     private static final String mKing_DE = "König";
 
     private static final String mOne_DE = "Eins";
     private static final String mTwo_DE = "Zwei";
+    public static final String mTwo2_DE = "Zwo";
     private static final String mThree_DE = "Drei";
     private static final String mFour_DE = "Vier";
     private static final String mFive_DE = "Fünf";
@@ -61,10 +64,11 @@ public class Common {
     private static final String mSpeakNow_DE = "Jetzt Sprechen";
     private static final String mMove_DE = "Zug";
 
-    private static final String mCorrect_Abort_DE = "Richtig? Nein zum abrechen";
+    private static final String mCorrect_Abort_DE = "Richtig? Nein zum Abbrechen";
     private static final String mCorrect_YESNO_DE = "Richtig? Ja / Nein";
     private static final String mEndGame_DE = "Spiel beenden? Ja / Nein";
     private static final String mRestartGame_DE = "Spiel neustarten? Ja / Nein";
+    private static final String mSurrenderGame_DE = "Spiel aufgeben? Ja / Nein";
 
     private static final String mYes_DE = "Ja";
     private static final String mNo_DE = "Nein";
@@ -94,6 +98,7 @@ public class Common {
     public static String mCorrect_YESNO = "";
     public static String mEndGame = "";
     public static String mRestartGame = "";
+    public static String mSurrenderGame = "";
 
     public static String mYes = "";
     public static String mNo = "";
@@ -110,6 +115,7 @@ public class Common {
     public static final int BLACK_QUEEN = 9;
     public static final int WHITE_KING = 10;
     public static final int BLACK_KING = 11;
+
 
     public static void load(String language) {
 
@@ -139,6 +145,7 @@ public class Common {
             mCorrect_YESNO = mCorrect_YESNO_EN;
             mEndGame = mEndGame_EN;
             mRestartGame = mRestartGame_EN;
+            mSurrenderGame = mSurrenderGame_EN;
             mYes = mYes_EN;
             mNo = mNo_EN;
         }
@@ -166,6 +173,7 @@ public class Common {
             mCorrect_YESNO = mCorrect_YESNO_DE;
             mEndGame = mEndGame_DE;
             mRestartGame = mRestartGame_DE;
+            mSurrenderGame = mSurrenderGame_DE;
             mYes = mYes_DE;
             mNo = mNo_DE;
         }

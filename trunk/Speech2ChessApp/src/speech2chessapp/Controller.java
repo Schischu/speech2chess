@@ -103,6 +103,7 @@ public class Controller {
 
     private boolean mWaitForYesEndGame = false;
     private boolean mWaitForYesRestartGame = false;
+    private boolean mWaitForYesSurrenderGame = false;
 
     class eMove {
         public String src;
@@ -117,6 +118,11 @@ public class Controller {
     private int mPossibleMovesIndex = 0;
     private boolean mPossibleMovesWalkSrc = true;
     ArrayList<eMove> mPossibleMoves = new  ArrayList<eMove>();
+
+    private int mTmpPossibleMovesIndex = 0;
+    private boolean mTmpPossibleMovesWalkSrc = true;
+    ArrayList<eMove> mTmpPossibleMoves = new  ArrayList<eMove>();
+
     public void addPossibleMove(String src, String dst) {
         System.out.println("addPossibleMove -> " + src + " " + dst);
 
@@ -148,6 +154,8 @@ public class Controller {
         for(i = mPossibleMovesIndex; i < mPossibleMoves.size(); ) {
             int id = Common.strToFigureId(mPossibleMovesWalkSrc?mPossibleMoves.get(i).src:mPossibleMoves.get(i).dst, mPossibleMovesWalkSrc);
             if(id >= 0) {
+                mTmpPossibleMovesIndex = mPossibleMovesIndex;
+                mTmpPossibleMoves = (ArrayList<eMove>)mPossibleMoves.clone();
                 System.out.println("walkThroughPossibleMove " + id + " (" + mPossibleMoves.get(i).src + " " + mPossibleMoves.get(i).dst + ")");
                 SocketCommand sockcmd = new SocketCommand();
                 sockcmd.type = SocketToChess.REQ_FIGURES;
@@ -269,15 +277,17 @@ public class Controller {
                     case SocketToChess.REQ_FIGURES:
                         System.out.println("cmd -> " + cmd.toString());
                         int figureId = scmd.data[0];
-                        int index = mPossibleMovesIndex;
+                        int index = mTmpPossibleMovesIndex;
                         if(index > 0)
                             index--;
                         for(int i = 1; i < scmd.data.length; i++) {
                             System.out.print(scmd.data[i] + " ");
-                            if(Common.isWhite(figureId))
-                                addPossibleMove(Common.FieldIdToStr(scmd.data[i]), mPossibleMoves.get(index).dst);
-                            else
-                                addPossibleMove(mPossibleMoves.get(index).src, Common.FieldIdToStr(scmd.data[i]));
+                            if(mTmpPossibleMoves.size() > index) {
+                                if(Common.isWhite(figureId))
+                                    addPossibleMove(Common.FieldIdToStr(scmd.data[i]), mTmpPossibleMoves.get(index).dst);
+                                else
+                                    addPossibleMove(mTmpPossibleMoves.get(index).src, Common.FieldIdToStr(scmd.data[i]));
+                            }
                         }
                         walkThroughPossibleMove();
 
@@ -334,7 +344,8 @@ public class Controller {
             case APPEND_LOG:
             {
                 String s = (String)o;
-                mSpeech2ChessView.appendLog(s);
+                if(mSpeech2ChessView != null)
+                    mSpeech2ChessView.appendLog(s);
             }
                 break;
 
@@ -482,6 +493,8 @@ public class Controller {
                                     dst = "end";
                                 if(dst.equals("neustarten"))
                                     dst = "restart";
+                                if(dst.equals("aufgeben"))
+                                    dst = "surrender";
                                 if(dst.equals("ja"))
                                     dst = "yes";
                                 if(dst.equals("nein"))
@@ -492,6 +505,8 @@ public class Controller {
                             if(dst.equals("end")) {
                                 cmd(eCommand.APPEND_LOG, Common.mEndGame);
                                 mWaitForYesEndGame = true;
+                                mWaitForYesRestartGame = false;
+                                mWaitForYesSurrenderGame = false;
 
                                 SocketCommand sockcmd = new SocketCommand();
                                 sockcmd.type = SocketToChess.REQ_PRINT2;
@@ -500,10 +515,22 @@ public class Controller {
                             } else if(dst.equals("restart")) {
                                 cmd(eCommand.APPEND_LOG, Common.mRestartGame);
                                 mWaitForYesRestartGame = true;
+                                mWaitForYesEndGame = false;
+                                mWaitForYesSurrenderGame = false;
 
                                 SocketCommand sockcmd = new SocketCommand();
                                 sockcmd.type = SocketToChess.REQ_PRINT2;
                                 sockcmd.data = (Common.mRestartGame).getBytes();
+                                SocketToChess.sendCMD(sockcmd);
+                            } else if(dst.equals("surrender")) {
+                                cmd(eCommand.APPEND_LOG, Common.mSurrenderGame);
+                                mWaitForYesSurrenderGame = true;
+                                mWaitForYesEndGame = false;
+                                mWaitForYesRestartGame = false;
+
+                                SocketCommand sockcmd = new SocketCommand();
+                                sockcmd.type = SocketToChess.REQ_PRINT2;
+                                sockcmd.data = (Common.mSurrenderGame).getBytes();
                                 SocketToChess.sendCMD(sockcmd);
                             } else if(dst.equals("yes")) {
                                 cmd(eCommand.APPEND_LOG, Common.mYes);
@@ -523,6 +550,15 @@ public class Controller {
                                     sockcmd.data = dst.getBytes();
                                     SocketToChess.sendCMD(sockcmd);
                                     
+                                    sockcmd.type = SocketToChess.REQ_PRINT2;
+                                    sockcmd.data = (" ").getBytes();
+                                    SocketToChess.sendCMD(sockcmd);
+                                } else if  (mWaitForYesSurrenderGame) {
+                                    mWaitForYesSurrenderGame = false;
+                                    sockcmd.type = SocketToChess.REQ_SURRENDER;
+                                    sockcmd.data = dst.getBytes();
+                                    SocketToChess.sendCMD(sockcmd);
+
                                     sockcmd.type = SocketToChess.REQ_PRINT2;
                                     sockcmd.data = (" ").getBytes();
                                     SocketToChess.sendCMD(sockcmd);

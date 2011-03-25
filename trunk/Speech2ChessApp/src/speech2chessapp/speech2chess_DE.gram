@@ -1,4 +1,4 @@
-#JSGF V1.0;
+#JSGF V1.0 utf-8 de;
 
 /**
  * JSGF Grammar for Hello World example
@@ -8,20 +8,22 @@ grammar speech2chess;
 
 public <yesno> = nein | ja;
 public <command> = ( (<yesno>)
+| (spiel aufgeben)
 | (spiel beenden)
 | (spiel neustarten) );
- <figure> = ( bauer | springer | l√§ufer | pferd | turm | dame | k√∂nigin | k√∂nig );
- <malefigure> = ( bauer | springer | l√§ufer | turm | k√∂nig );
- <femalefigure> = ( k√∂nigin | dame );
+ <figure> = ( bauer | springer | leufer | pferd | turm | dame | kˆnigin | kˆnig );
+ <malefigure> = ( bauer | springer | leufer | turm | kˆnig );
+ <femalefigure> = ( kˆnigin | dame );
  <neutralfigure> = ( pferd );
- <number> = ( eins | zwei | drei | vier | f√ºnf | sechs | sieben | acht );
+ <number> = ( eins | zwei | zwo | drei | vier | f¸nf | sechs | sieben | acht );
  <letter> = a | b | c | d | e | f | g |  h;
  <natoLetter> = alpha | bravo | charlie | delta | echo | foxtrott | golf | hotel;
- <phonLetter> = anton | berta | c√§sar | dora | emil | friedrich | gustav | heinrich;
+ <phonLetter> = anton | berta | z‰sar | dora | emil | friedrich | gustav | heinrich;
  <field> = (<letter> | <natoLetter> | <phonLetter>) <number>;
 public <command1> = ( <figure> von <field> nach <field> );
 public <command2> = ( <figure> <field> nach <field> );
-public <command3> = ( <figure> <field> schl√§gt <figure> <field> );
+public <command3> = ( <figure> <field> schl‰gt <figure> <field> );
+public <command4b> = ( <figure> <field> );
 public <command4> = ( <figure> nach <field> );
 public <command5> = ( bewege den <malefigure> von <field> nach <field> );
 public <command6> = ( bewege die <femalefigure> von <field> nach <field> );
@@ -30,5 +32,8 @@ public <command8> = ( <field> <field> );
 public <command9> = ( <field> nach <field> );
 public <command10> = ( <figure> <field> nach <field> );
 public <command11> = ( <figure> <field> schach! );
-public <command12> = ( <figure> schl√§gt <figure> <field> matt! );
-public <command13> = ( <field> schl√§gt <figure> );
+public <command12> = ( <figure> schl‰gt <figure> <field> matt! );
+public <command13> = ( <field> schl‰gt <figure> );
+public <command14> = ( kurze Roschade | kurze Rochade );
+public <command15> = ( lange Roschade | lange Rochade );
+

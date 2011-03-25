@@ -4,6 +4,11 @@
 
 package speech2chessapp;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -18,10 +23,15 @@ public class Speech2ChessApp extends SingleFrameApplication {
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-
-        pController = new Controller();
-
-        show(new Speech2ChessView(this, pController));
+        try {
+            new DreamChessStarter().start();
+            Thread.sleep(10000);
+            pController = new Controller();
+            pController.cmd(Controller.eCommand.START, null);
+            //show(new Speech2ChessView(this, pController));
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Speech2ChessApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
