@@ -1,11 +1,12 @@
 #summary Wat noch zu mach is, das Wochenende
 
 = ToDo =
-* Absturz!
-* Auflösung bei Fullscreen*Mode
-* Starten auf einen Klick
-* Sprach*Aktivitäts-Rückmeldung
-* Rochade ("Rochade") [kurze, lange]
-* aufgeben, "ich gebe auf"
-* Umlaute
-* Buchstaben unten am Bildrand sind abgeschnitten
+
+ * Absturz
+ * Auflösung bei Fullscreen-Mode
+ * Starten auf einen Klick
+ * Sprach-Aktivitäts-Rückmeldung
+ * Rochade ("Rochade") [kurze, lange]
+ * aufgeben, "ich gebe auf"
+ * Umlaute
+ * Buchstaben unten am Bildrand sind abgeschnitten
