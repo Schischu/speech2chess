@@ -173,17 +173,17 @@ public class Common {
 
     public static int strToFigureId(String strFigure, boolean isWhite) {
         int id = -2;
-        if(strFigure.equals(mPawn))
+        if(strFigure.equals(mPawn.toLowerCase()))
             id = WHITE_PAWN;
-        else if(strFigure.equals(mKnight))
+        else if(strFigure.equals(mKnight.toLowerCase()))
             id = WHITE_KNIGHT;
-        else if(strFigure.equals(mBishop))
+        else if(strFigure.equals(mBishop.toLowerCase()))
             id = WHITE_BISHOP;
-        else if(strFigure.equals(mRook))
+        else if(strFigure.equals(mRook.toLowerCase()))
             id = WHITE_ROOK;
-        else if(strFigure.equals(mQueen))
+        else if(strFigure.equals(mQueen.toLowerCase()))
             id = WHITE_QUEEN;
-        else if(strFigure.equals(mKing))
+        else if(strFigure.equals(mKing.toLowerCase()))
             id = WHITE_KING;
 
         if(!isWhite)

@@ -120,6 +120,27 @@ public class ParseSyntax {
         mInput = mInput.replaceAll(" " + Common.mSix.toLowerCase(), "6");
         mInput = mInput.replaceAll(" " + Common.mSeven.toLowerCase(), "7");
         mInput = mInput.replaceAll(" " + Common.mEight.toLowerCase(), "8");
+
+        //<natoLetter> = alpha | bravo | charlie | delta | echo | foxtrott | golf | hotel;
+        //<phonLetter> = anton | berta | caesar | dora | emil | friedrich | gustav | heinrich;
+
+        mInput = mInput.replaceAll("alpha".toLowerCase(), "a");
+        mInput = mInput.replaceAll("bravo".toLowerCase(), "b");
+        mInput = mInput.replaceAll("charlie".toLowerCase(), "c");
+        mInput = mInput.replaceAll("delta".toLowerCase(), "d");
+        mInput = mInput.replaceAll("echo".toLowerCase(), "e");
+        mInput = mInput.replaceAll("foxtrott".toLowerCase(), "f");
+        mInput = mInput.replaceAll("golf".toLowerCase(), "g");
+        mInput = mInput.replaceAll("hotel".toLowerCase(), "h");
+
+        mInput = mInput.replaceAll("anton".toLowerCase(), "a");
+        mInput = mInput.replaceAll("berta".toLowerCase(), "b");
+        mInput = mInput.replaceAll("cäsar".toLowerCase(), "c");
+        mInput = mInput.replaceAll("dora".toLowerCase(), "d");
+        mInput = mInput.replaceAll("emil".toLowerCase(), "e");
+        mInput = mInput.replaceAll("friedrich".toLowerCase(), "f");
+        mInput = mInput.replaceAll("gustav".toLowerCase(), "g");
+        mInput = mInput.replaceAll("heinrich".toLowerCase(), "h");
     }
 
     public boolean check()
