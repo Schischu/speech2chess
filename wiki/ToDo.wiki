@@ -6,7 +6,7 @@
  * ~~Auflösung bei Fullscreen-Mode~~
  * ~~Starten auf einen Klick~~
  * Sprach-Aktivitäts-Rückmeldung
- * Rochade ("Rochade") [kurze, lange]
+ * ~~Rochade ("Rochade") [kurze, lange]~~
  * aufgeben, "ich gebe auf"
  * Umlaute
 
@@ -29,3 +29,6 @@ void go_3d(int width, int height)
     // Zeile HIER einfügen
 }
 }}}
+
+c:\mingw\msys1.0\msys.bat starten
+in ordner von dreamchess\src\./make.sh wechseln
