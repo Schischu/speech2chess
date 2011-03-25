@@ -6,10 +6,10 @@
 
 grammar speech2chess;
 
-public <yesno> = NEIN | JA;
+public <yesno> = nein | ja;
 public <command> = ( (<yesno>)
-| (SPIEL BEENDEN)
-| (SPIEL NEUSTARTEN) );
+| (spiel beenden)
+| (spiel neustarten) );
  <figure> = ( bauer | springer | läufer | pferd | turm | dame | königin | könig );
  <malefigure> = ( bauer | springer | läufer | turm | könig );
  <femalefigure> = ( königin | dame );
@@ -17,7 +17,7 @@ public <command> = ( (<yesno>)
  <number> = ( eins | zwei | drei | vier | fünf | sechs | sieben | acht );
  <letter> = a | b | c | d | e | f | g |  h;
  <natoLetter> = alpha | bravo | charlie | delta | echo | foxtrott | golf | hotel;
- <phonLetter> = anton | berta | caesar | dora | emil | friedrich | gustav | heinrich;
+ <phonLetter> = anton | berta | cäsar | dora | emil | friedrich | gustav | heinrich;
  <field> = (<letter> | <natoLetter> | <phonLetter>) <number>;
 public <command1> = ( <figure> von <field> nach <field> );
 public <command2> = ( <figure> <field> nach <field> );
@@ -32,18 +32,3 @@ public <command10> = ( <figure> <field> nach <field> );
 public <command11> = ( <figure> <field> schach! );
 public <command12> = ( <figure> schlägt <figure> <field> matt! );
 public <command13> = ( <field> schlägt <figure> );
-
-/*
-| SPIELSTART
-| (BEGINNE SPIEL)
-| (SPIEL BEGINNEN)
-| (SPIEL ANFANGEN)
-| (STARTE SPIEL)
-| START
-| KORRIGIEREN
-| KORRIGIERE
-| FEHLER
-| FALSCH
-| NOCHMAL
-| NOCHEINMAL
-*/
