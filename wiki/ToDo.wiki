@@ -3,7 +3,7 @@
 = ToDo =
 
  * Absturz
- * Auflösung bei Fullscreen-Mode
+ * Auflösung bei Fullscreen-Mode (gluPerspective http://wiki.delphigl.com/index.php/gluPerspective, glViewport http://wiki.delphigl.com/index.php/glViewport)
  * Starten auf einen Klick
  * Sprach-Aktivitäts-Rückmeldung
  * Rochade ("Rochade") [kurze, lange]
