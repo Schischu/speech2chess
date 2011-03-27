@@ -22,7 +22,7 @@ import javax.speech.recognition.RuleGrammar;
 import speech2chessapp.SocketToChess.SocketCommand;
 
 /**
- *
+ * Listens for JSAPI resuls
  * @author i7
  */
 public class JSAPIResultListener extends ResultAdapter {
@@ -40,11 +40,20 @@ public class JSAPIResultListener extends ResultAdapter {
         this.mRec = rec;
     }
 
+    /**
+     * Called if a result has been rejected
+     * @param e
+     */
     @Override
     public void resultRejected(ResultEvent e) {
         Result r = (Result)(e.getSource());
         System.out.println("Result Rejected "+r);
     }
+
+    /**
+     * called if the start of a new string has been detected
+     * @param e
+     */
     @Override
     public void resultCreated(ResultEvent e) {
         Result r = (Result)(e.getSource());
@@ -55,6 +64,11 @@ public class JSAPIResultListener extends ResultAdapter {
         sockcmd.data = (" ").getBytes();
         SocketToChess.sendCMD(sockcmd);
     }
+
+    /**
+     * called to update the detected string
+     * @param e
+     */
     @Override
     public void resultUpdated(ResultEvent e) {
         Result r = (Result)(e.getSource());
@@ -67,6 +81,11 @@ public class JSAPIResultListener extends ResultAdapter {
         }
     }
 
+    /**
+     * string has been succesfully detected
+     * will notify JSAPI::record method
+     * @param e
+     */
     @Override
     public  void resultAccepted(ResultEvent e) {
         final FinalResult r = (FinalResult)(e.getSource());

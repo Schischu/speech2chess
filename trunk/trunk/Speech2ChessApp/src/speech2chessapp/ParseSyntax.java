@@ -9,7 +9,7 @@ import java.lang.String;
 import java.util.ArrayList;
 
 /**
- *
+ * Contains the logic for parsing strings to proper commands
  * @author brandma31324
  */
 public class ParseSyntax {
@@ -72,6 +72,9 @@ public class ParseSyntax {
     }
 
 
+    /**
+     * creates a list of a1 a2 ...
+     */
     private void createFieldsList() {
         for(int i = '1'; i <= '8'; i++) {
             for(int j = 'a'; j <= 'h'; j++) {
@@ -80,6 +83,9 @@ public class ParseSyntax {
         }
     }
 
+    /**
+     * creates a lisst containing all figures
+     */
     private void createFiguresList() {
 
          mFigures.add(Common.mPawn.toLowerCase());
@@ -93,6 +99,9 @@ public class ParseSyntax {
          // ...
     }
 
+    /**
+     * creates a list containing all proper commands
+     */
     private void createCommandsList() {
         if(Common.mLanguage.equals("EN")) {
          mCommands.add("end".toLowerCase());
@@ -110,6 +119,10 @@ public class ParseSyntax {
          // ...
     }
 
+    /**
+     * a new string is inserted and filtered before doing anyting else
+     * @param input
+     */
     public void set(String input)
     {
         mInput = input.toLowerCase();
@@ -153,6 +166,10 @@ public class ParseSyntax {
         mInput = mInput.replaceAll("lange rochade".toLowerCase(), "e1 c1");
     }
 
+    /**
+     * checks if the string contains valid syntax
+     * @return
+     */
     public boolean check()
     {
         // Als erstes spliten wir den String in einzel wörter
@@ -173,12 +190,18 @@ public class ParseSyntax {
         return true;
     }
 
-
+    /**
+     * returns a list of all detected commands in a string
+     * @return
+     */
     public ArrayList<Action> getActionList() {
 
         return mActionList;
     }
 
+    /**
+     * clears the parser
+     */
     public void clear() {
         mActionList.clear();
     }

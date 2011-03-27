@@ -7,7 +7,7 @@ package speech2chessapp;
 
 
 /**
- *
+ * Common Class takes care over translations german english and figure to id
  * @author i7
  */
 public class Common {
@@ -186,6 +186,12 @@ public class Common {
         }
     }
 
+    /**
+     * Translates a figure string to the proper id
+     * @param strFigure
+     * @param isWhite
+     * @return
+     */
     public static int strToFigureId(String strFigure, boolean isWhite) {
         int id = -2;
         if(strFigure.equals(mPawn.toLowerCase()))
@@ -219,6 +225,11 @@ public class Common {
         return !isWhite(figureId);
     }
 
+    /**
+     * Translates field id to the proper field string
+     * @param id
+     * @return
+     */
     public static String FieldIdToStr(int id) {
         int row = id /8;
         int index = id % 8;

@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.util.Properties;
 
 /**
- *
+ * Accesses the properties file to save configuration
  * @author i7
  */
 public class Config {
