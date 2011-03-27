@@ -14,7 +14,7 @@ import speech2chessapp.ParseSyntax.eAction;
 import speech2chessapp.SocketToChess.SocketCommand;
 
 /**
- *
+ * controlls all functions in this application
  * @author brandma31324
  */
 public class Controller {
@@ -34,6 +34,9 @@ public class Controller {
     private boolean mHandshakeRequested = false;
     private boolean mHandshakeReceived = false;
 
+    /**
+     * starts the worker threads and all helper classes
+     */
     public Controller() {
         // Create Receive From Chess Task
 
@@ -81,10 +84,18 @@ public class Controller {
 
     ArrayList<eCommandWithData> mCommandMessageQueue = new  ArrayList<eCommandWithData>();
 
+    /**
+     * adds a command to the command queue
+     * @param cmd
+     * @param o
+     */
     public void cmd(eCommand cmd, Object o) {
         mCommandMessageQueue.add(new eCommandWithData(cmd, o));
     }
 
+    /**
+     * Works the command queue
+     */
     class Worker extends Thread {
         @Override
         public void run() {
@@ -126,6 +137,11 @@ public class Controller {
     private boolean mTmpPossibleMovesWalkSrc = true;
     ArrayList<eMove> mTmpPossibleMoves = new  ArrayList<eMove>();
 
+    /**
+     * adding a move to the possible move list
+     * @param src
+     * @param dst
+     */
     public void addPossibleMove(String src, String dst) {
         System.out.println("addPossibleMove -> " + src + " " + dst);
 
@@ -142,14 +158,14 @@ public class Controller {
             mPossibleMoves.add(new eMove(src, dst));
     }
 
-    /* 1. umwandeln aller möglichen eingaben in züge
+    /**
+     * 1. umwandeln aller möglichen eingaben in züge
      * 2. durchwandern der züge und umwandeln von figuren in felder
      * 3. jetzt die züge nacheinander durchtesten (zukünftig alle durchtesten)
      * 4. sobald einer valid den ausführen
      *
+     *Wird aufgerufen bis er bei allen zügen figuren turch felder ausgetauscht hat
      */
-
-    // Wird aufgerufen bis er bei allen zügen figuren turch felder ausgetauscht hat
     public boolean walkThroughPossibleMove() {
         System.out.println("walkThroughPossibleMove -> " + mPossibleMovesIndex + " " + mPossibleMovesWalkSrc);
         int i = 0;
@@ -208,6 +224,9 @@ public class Controller {
 
     public String mDOMOVE = null;
 
+    /**
+     * Handles the countdown which is shown in the chess application
+     */
     class CountdownThread extends Thread {
         @Override
         public void run() {
@@ -265,6 +284,11 @@ public class Controller {
     }
 
 
+    /**
+     * contains the functions behind a command in the command queue
+     * @param cmd
+     * @param o
+     */
     public void __cmd(eCommand cmd, Object o) {
         System.out.println("cmd -> " + cmd.toString());
         switch(cmd) {

@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 import speech2chessapp.SocketToChess.SocketCommand;
 
 /**
- *
+ * Handels the Sphinx
  * @author i7
  */
 public class Sphinx extends SpeechEngine {
@@ -26,6 +26,9 @@ public class Sphinx extends SpeechEngine {
     private Recognizer mRecognizer;
     private Microphone mMicrophone;
 
+    /**
+     * Initialises JSAPI
+     */
     public Sphinx() {
         try {
             mCm = new ConfigurationManager(Speech2ChessApp.class.getResource("speech2chess_" + Common.mLanguage + ".config.flat.xml"));
@@ -51,10 +54,17 @@ public class Sphinx extends SpeechEngine {
         mMicrophone = (Microphone) mCm.lookup("microphone");
     }
 
+    /**
+     * Is called before exiting the app
+     */
     public void finish() {
         mRecognizer.deallocate();
     }
 
+    /**
+     * Will block till a string has been recorded
+     * @return
+     */
     public List<String> record(){
         ArrayList<String> resultText = new ArrayList();
 

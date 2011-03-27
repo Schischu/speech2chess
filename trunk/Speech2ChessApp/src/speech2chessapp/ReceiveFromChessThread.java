@@ -9,7 +9,7 @@ import speech2chessapp.Controller.eCommand;
 import speech2chessapp.SocketToChess.SocketCommand;
 
 /**
- *
+ * listens to answer from the chess app
  * @author brandma31324
  */
 public class ReceiveFromChessThread extends Thread {

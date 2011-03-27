@@ -23,6 +23,7 @@ public class Speech2ChessApp extends SingleFrameApplication {
 
     /**
      * At startup create and show the main frame of the application.
+     * And do the initialisation of aour app
      */
     @Override protected void startup() {
         try {

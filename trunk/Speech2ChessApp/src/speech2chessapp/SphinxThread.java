@@ -8,7 +8,7 @@ package speech2chessapp;
 import java.util.List;
 
 /**
- *
+ * handels the speech engine, either jsapi or sphinx
  * @author i7
  */
 public class SphinxThread extends Thread {

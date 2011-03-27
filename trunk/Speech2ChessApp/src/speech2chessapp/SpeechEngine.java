@@ -8,7 +8,7 @@ package speech2chessapp;
 import java.util.List;
 
 /**
- *
+ * abstract class to remain compatible to sphinx and jsapi
  * @author i7
  */
 public abstract class SpeechEngine {
