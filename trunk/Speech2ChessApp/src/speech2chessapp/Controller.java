@@ -613,7 +613,7 @@ public class Controller {
                 try {
                     SocketCommand sockcmd = new SocketCommand();
                     sockcmd.type = SocketToChess.REQ_PRINT;
-                    sockcmd.data = "Loading...".getBytes();
+                    sockcmd.data = Common.mSpeakNow.getBytes();
                     if(SocketToChess.sendCMD(sockcmd)) {
                         mHandshakeReceived = true;
                     }
