@@ -64,20 +64,7 @@ public class JSAPIResultListener extends ResultAdapter {
             sockcmd.type = SocketToChess.REQ_SPEECHACTIVITY;
             sockcmd.data = (" ").getBytes();
             SocketToChess.sendCMD(sockcmd);
-
-            /*ResultToken[] tokens = r.getBestTokens();
-            if(tokens != null && tokens.length > 0) {
-                displayTimes(tokens[0]);
-            }*/
         }
-    }
-
-    private void displayTimes(ResultToken token) {
-        Date start = new Date(token.getStartTime());
-        Date now = new Date(System.currentTimeMillis());
-        System.out.println("Result start = "+start.getMinutes()+":"+start.getSeconds()+
-        ", length = "+((token.getEndTime() - token.getStartTime())/1000.0)+
-        ", now="+now.getMinutes()+":"+now.getSeconds());
     }
 
     @Override

@@ -31,6 +31,9 @@ public class Controller {
     private List<String> mSaveSpeechResults = null;
     private Integer mSaveSpeechResultsIndex = 0;
 
+    private boolean mHandshakeRequested = false;
+    private boolean mHandshakeReceived = false;
+
     public Controller() {
         // Create Receive From Chess Task
 
@@ -600,8 +603,27 @@ public class Controller {
 
             case START:
             {
-                mReceiveFromChessThread.start();
-                cmd(eCommand.RECORD, null);
+                if(!mHandshakeRequested) {
+                    mReceiveFromChessThread.start();
+                    mHandshakeRequested = true;
+                }
+                if(mHandshakeReceived)
+                    cmd(eCommand.RECORD, null);
+                else {
+                try {
+                    SocketCommand sockcmd = new SocketCommand();
+                    sockcmd.type = SocketToChess.REQ_PRINT;
+                    sockcmd.data = "Loading...".getBytes();
+                    if(SocketToChess.sendCMD(sockcmd)) {
+                        mHandshakeReceived = true;
+                    }
+
+                    Thread.sleep(500);
+                    cmd(eCommand.START, null);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                }
             }
             break;
 

@@ -26,7 +26,7 @@ public class ReceiveFromChessThread extends Thread {
         while(true) {
             SocketCommand cmd = SocketToChess.receiveCMD();
             if(cmd != null)
-                pController.cmd(eCommand.NEW_PACKAGE_RECEIVED, cmd);
+                pController.cmd(eCommand.NEW_PACKAGE_RECEIVED, cmd); 
         }
     }
 }
