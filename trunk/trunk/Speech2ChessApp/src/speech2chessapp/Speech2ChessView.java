@@ -22,7 +22,7 @@ import javax.swing.JFrame;
  */
 public class Speech2ChessView extends FrameView {
 
-    Controller pController;
+    Controller pController; 
 
     public Speech2ChessView(SingleFrameApplication app, Controller controller) {
         super(app);

@@ -14,7 +14,7 @@ public class Speech2ChessAboutBox extends javax.swing.JDialog {
         getRootPane().setDefaultButton(closeButton);
     }
 
-    @Action public void closeAboutBox() {
+    @Action public void closeAboutBox() { 
         dispose();
     }
 

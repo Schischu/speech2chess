@@ -22,7 +22,7 @@ public class DreamChessStarter extends Thread {
         mFullscreen = fullscreen;
     }
     @Override
-    public void run()
+    public void run() 
     {
         try {
             Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

@@ -127,6 +127,7 @@ public class ParseSyntax {
         //<natoLetter> = alpha | bravo | charlie | delta | echo | foxtrott | golf | hotel;
         //<phonLetter> = anton | berta | caesar | dora | emil | friedrich | gustav | heinrich;
 
+        
         mInput = mInput.replaceAll("alpha".toLowerCase(), "a");
         mInput = mInput.replaceAll("bravo".toLowerCase(), "b");
         mInput = mInput.replaceAll("charlie".toLowerCase(), "c");

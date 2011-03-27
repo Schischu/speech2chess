@@ -44,3 +44,4 @@ public class SphinxThread extends Thread {
         System.out.println("SphinxThread::run() <-");
     }
 }
+

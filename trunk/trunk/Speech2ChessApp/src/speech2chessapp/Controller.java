@@ -601,7 +601,7 @@ public class Controller {
             }
                 break;
 
-            case START:
+            case START: 
             {
                 if(!mHandshakeRequested) {
                     mReceiveFromChessThread.start();

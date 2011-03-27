@@ -20,6 +20,7 @@ public class ReceiveFromChessThread extends Thread {
         pController = controller;
     }
 
+    
     @Override
     public void run()
     {

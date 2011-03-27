@@ -5,6 +5,7 @@
 
 package speech2chessapp;
 
+
 /**
  *
  * @author i7
@@ -129,10 +130,12 @@ public class Common {
             mBishop = mBishop_EN;
             mRook = mRook_EN;
             mQueen = mQueen_EN;
+            mQueen2 = "xxxxxxxxx";
             mKing = mKing_EN;
 
             mOne = mOne_EN;
             mTwo = mTwo_EN;
+            mTwo2 = "xxxxxxxxx";
             mThree = mThree_EN;
             mFour = mFour_EN;
             mFive = mFive_EN;
@@ -194,6 +197,8 @@ public class Common {
         else if(strFigure.equals(mRook.toLowerCase()))
             id = WHITE_ROOK;
         else if(strFigure.equals(mQueen.toLowerCase()))
+            id = WHITE_QUEEN;
+        else if(strFigure.equals(mQueen2.toLowerCase()))
             id = WHITE_QUEEN;
         else if(strFigure.equals(mKing.toLowerCase()))
             id = WHITE_KING;
