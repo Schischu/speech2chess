@@ -40,19 +40,19 @@ gg_dialog_t *dialog_victory_create(result_t *result)
     case RESULT_WHITE_WINS:
         image_l = gg_image_create(get_white_piece(GUI_PIECE_KING));
         image_r = gg_image_create(get_white_piece(GUI_PIECE_QUEEN));
-        text = gg_label_create("White won the match!");
+        text = gg_label_create("Weiss hat das Spiel gewonnen!");
         break;
 
     case RESULT_BLACK_WINS:
         image_l = gg_image_create(get_black_piece(GUI_PIECE_KING));
         image_r = gg_image_create(get_black_piece(GUI_PIECE_QUEEN));
-        text = gg_label_create("Black won the match!");
+        text = gg_label_create("Schwarz hat das Spiel gewonnen!");
         break;
 
     default:
         image_l = gg_image_create(get_white_piece(GUI_PIECE_KING));
         image_r = gg_image_create(get_black_piece(GUI_PIECE_KING));
-        text = gg_label_create("The game ended in a draw!");
+        text = gg_label_create("Das Spiel ging unentschieden aus!");
     }
 
     gg_container_append(GG_CONTAINER(vbox), text);
@@ -60,7 +60,7 @@ gg_dialog_t *dialog_victory_create(result_t *result)
     gg_container_append(GG_CONTAINER(vbox), text);
     text = gg_label_create("");
     gg_container_append(GG_CONTAINER(vbox), text);
-    action = gg_action_create_with_label("Ok", 0.5f, 0.5f);
+    action = gg_action_create_with_label("Spiel neustarten", 0.5f, 0.5f);
     gg_widget_subscribe_signal_name(action, action->id, "action_pressed", 
         dialog_close_cb, NULL);
     gg_container_append(GG_CONTAINER(vbox), action);
