@@ -113,11 +113,11 @@ int power_of_two(int input)
 
 void go_3d(int width, int height)
 {
-    glViewport( 0, 0, width, height );
+    glViewport(0, 0, width, height );
 
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
-    gluPerspective(45.0f, 640.0f/480.0f, 1.0f, 100.0f);
+    gluPerspective(48.0f, 640.0f/480.0f, 1.0f, 100.0f);
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 }
