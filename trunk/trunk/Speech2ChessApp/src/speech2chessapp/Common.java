@@ -48,12 +48,12 @@ public class Common {
     private static final String mBishop_DE = "Läufer";
     private static final String mRook_DE = "Turm";
     private static final String mQueen_DE = "Dame";
-    public static final String mQueen2_DE = "Königin";
+    private static final String mQueen2_DE = "Königin";
     private static final String mKing_DE = "König";
 
     private static final String mOne_DE = "Eins";
     private static final String mTwo_DE = "Zwei";
-    public static final String mTwo2_DE = "Zwo";
+    private static final String mTwo2_DE = "Zwo";
     private static final String mThree_DE = "Drei";
     private static final String mFour_DE = "Vier";
     private static final String mFive_DE = "Fünf";
@@ -80,10 +80,12 @@ public class Common {
     public static String mBishop = "";
     public static String mRook = "";
     public static String mQueen = "";
+    public static String mQueen2 = "";
     public static String mKing = "";
 
     public static String mOne = "";
     public static String mTwo = "";
+    public static String mTwo2 = "";
     public static String mThree = "";
     public static String mFour = "";
     public static String mFive = "";
@@ -155,10 +157,12 @@ public class Common {
             mBishop = mBishop_DE;
             mRook = mRook_DE;
             mQueen = mQueen_DE;
+            mQueen2 = mQueen2_DE;
             mKing = mKing_DE;
 
             mOne = mOne_DE;
             mTwo = mTwo_DE;
+            mTwo2 = mTwo2_DE;
             mThree = mThree_DE;
             mFour = mFour_DE;
             mFive = mFive_DE;

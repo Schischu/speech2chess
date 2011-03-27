@@ -28,7 +28,8 @@ public class Speech2ChessApp extends SingleFrameApplication {
                 //new DreamChessStarter().start();
                 //Thread.sleep(6000);
                 pController = new Controller();
-                pController.cmd(Controller.eCommand.START, null);
+                show(new Speech2ChessView(this, pController));
+                //pController.cmd(Controller.eCommand.START, null);
                 Thread.sleep(2000);
                 new DreamChessStarter().start();
             }
@@ -36,6 +37,7 @@ public class Speech2ChessApp extends SingleFrameApplication {
                 Config.getInstance().set("firststart", "false");
                 JSAPI jsapi = new JSAPI();
                 jsapi.finish();
+                System.exit(0);
                 //pController = new Controller();
                 //pController.cmd(Controller.eCommand.START, null);
                 //show(new Speech2ChessView(this, pController));

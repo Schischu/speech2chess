@@ -3,7 +3,7 @@
  */
 
 package speech2chessapp;
-
+ 
 import org.jdesktop.application.Action;
 
 public class Speech2ChessAboutBox extends javax.swing.JDialog {

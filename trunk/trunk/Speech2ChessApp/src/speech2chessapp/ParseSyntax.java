@@ -86,9 +86,10 @@ public class ParseSyntax {
          mFigures.add(Common.mKnight.toLowerCase());
          mFigures.add(Common.mBishop.toLowerCase());
          mFigures.add(Common.mRook.toLowerCase());
-         mFigures.add(Common.mQueen.toLowerCase());
-         mFigures.add(Common.mQueen2_DE.toLowerCase());
          mFigures.add(Common.mKing.toLowerCase());
+         mFigures.add(Common.mQueen.toLowerCase());
+         mFigures.add(Common.mQueen2.toLowerCase());
+         
          // ...
     }
 
@@ -115,7 +116,7 @@ public class ParseSyntax {
 
         mInput = mInput.replaceAll(" " + Common.mOne.toLowerCase(), "1");
         mInput = mInput.replaceAll(" " + Common.mTwo.toLowerCase(), "2");
-        mInput = mInput.replaceAll(" " + Common.mTwo2_DE.toLowerCase(), "2");
+        mInput = mInput.replaceAll(" " + Common.mTwo2.toLowerCase(), "2");
         mInput = mInput.replaceAll(" " + Common.mThree.toLowerCase(), "3");
         mInput = mInput.replaceAll(" " + Common.mFour.toLowerCase(), "4");
         mInput = mInput.replaceAll(" " + Common.mFive.toLowerCase(), "5");
