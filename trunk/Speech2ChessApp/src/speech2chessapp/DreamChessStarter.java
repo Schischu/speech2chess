@@ -21,15 +21,13 @@ public class DreamChessStarter extends Thread {
     {
         try {
             Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-            //Process p = Runtime.getRuntime().exec("dreamchess.exe --fullscreen --width " + dim.width + " --height " + dim.height);
-            Process p = Runtime.getRuntime().exec("C:\\Program Files\\DreamChess\\dreamchess.exe --fullscreen --width " + dim.width + " --height " + dim.height);
+            Process p = Runtime.getRuntime().exec("dreamchess.exe --fullscreen --width " + dim.width + " --height " + dim.height);
+           // Process p = Runtime.getRuntime().exec("C:\\Program Files (x86)\\DreamChess\\dreamchess.exe --fullscreen --width " + dim.width + " --height " + dim.height);
             //Process p = Runtime.getRuntime().exec("C:\\Program Files\\DreamChess\\dreamchess.exe");
 
             p.waitFor();
             System.exit(0);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(DreamChessStarter.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(DreamChessStarter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

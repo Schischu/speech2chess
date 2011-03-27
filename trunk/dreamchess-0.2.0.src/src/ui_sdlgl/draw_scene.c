@@ -27,14 +27,18 @@ float get_mouse_square()
     return mouse_square;
 }
 
-static char message[128] = "                                ";
-static char message2[128] = "                                ";
+static char message[128] = "                                                                                                                                 \0";
+static char message2[128] = "                                                                                                                                 \0";
+
+static int activity = 0;
 
 void setUI(int index, char * text) {
 	if(index == 1)
 		strcpy(message, text);
 	else if(index == 2)
 		strcpy(message2, text);
+	else if(index == 3)
+		activity = 30;
 }
 
 /** @brief Main in-game rendering routine.
@@ -73,13 +77,24 @@ void draw_scene( board_t *b, int reflections )
     draw_move_list(get_col(COL_WHITE), get_col(COL_YELLOW));
     draw_capture_list(get_col(COL_WHITE));
 
-    clock_minutes=(((SDL_GetTicks()-get_turn_counter())/1000)/60);
-    clock_seconds=((SDL_GetTicks()-get_turn_counter())/1000)-(clock_minutes*60);
-    sprintf( temp, "%i:%02i", clock_minutes, clock_seconds );
-    text_draw_string( 303, 440, temp, 1, get_col(COL_WHITE));
+    //clock_minutes=(((SDL_GetTicks()-get_turn_counter())/1000)/60);
+    //clock_seconds=((SDL_GetTicks()-get_turn_counter())/1000)-(clock_minutes*60);
+    //sprintf( temp, "%i:%02i", clock_minutes, clock_seconds );
+    //text_draw_string( 303, 440, temp, 1, get_col(COL_WHITE));
     
     text_draw_string( 50, 440, message, 1, get_col(COL_WHITE));
     text_draw_string( 50, 420, message2, 1, get_col(COL_WHITE));
+    
+    
+    draw_rect_fill( 600-1, 420-1, 10+2, 30+2, get_col(COL_WHITE));
+    draw_rect_fill( 600, 420, 10, 30, get_col(COL_BLACK));
+    if(activity > 0) {
+        
+        draw_rect_fill( 600, 420, 10, activity, get_col(COL_GREEN));
+        activity--;
+    }
+    //else
+    //    activity = 30;
     
     glPopMatrix();
 
@@ -104,11 +119,11 @@ void draw_scene( board_t *b, int reflections )
     }
 
     /* Draw mouse cursor.. */
-    #ifndef _arch_dreamcast
-    #ifndef __BEOS__
-    draw_texture( get_mouse_cursor(), get_mouse_x(), (479-get_mouse_y()-32), 32, 32, 1.0f, get_col(COL_WHITE));
-	#endif /* __BEOS__ */
-    #endif /* _arch_dreamcast */
+    //#ifndef _arch_dreamcast
+    //#ifndef __BEOS__
+    //draw_texture( get_mouse_cursor(), get_mouse_x(), (479-get_mouse_y()-32), 32, 32, 1.0f, get_col(COL_WHITE));
+	//#endif /* __BEOS__ */
+    //#endif /* _arch_dreamcast */
 
     /* Draw it to the screen */
     gl_swap();

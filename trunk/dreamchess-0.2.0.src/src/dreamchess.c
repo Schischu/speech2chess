@@ -562,11 +562,13 @@ typedef int socklen_t;
 #define REQ_MOVE 1
 #define REQ_QUIT 20
 #define REQ_RESTART 21
+#define REQ_SURRENDER 22
     
 #define REQ_VERIFY 10
 #define REQ_FIGURES 12
 #define REQ_PRINT 13
 #define REQ_PRINT2 14
+#define REQ_SPEECHACTIVITY 15
 
 int ready_to_send = 0;
 int ready_to_send_len = 0;
@@ -685,6 +687,15 @@ WSAStartup(MAKEWORD(2, 2), &wsaData);
 				game_quit();
 			}
 				break;
+			case REQ_SURRENDER:
+			{
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				history->result = malloc(sizeof(result_t));
+				history->result->code = RESULT_BLACK_WINS;
+				history->result->reason = strdup("White surrenders");
+				ui->show_result(history->result);
+			}
+				break;
 			case REQ_VERIFY:
 			{
 				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
@@ -750,6 +761,13 @@ WSAStartup(MAKEWORD(2, 2), &wsaData);
 				str_print[size] = '\0';
 				DBG_LOG("Print2: %s", str_print);
 				setUI(2, str_print);
+			}
+				break;
+			case REQ_SPEECHACTIVITY:
+			{
+				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
+				DBG_LOG("SpeechActivity");
+				setUI(3, 0);
 			}
 				break;
 			default:

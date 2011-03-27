@@ -8,5 +8,5 @@ grammar speech2chess;
 
 public <field> = ( a | b | c | d | e | f | g | h ) ( one | two | three | four | five | six | seven | eight ) to ( a | b | c | d | e | f | g | h ) ( one | two | three | four | five | six | seven | eight );
 public <figure> = ( pawn | knight | bishop | rook | queen | king ) to ( a | b | c | d | e | f | g | h ) ( one | two | three | four | five | six | seven | eight );
-public <command> = ( restart | end ) game;
+public <command> = ( restart | end | surrender ) game;
 public <yesno> = ( yes | no );
