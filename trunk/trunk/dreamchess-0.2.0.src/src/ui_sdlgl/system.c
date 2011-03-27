@@ -164,7 +164,7 @@ void init_gl()
 void resize_window( int width, int height )
 {
     glViewport( 0, 0, width, height );
-
+    glTranslatef(0, 100, 0);
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
     glOrtho(0, 640, 0, 480, -1, 1);

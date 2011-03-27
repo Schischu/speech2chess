@@ -24,11 +24,20 @@ public class Speech2ChessApp extends SingleFrameApplication {
      */
     @Override protected void startup() {
         try {
-            new DreamChessStarter().start();
-            Thread.sleep(10000);
-            pController = new Controller();
-            pController.cmd(Controller.eCommand.START, null);
-            //show(new Speech2ChessView(this, pController));
+            if(Config.getInstance().get("firststart") != null) {
+                new DreamChessStarter().start();
+                Thread.sleep(10000);
+                pController = new Controller();
+                pController.cmd(Controller.eCommand.START, null);
+            }
+            else {
+                Config.getInstance().set("firststart", "false");
+                JSAPI jsapi = new JSAPI();
+                jsapi.finish();
+                //pController = new Controller();
+                //pController.cmd(Controller.eCommand.START, null);
+                //show(new Speech2ChessView(this, pController));
+            }
         } catch (InterruptedException ex) {
             Logger.getLogger(Speech2ChessApp.class.getName()).log(Level.SEVERE, null, ex);
         }

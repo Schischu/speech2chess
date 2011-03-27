@@ -149,9 +149,6 @@ public class JSAPI extends SpeechEngine {
         try {
             mRec.requestFocus();
             mRec.resume();
-
-
-
             mRec.waitEngineState(mRec.LISTENING);
 
             System.out.println("Speak now:\n");

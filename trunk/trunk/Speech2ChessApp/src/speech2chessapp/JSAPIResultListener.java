@@ -19,6 +19,7 @@ import javax.speech.recognition.ResultEvent;
 import javax.speech.recognition.ResultStateError;
 import javax.speech.recognition.ResultToken;
 import javax.speech.recognition.RuleGrammar;
+import speech2chessapp.SocketToChess.SocketCommand;
 
 /**
  *
@@ -48,14 +49,26 @@ public class JSAPIResultListener extends ResultAdapter {
     public void resultCreated(ResultEvent e) {
         Result r = (Result)(e.getSource());
         System.out.println("Result Created ");
+
+        SocketCommand sockcmd = new SocketCommand();
+        sockcmd.type = SocketToChess.REQ_SPEECHACTIVITY;
+        sockcmd.data = (" ").getBytes();
+        SocketToChess.sendCMD(sockcmd);
     }
     @Override
     public void resultUpdated(ResultEvent e) {
         Result r = (Result)(e.getSource());
         System.out.println("Result Updated... "+r);
-        ResultToken[] tokens = r.getBestTokens();
-        if(tokens != null && tokens.length > 0) {
-            displayTimes(tokens[0]);
+        if(r instanceof CGResult) {
+            SocketCommand sockcmd = new SocketCommand();
+            sockcmd.type = SocketToChess.REQ_SPEECHACTIVITY;
+            sockcmd.data = (" ").getBytes();
+            SocketToChess.sendCMD(sockcmd);
+
+            /*ResultToken[] tokens = r.getBestTokens();
+            if(tokens != null && tokens.length > 0) {
+                displayTimes(tokens[0]);
+            }*/
         }
     }
 

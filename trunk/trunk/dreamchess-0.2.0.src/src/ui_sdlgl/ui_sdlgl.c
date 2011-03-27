@@ -546,7 +546,7 @@ static int init_gui( int width, int height, int fullscreen, int ms)
 
     gg_system_init(get_gg_driver_sdlgl());
 
-    style_ingame.fade_col = gg_colour(0.0f, 0.0f, 0.0f, 0.5f);
+    //style_ingame.fade_col = gg_colour(0.0f, 0.0f, 0.0f, 0.5f);
     style_ingame.hor_pad = 20;
     style_ingame.vert_pad = 10;
 
@@ -554,7 +554,7 @@ static int init_gui( int width, int height, int fullscreen, int ms)
         style_ingame.border.image[i] = &get_border()[i];
 
     style_menu.textured = 1;
-    style_menu.fade_col = gg_colour(0.0f, 0.0f, 0.0f, 0.0f);
+    //style_menu.fade_col = gg_colour(0.0f, 0.0f, 0.0f, 0.0f);
     style_menu.hor_pad = 20;
     style_menu.vert_pad = 10;
 

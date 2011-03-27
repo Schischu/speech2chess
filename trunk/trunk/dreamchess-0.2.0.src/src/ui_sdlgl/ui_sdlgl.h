@@ -302,6 +302,7 @@ int text_height();
 #define COL_WHITE   1
 #define COL_RED     2
 #define COL_YELLOW  3
+#define COL_GREEN  4
 
 /* saveload_dc.c */
 #ifdef _arch_dreamcast

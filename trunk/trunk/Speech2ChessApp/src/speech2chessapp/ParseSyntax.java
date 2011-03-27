@@ -96,7 +96,7 @@ public class ParseSyntax {
         if(Common.mLanguage.equals("EN")) {
          mCommands.add("end".toLowerCase());
          mCommands.add("restart".toLowerCase());
-         mCommands.add("aufgeben".toLowerCase());
+         mCommands.add("surrender".toLowerCase());
          mCommands.add("yes".toLowerCase());
          mCommands.add("no".toLowerCase());
         } else {

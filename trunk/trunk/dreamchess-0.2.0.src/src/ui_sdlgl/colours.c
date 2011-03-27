@@ -40,6 +40,11 @@ static gg_colour_t col_yellow =
         1.0f, 1.0f, 0.0f, 1.0f
     };
 
+static gg_colour_t col_green =
+    {
+        0.0f, 0.6f, 0.0f, 1.0f
+    };
+
 /* Return the specified colour, returning white if unknown value */
 gg_colour_t *get_col( int colour )
 {
@@ -53,6 +58,9 @@ gg_colour_t *get_col( int colour )
             break;
         case COL_YELLOW:
             return &col_yellow;
+            break;
+        case COL_GREEN:
+            return &col_green;
             break;
         case COL_WHITE:
         default:
