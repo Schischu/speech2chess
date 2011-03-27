@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Executes the dreamchess.exe either as fullscreen or as windowed 
  * @author i3
  */
 public class DreamChessStarter extends Thread {

@@ -28,7 +28,7 @@ import javax.speech.recognition.RuleGrammar;
 import speech2chessapp.SocketToChess.SocketCommand;
 
 /**
- *
+ * Handels the JSAPI
  * @author i7
  */
 public class JSAPI extends SpeechEngine {
@@ -36,6 +36,9 @@ public class JSAPI extends SpeechEngine {
     private static Recognizer mRec = null;
     private static JSAPIResultListener mJSAPIResultListener = null;
 
+    /**
+     * Initialises JSAPI
+     */
     public JSAPI() {
         //"Microsoft Speech Recognizer 8.0 for Windows (English - UK), SAPI5, Microsoft"
         String recognizer = Config.getInstance().get("recognizer");
@@ -129,6 +132,9 @@ public class JSAPI extends SpeechEngine {
         System.out.println("\nUsing engine "+mRec.getEngineModeDesc());
     }
 
+    /**
+     * Is called before exiting the app
+     */
     @Override
     public void finish() {
         if( mRec.testEngineState(Recognizer.ALLOCATED)
@@ -144,6 +150,10 @@ public class JSAPI extends SpeechEngine {
         }
     }
 
+    /**
+     * Will block till a string has been recorded
+     * @return
+     */
     @Override
     public List<String> record() {
         try {
