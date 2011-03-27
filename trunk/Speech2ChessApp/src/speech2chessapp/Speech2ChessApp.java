@@ -18,6 +18,8 @@ import org.jdesktop.application.SingleFrameApplication;
 public class Speech2ChessApp extends SingleFrameApplication {
 
     Controller pController;
+    private static boolean sFullscreen = true;
+
 
     /**
      * At startup create and show the main frame of the application.
@@ -31,7 +33,7 @@ public class Speech2ChessApp extends SingleFrameApplication {
                 show(new Speech2ChessView(this, pController));
                 //pController.cmd(Controller.eCommand.START, null);
                 Thread.sleep(2000);
-                new DreamChessStarter().start();
+                new DreamChessStarter(sFullscreen).start();
             }
             else {
                 Config.getInstance().set("firststart", "false");
@@ -67,6 +69,10 @@ public class Speech2ChessApp extends SingleFrameApplication {
      * Main method launching the application.
      */
     public static void main(String[] args) {
+
+        if(args.length > 0)
+            sFullscreen = false;
+
         launch(Speech2ChessApp.class, args);
     }
 }

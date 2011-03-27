@@ -15,13 +15,23 @@ import java.util.logging.Logger;
  * @author i3
  */
 public class DreamChessStarter extends Thread {
+
+    private boolean mFullscreen = false;
+
+    public DreamChessStarter(boolean fullscreen) {
+        mFullscreen = fullscreen;
+    }
     @Override
     public void run()
     {
         try {
             Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-            //Process p = Runtime.getRuntime().exec("dreamchess.exe --fullscreen --width " + dim.width + " --height " + dim.height);
-            Process p = Runtime.getRuntime().exec("C:\\Program Files (x86)\\DreamChess\\dreamchess.exe");
+            Process p = null;
+            if(mFullscreen)
+                p = Runtime.getRuntime().exec("dreamchess.exe --fullscreen --width " + dim.width + " --height " + dim.height);
+            else
+                p = Runtime.getRuntime().exec("dreamchess.exe --window --width 640 --height 480");
+            //Process p = Runtime.getRuntime().exec("C:\\Program Files (x86)\\DreamChess\\dreamchess.exe");
             //Process p = Runtime.getRuntime().exec("C:\\Program Files\\DreamChess\\dreamchess.exe");
 
             p.waitFor();

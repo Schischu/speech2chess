@@ -62,6 +62,7 @@ typedef struct cl_options {
 	int width;
 	int height;
 	int fs;
+	int nofs;
 	char *engine;
 } cl_options_t;
 
@@ -446,6 +447,7 @@ static void parse_options(int argc, char **argv, ui_driver_t **ui_driver, cl_opt
             {"list-drivers", no_argument, NULL, 'l'},
             {"ui", required_argument, NULL, 'u'},
             {"fullscreen", no_argument, NULL, 'f'},
+            {"window", no_argument, NULL, 'w'},
             {"width", required_argument, NULL, 'W'},
             {"height", required_argument, NULL, 'H'},
             {"1st-engine", required_argument, NULL, '1'},
@@ -453,10 +455,10 @@ static void parse_options(int argc, char **argv, ui_driver_t **ui_driver, cl_opt
             {0, 0, 0, 0}
         };
 
-    while ((c = getopt_long(argc, argv, "1:fhlu:v:W:H:", options, &optindex)) > -1) {
+    while ((c = getopt_long(argc, argv, "1:fhluw:v:W:H:", options, &optindex)) > -1) {
 #else
 
-    while ((c = getopt(argc, argv, "1:fhlu:v:W:H:")) > -1) {
+    while ((c = getopt(argc, argv, "1:fhluw:v:W:H:")) > -1) {
 #endif /* HAVE_GETOPT_LONG */
         switch (c)
         {
@@ -490,6 +492,9 @@ static void parse_options(int argc, char **argv, ui_driver_t **ui_driver, cl_opt
             break;
         case 'f':
             cl_options->fs = 1;
+            break;
+        case 'w':
+            cl_options->nofs = 1;
             break;
         case 'W':
             cl_options->width = atoi(optarg);
@@ -530,6 +535,11 @@ static void set_cl_options(cl_options_t *cl_options)
 	if (cl_options->fs) {
 	    option = config_get_option("full_screen");
 	    option_select_value_by_name(option, "On");
+	}
+
+	if (cl_options->nofs) {
+	    option = config_get_option("full_screen");
+	    option_select_value_by_name(option, "Off");
 	}
 
 	if (cl_options->width) {
