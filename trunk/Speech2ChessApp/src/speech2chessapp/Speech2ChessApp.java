@@ -30,9 +30,10 @@ public class Speech2ChessApp extends SingleFrameApplication {
                 //new DreamChessStarter().start();
                 //Thread.sleep(6000);
                 pController = new Controller();
-                show(new Speech2ChessView(this, pController));
+                if(!sFullscreen)
+                    show(new Speech2ChessView(this, pController));
                 //pController.cmd(Controller.eCommand.START, null);
-                Thread.sleep(2000);
+                Thread.sleep(3000);
                 new DreamChessStarter(sFullscreen).start();
             }
             else {

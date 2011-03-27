@@ -44,7 +44,7 @@ public class Config {
         if (mProperties != null)
             return mProperties.getProperty(prop);
         else
-            return null;
+            return null; 
     }
 
     public void set(String prop, String value) {
