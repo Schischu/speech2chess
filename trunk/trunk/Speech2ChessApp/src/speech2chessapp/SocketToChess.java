@@ -15,7 +15,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 /**
- *
+ * communicates with the chess app by using tcp sockets
  * @author brandma31324
  */
 public class SocketToChess {
@@ -36,6 +36,11 @@ public class SocketToChess {
     private static Socket socketToChess = null;
     private static Socket socketFromChess = null;
 
+    /**
+     * sends a command to the chess app
+     * @param cmd
+     * @return
+     */
     public static boolean sendCMD(SocketCommand cmd) {
         //System.out.println("-> sendCMD");
 
@@ -73,6 +78,11 @@ public class SocketToChess {
         public byte[] data;
     }
 
+    /**
+     * waits for a command from the chess app
+     *
+     * @return
+     */
     public static SocketCommand receiveCMD() {
         //System.out.println("-> receiveCMD");
 
