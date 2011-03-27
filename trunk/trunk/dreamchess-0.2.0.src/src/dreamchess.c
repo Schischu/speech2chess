@@ -261,12 +261,12 @@ DBG_LOG("-> %s", __func__);
         if (new_board.turn == WHITE)
         {
             history->result->code = RESULT_BLACK_WINS;
-            history->result->reason = strdup("Black mates");
+            history->result->reason = strdup("Schwarz setzt matt");
         }
         else
         {
             history->result->code = RESULT_WHITE_WINS;
-            history->result->reason = strdup("White mates");
+            history->result->reason = strdup("Weiss setzt matt");
         }
 
         if (ui_update)
@@ -277,7 +277,7 @@ DBG_LOG("-> %s", __func__);
         history->result = malloc(sizeof(result_t));
 
         history->result->code = RESULT_DRAW;
-        history->result->reason = strdup("Stalemate");
+        history->result->reason = strdup("Pattsituation");
 
         if (ui_update)
             ui->show_result(history->result);
@@ -692,7 +692,7 @@ WSAStartup(MAKEWORD(2, 2), &wsaData);
 				DBG_LOG("%s:%d", __FUNCTION__, __LINE__); 
 				history->result = malloc(sizeof(result_t));
 				history->result->code = RESULT_BLACK_WINS;
-				history->result->reason = strdup("White surrenders");
+				history->result->reason = strdup("Weiss gibt auf!");
 				ui->show_result(history->result);
 			}
 				break;

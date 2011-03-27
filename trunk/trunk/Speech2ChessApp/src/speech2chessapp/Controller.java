@@ -618,7 +618,7 @@ public class Controller {
                         mHandshakeReceived = true;
                     }
 
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                     cmd(eCommand.START, null);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
