@@ -36,7 +36,7 @@ public class SocketToChess {
     private static Socket socketToChess = null;
     private static Socket socketFromChess = null;
 
-    public static void sendCMD(SocketCommand cmd) {
+    public static boolean sendCMD(SocketCommand cmd) {
         //System.out.println("-> sendCMD");
 
         try{
@@ -57,11 +57,11 @@ public class SocketToChess {
 
             dataOutput.close();
             socketToChess.close();
+            return true;
         } catch(Exception ex) {
             //System.out.println(ex.toString());
+            return false;
         }
-
-
         //System.out.println("<- sendCMD");
     }
 

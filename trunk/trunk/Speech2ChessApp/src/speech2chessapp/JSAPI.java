@@ -133,15 +133,15 @@ public class JSAPI extends SpeechEngine {
     public void finish() {
         if( mRec.testEngineState(Recognizer.ALLOCATED)
                 && !mRec.testEngineState(Recognizer.DEALLOCATING_RESOURCES)) {
-                    try {
-                        System.out.println("forcing finalize");
-                        mRec.forceFinalize(true);
-                        System.out.println("deallocating");
-                        mRec.deallocate();
-                    } catch(Exception e2) {
-                        e2.printStackTrace(System.out);
-                    }
-                }
+            try {
+                System.out.println("forcing finalize");
+                mRec.forceFinalize(true);
+                System.out.println("deallocating");
+                mRec.deallocate();
+            } catch(Exception e2) {
+                e2.printStackTrace(System.out);
+            }
+        }
     }
 
     @Override
@@ -149,6 +149,7 @@ public class JSAPI extends SpeechEngine {
         try {
             mRec.requestFocus();
             mRec.resume();
+            mRec.requestFocus();
             mRec.waitEngineState(mRec.LISTENING);
 
             System.out.println("Speak now:\n");
@@ -158,6 +159,7 @@ public class JSAPI extends SpeechEngine {
             SocketToChess.sendCMD(sockcmd);
 
             // Will be paused if the recognizerlistener has something recognized
+            mRec.requestFocus();
             mRec.waitEngineState(mRec.PAUSED);
 
             return mJSAPIResultListener.sResults;
