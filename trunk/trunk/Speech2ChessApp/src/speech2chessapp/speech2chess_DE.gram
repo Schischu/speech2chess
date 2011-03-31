@@ -36,6 +36,7 @@ public <command13> = ( <field> schl�gt <figure> );
 public <command9b> = ( <field> schl�gt <field> );
 public <command3> = ( <figure> <field> schl�gt <figure> <field> );
 public <command12> = ( <figure> schl�gt <figure> <field> matt! );
+public <command12> = ( <figure> schl�gt <field> );
 
 public <command14> = ( kurze Roschade | kurze Rochade );
 public <command15> = ( lange Roschade | lange Rochade );
