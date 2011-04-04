@@ -11,14 +11,14 @@ public <command> = ( (<yesno>)
 | (spiel aufgeben)
 | (spiel beenden)
 | (spiel neustarten) );
- <figure> = ( bauer | springer | leufer | pferd | turm | dame | kï¿½nigin | kï¿½nig );
- <malefigure> = ( bauer | springer | leufer | turm | kï¿½nig );
- <femalefigure> = ( kï¿½nigin | dame );
+ <figure> = ( bauer | springer | läufer | pferd | turm | dame | königin | könig );
+ <malefigure> = ( bauer | springer | läufer | turm | könig );
+ <femalefigure> = ( königin | dame );
  <neutralfigure> = ( pferd );
- <number> = ( eins | zwei | zwo | drei | vier | fï¿½nf | sechs | sieben | acht );
+ <number> = ( eins | zwei | zwo | drei | vier | fünf | sechs | sieben | acht );
  <letter> = a | b | c | d | e | f | g |  h;
  <natoLetter> = alpha | bravo | charlie | delta | echo | foxtrott | golf | hotel;
- <phonLetter> = anton | berta | zï¿½sar | dora | emil | friedrich | gustav | heinrich;
+ <phonLetter> = anton | berta | zäsar | dora | emil | friedrich | gustav | heinrich;
  <field> = (<letter> | <natoLetter> | <phonLetter>) <number>;
 public <command1> = ( <figure> von <field> nach <field> );
 public <command2> = ( <figure> <field> nach <field> );
@@ -32,11 +32,11 @@ public <command8> = ( <field> <field> );
 public <command9> = ( <field> nach <field> );
 public <command10> = ( <figure> <field> nach <field> );
 public <command11> = ( <figure> <field> schach! );
-public <command13> = ( <field> schlï¿½gt <figure> );
-public <command9b> = ( <field> schlï¿½gt <field> );
-public <command3> = ( <figure> <field> schlï¿½gt <figure> <field> );
-public <command12> = ( <figure> schlï¿½gt <figure> <field> matt! );
-public <command20> = ( <figure> schlï¿½gt <field> );
+public <command13> = ( <field> schlägt <figure> );
+public <command9b> = ( <field> schlägt <field> );
+public <command3> = ( <figure> <field> schlägt <figure> <field> );
+public <command12> = ( <figure> schlägt <figure> <field> matt! );
+public <command20> = ( <figure> schlägt <field> );
 
 public <command14> = ( kurze Roschade | kurze Rochade );
 public <command15> = ( lange Roschade | lange Rochade );
